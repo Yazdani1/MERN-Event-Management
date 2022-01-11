@@ -32,7 +32,7 @@ const App = () => {
             <ProtectedRoute FrontProtected={ResetPassword} />
           </Route>
 
-          <Route path="/reset/:token">
+          <Route path="/reset/:token" exact>
             <ProtectedRoute FrontProtected={NewPassword} />
           </Route>
 
