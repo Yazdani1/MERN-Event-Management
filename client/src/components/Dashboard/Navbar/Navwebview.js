@@ -14,16 +14,12 @@ import { RiLogoutCircleRLine } from "react-icons/ri";
 import { AiFillMessage } from "react-icons/ai";
 import { GiRamProfile } from "react-icons/gi";
 import { MdQuestionAnswer } from "react-icons/md";
+import { UserContext } from "../../UserContext";
 
 
 const Navwebview = (props) => {
-  // const [sidebar, setSidebar] = useState(true);
 
-  // const openNavbar = () => {
-  //   setSidebar(!sidebar);
-  // };
-
-  // const [userdetails, setUserdetails] = useContext(UserContext);
+  
 
   const history = useHistory();
 

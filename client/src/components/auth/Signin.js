@@ -5,8 +5,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "../../../node_modules/react-toastify/dist/ReactToastify.css";
 import { signIn } from "./apiAuth";
 import { SyncOutlined } from "@ant-design/icons";
+import { UserContext } from "../UserContext";
 
 function SignIn() {
+  const [state, setState] = useContext(UserContext);
+
   const history = useHistory();
   const [data, setData] = useState({
     email: "",
@@ -32,23 +35,33 @@ function SignIn() {
 
     setLoading(true);
 
-
-
     signIn({ email, password })
       .then((result) => {
         if (result.error) {
           setData({ ...data, error: result.error });
           setLoading(false);
         } else {
+          console.log(result);
+          
+          //update user information
+          setState({
+            user: result.user,
+            token: result.token
+          });
 
-          localStorage.setItem("tokenLogin", result.token);
+          //save user info in local storage
+          window.localStorage.setItem("tokenLogin", JSON.stringify(result));
+
+
+
+          // localStorage.setItem("tokenLogin", result.token, result.user);
+          // localStorage.setItem("user",result.user);
 
           history.push("/dashboard");
           setLoading(false);
         }
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
   };
 
   const errorMessage = () => {
