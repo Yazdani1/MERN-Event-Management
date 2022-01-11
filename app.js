@@ -25,24 +25,24 @@ app.use("/api", require("./router/user"));
 
 //to deploy heroku
 // Serve static assets if in production
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static('client/build'));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
 
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-//   });
-// }
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 //to deploy vercel
 
-if(process.env.NODE_ENV=='production'){
-  const path = require('path')
+// if(process.env.NODE_ENV=='production'){
+//   const path = require('path')
 
-  app.get('/',(req,res)=>{
-      app.use(express.static(path.resolve(__dirname,'client','build')))
-      res.sendFile(path.resolve(__dirname,'client','build','index.html'))
-  })
-}
+//   app.get('/',(req,res)=>{
+//       app.use(express.static(path.resolve(__dirname,'client','build')))
+//       res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+//   })
+// }
 
 app.listen(PORT, (req, res) => {
   console.log("Server connected");
