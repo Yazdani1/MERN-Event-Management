@@ -72,11 +72,11 @@ exports.userLogin = async (req, res) => {
 
   try {
     if (!email) {
-      return res.status(400).json({ error: "Add all the field" });
+      return res.status(400).json({ error: "add your register email" });
     }
 
     if (!password) {
-      return res.status(400).json({ error: "Add all the field" });
+      return res.status(400).json({ error: "add your password" });
     }
 
     let user = await User.findOne({ email });
@@ -106,7 +106,12 @@ exports.userLogin = async (req, res) => {
         </ul>
         </h1>`,
     });
-    return res.json({ token});
+
+    user.password = undefined;
+    user.expireToken = undefined;
+    user.resetToken = undefined;
+
+    return res.json({ token, user});
   } catch (err) {
     console.log(err);
   }
