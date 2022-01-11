@@ -3,9 +3,10 @@ import "./navheader.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Navwebview from "./Navwebview";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../UserContext";
 
 const Navheader = (props) => {
-  // const [userdetails, setUserdetails] = useContext(UserContext);
+  const [state, setState] = useContext(UserContext);
 
   return (
     <>
@@ -17,36 +18,22 @@ const Navheader = (props) => {
           <Link to={"/"} style={{ textDecoration: "none" }}>
             <li>Home</li>
           </Link>
-          {/* <li>{userdetails && userdetails.name}</li> */}
+          <li>{state && state.user && state.user.name}</li>
+          {/* <li>{state.user._id}</li> */}
 
-          {/* <div className="profile-image">
-            {userdetails && userdetails.photo ? (
-              <img src={userdetails && userdetails.photo} />
+          <div className="profile-image">
+            {state && state.user && state.user.photo ? (
+              <img src={state && state.user && state.user.photo} />
             ) : (
               <div className="profile-nave-avatar">
                 <h4>
-                  {userdetails &&
-                    userdetails.name.substring(0, 2).toUpperCase()}
+                  {state &&
+                    state.user &&
+                    state.user.name.substring(0, 2).toUpperCase()}
                 </h4>
               </div>
             )}
-          </div> */}
-
-          {/* <div className="profile">
-            {userdetails && userdetails.photo ? (
-              <img
-                src={userdetails && userdetails.photo}
-                className="profile-picture-image"
-              />
-            ) : (
-              <div className="profile-picture">
-                <h4>
-                  {userdetails &&
-                    userdetails.name.substring(0, 2).toUpperCase()}
-                </h4>
-              </div>
-            )}
-          </div> */}
+          </div>
         </ul>
       </div>
     </>

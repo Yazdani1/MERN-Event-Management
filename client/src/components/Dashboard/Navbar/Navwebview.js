@@ -16,15 +16,14 @@ import { GiRamProfile } from "react-icons/gi";
 import { MdQuestionAnswer } from "react-icons/md";
 import { UserContext } from "../../UserContext";
 
-
 const Navwebview = (props) => {
-
-  
+  const [state, setState] = useContext(UserContext);
 
   const history = useHistory();
 
   const logOut = () => {
     window.localStorage.removeItem("tokenLogin");
+    setState(null);
     history.push("/signin");
   };
 
