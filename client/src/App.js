@@ -7,6 +7,8 @@ import SignIn from "./components/auth/Signin";
 
 import ResetPassword from "./components/auth/ResetPassword";
 import NewPassword from "./components/auth/NewPassword";
+import DashboardprotectedRoute from "./components/Dashboard/DashboardprotectedRoute";
+import Dashboard from "./components/Dashboard/Event/Dashboard";
 
 const App = () => {
   return (
@@ -31,6 +33,12 @@ const App = () => {
 
         <Route path="/reset/:token">
           <ProtectedRoute FrontProtected={NewPassword} />
+        </Route>
+
+        {/* Protected route for admin side */}
+
+        <Route exact path="/dashboard">
+          <DashboardprotectedRoute DashboardProtect={Dashboard} />
         </Route>
       </Switch>
     </BrowserRouter>

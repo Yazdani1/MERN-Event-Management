@@ -32,14 +32,7 @@ function SignIn() {
 
     setLoading(true);
 
-  //  await axios
-  //     .post("/auth/login", { email, password })
-  //     .then((result) => {
-  //       localStorage.setItem("tokenLogin", result.data.token);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
+
 
     signIn({ email, password })
       .then((result) => {
@@ -50,40 +43,13 @@ function SignIn() {
 
           localStorage.setItem("tokenLogin", result.token);
 
-          history.push("/Dashboard");
+          history.push("/dashboard");
           setLoading(false);
         }
       })
       .catch((err) => {
       });
   };
-
-  // const submitData = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     setData({ ...data, error: null });
-  //     const res = await axios.post(
-  //       "/auth/login",
-  //       { email, password },
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-  //     //console.log("rrrrrrrr"+res.data.user);
-  //     // setState({ token: res.data.token, user: res.data.user });
-
-  //     localStorage.setItem("tokenLogin", res.data.token);
-  //     // localStorage.setItem("username", JSON.stringify(res.data.user));
-
-  //     // window.localStorage.setItem("tokenLogin", JSON.stringify(res.data.token));
-
-  //     history.push("/Dashboard");
-  //   } catch (err) {
-  //     setData({ ...data, error: err.response.data.error });
-  //   }
-  // };
 
   const errorMessage = () => {
     return (
@@ -96,9 +62,9 @@ function SignIn() {
     );
   };
 
-  // if (window.localStorage.getItem("tokenLogin")) {
-  //   history.push("/Dashboard");
-  // }
+  if (window.localStorage.getItem("tokenLogin")) {
+    history.push("/dashboard");
+  }
 
   //useRef for focus on the input fields.
 
