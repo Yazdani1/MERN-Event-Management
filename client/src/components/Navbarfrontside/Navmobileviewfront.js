@@ -9,18 +9,19 @@ import { AiTwotoneHome } from "react-icons/ai";
 import { RiAccountPinBoxFill } from "react-icons/ri";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { UserContext } from "../UserContext";
 
 const Navmobileviewfront = () => {
   const [mobilesidebar, setMobilesidebar] = useState(false);
 
-  // const [userdetails, setUserdetails] = useContext(UserContext);
+  const [state, setState] = useContext(UserContext);
 
-  // const history = useHistory();
+  const history = useHistory();
 
   const logOut = () => {
     window.localStorage.removeItem("tokenLogin");
-
-    // history.push("/signin");
+    setState(null);
+    history.push("/signin");
   };
 
   return (
@@ -32,25 +33,28 @@ const Navmobileviewfront = () => {
             onClick={() => setMobilesidebar(!mobilesidebar)}
           />
         </p>
-        {/* 
+
         {window.localStorage.getItem("tokenLogin") ? (
           <>
-            <p className="profile-name">{userdetails && userdetails.name}</p>
+            <p className="profile-name">
+              {state && state.user && state.user.name}
+            </p>
 
             <div className="profile-image">
-              {userdetails && userdetails.photo ? (
-                <img src={userdetails && userdetails.photo} />
+              {state && state.user && state.user.photo ? (
+                <img src={state && state.user && state.user.photo} />
               ) : (
                 <div className="profile-nave-avatar">
                   <h4>
-                    {userdetails &&
-                      userdetails.name.substring(0, 2).toUpperCase()}
+                    {state &&
+                      state.user &&
+                      state.user.name?.substring(0, 2).toUpperCase()}
                   </h4>
                 </div>
               )}
             </div>
           </>
-        ) : null} */}
+        ) : null}
       </div>
 
       {mobilesidebar ? (
@@ -65,7 +69,7 @@ const Navmobileviewfront = () => {
                 </div>
               </Link>
 
-              <Link to="/Dashboard" style={{ textDecoration: "none" }}>
+              <Link to="/dashboard" style={{ textDecoration: "none" }}>
                 <div className="sidebar-mobile-nav">
                   <li onClick={() => setMobilesidebar(!mobilesidebar)}>
                     <AiFillDashboard size={20} /> Dashboard

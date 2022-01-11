@@ -55,7 +55,9 @@
     height: 50px;
     width: 50px;
     border-radius: 90px;
-    margin-top: 3px;
+    align-items: center;
+    text-align: center;
+    margin-right: 6px;
   }
   
   .profile-nave-avatar {

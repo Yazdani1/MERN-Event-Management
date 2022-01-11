@@ -14,16 +14,18 @@ import { RiLogoutCircleRLine } from "react-icons/ri";
 import { AiFillMessage } from "react-icons/ai";
 import { GiRamProfile } from "react-icons/gi";
 import { MdQuestionAnswer } from "react-icons/md";
+import { UserContext } from "../../UserContext";
 
 const NavMobileview = () => {
   const [mobilesidebar, setMobilesidebar] = useState(false);
 
-  // const [userdetails, setUserdetails] = useContext(UserContext);
+  const [state, setState] = useContext(UserContext);
 
   const history = useHistory();
 
   const logOut = () => {
     window.localStorage.removeItem("tokenLogin");
+    setState(null);
     history.push("/signin");
   };
 
@@ -36,29 +38,28 @@ const NavMobileview = () => {
             onClick={() => setMobilesidebar(!mobilesidebar)}
           />
         </p>
-  
-        {/* <p className="profile-name">{userdetails && userdetails.name}</p> */}
 
-      
+        <p className="profile-name">{state && state.user && state.user.name}</p>
 
-        {/* <div className="profile-image">
-            {userdetails && userdetails.photo ? (
-              <img src={userdetails && userdetails.photo} />
-            ) : (
-              <div className="profile-nave-avatar">
-                <h4>
-                  {userdetails &&
-                    userdetails.name.substring(0, 2).toUpperCase()}
-                </h4>
-              </div>
-            )}
-        </div> */}
+        <div className="profile-image">
+          {state && state.user && state.user.photo ? (
+            <img src={state && state.user && state.user.photo} />
+          ) : (
+            <div className="profile-nave-avatar">
+              <h4>
+                {state &&
+                  state.user &&
+                  state.user.name?.substring(0, 2).toUpperCase()}
+              </h4>
+            </div>
+          )}
+        </div>
       </div>
 
       {mobilesidebar ? (
         <div className="mobile-nav">
           <NavLink
-            to="/Dashboard"
+            to="/dashboard"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
           >
@@ -141,10 +142,7 @@ const NavMobileview = () => {
             </div>
           </NavLink>
 
-          <Link
-            to="/"
-            style={{ textDecoration: "none" }}
-          >
+          <Link to="/" style={{ textDecoration: "none" }}>
             <div className="sidebar-mobile-nav">
               <li onClick={() => setMobilesidebar(!mobilesidebar)}>
                 <AiTwotoneHome size={15} /> Home

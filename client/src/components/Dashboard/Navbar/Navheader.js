@@ -29,7 +29,7 @@ const Navheader = (props) => {
                 <h4>
                   {state &&
                     state.user &&
-                    state.user.name.substring(0, 2).toUpperCase()}
+                    state.user.name?.substring(0, 2).toUpperCase()}
                 </h4>
               </div>
             )}

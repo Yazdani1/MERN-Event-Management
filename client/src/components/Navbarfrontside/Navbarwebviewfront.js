@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
-// import { UserContext } from "../UserContext";
 import "./navmobilefront.css";
 import "./navwebfront.css";
 import { Link, NavLink } from "react-router-dom";
 import Navmobileviewfront from "./Navmobileviewfront";
+import { UserContext } from "../UserContext";
 
 const Navbarwebviewfront = () => {
-  // const [userdetails, setUserdetails] = useContext(UserContext);
+  const [state, setState] = useContext(UserContext);
 
   return (
     <>
@@ -17,23 +17,24 @@ const Navbarwebviewfront = () => {
               <Link to={"/"} style={{ textDecoration: "none" }}>
                 <li>Home</li>
               </Link>
-              <Link to={"/Dashboard"} style={{ textDecoration: "none" }}>
+              <Link to={"/dashboard"} style={{ textDecoration: "none" }}>
                 <li>Dashboard</li>
               </Link>
-              {/* <li>{userdetails && userdetails.name}</li>
+              <li>{state && state.user && state.user.name}</li>
 
               <div className="profile-image">
-                {userdetails && userdetails.photo ? (
-                  <img src={userdetails && userdetails.photo} />
+                {state && state.user && state.user.photo ? (
+                  <img src={state && state.user && state.user.photo} />
                 ) : (
                   <div className="profile-nave-avatar">
                     <h4>
-                      {userdetails &&
-                        userdetails.name.substring(0, 2).toUpperCase()}
+                      {state &&
+                        state.user &&
+                        state.user.name?.substring(0, 2).toUpperCase()}
                     </h4>
                   </div>
                 )}
-              </div> */}
+              </div>
             </ul>
           </>
         ) : (
