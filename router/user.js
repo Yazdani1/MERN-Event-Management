@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const { requireLogin } = require("../middleware/auth");
+require("dotenv").config();
+
 const {
   userRegistration,
   userLogin,

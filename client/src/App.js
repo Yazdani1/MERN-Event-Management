@@ -28,7 +28,7 @@ const App = () => {
             <ProtectedRoute FrontProtected={SignIn} />
           </Route>
 
-          <Route path="/reset">
+          <Route path="/reset" exact>
             <ProtectedRoute FrontProtected={ResetPassword} />
           </Route>
 
