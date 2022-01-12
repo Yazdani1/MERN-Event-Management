@@ -156,8 +156,8 @@ function NewPassword() {
                     {loading ? <SyncOutlined spin /> : "Change Password"}
                   </button>
                 </div>
-                <div className="text-center">
-                  <Link to={"/signin"}>
+                <div className="text-center form-bottom-title">
+                  <Link to={"/signin"} style={{ textDecoration: "none" }}>
                     <p>Sign In to your account!</p>
                   </Link>
                 </div>

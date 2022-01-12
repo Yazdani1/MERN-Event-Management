@@ -86,7 +86,7 @@ function ResetPassword() {
   };
 
   if (window.localStorage.getItem("tokenLogin")) {
-    history.push("/Dashboard");
+    history.push("/dashboard");
   }
 
   //useRef for focus on the input fields.
