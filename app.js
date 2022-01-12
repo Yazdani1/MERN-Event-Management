@@ -35,10 +35,10 @@ app.use("/api", require("./router/user"));
 
 //to deploy vercel
 
-if(process.env.NODE_ENV=='production'){
+if(process.env.NODE_ENV ==='production'){
   const path = require('path')
 
-  app.get('/',(req,res)=>{
+  app.get('/*',(req,res)=>{
       app.use(express.static(path.resolve(__dirname,'client','build')))
       res.sendFile(path.resolve(__dirname,'client','build','index.html'))
   })
