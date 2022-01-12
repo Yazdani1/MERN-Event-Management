@@ -71,13 +71,13 @@ const NavMobileview = () => {
           </NavLink>
 
           <NavLink
-            to="/createpost"
+            to="/create-event"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
           >
             <div className="sidebar-mobile-nav">
               <li onClick={() => setMobilesidebar(!mobilesidebar)}>
-                <RiEditFill size={15} /> CreatePost
+                <RiEditFill size={15} /> Create Event
               </li>
             </div>
           </NavLink>

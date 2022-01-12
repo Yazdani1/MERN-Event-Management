@@ -1,0 +1,53 @@
+.create-event-container {
+  margin-top: 10px;
+}
+.event-form-design {
+  padding: 30px;
+}
+
+.create-event-button {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px !important;
+}
+
+.create-event-button:hover {
+  background-color: rgb(238, 92, 34);
+  border: 1px solid black;
+  color: white;
+  transition-duration: 1s;
+}
+
+.event-form input {
+  height: 50px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
+.custom-select {
+  height: 50px;
+  width: 100%;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
+.ql-editor {
+  min-height: 100px !important;
+  max-height: 160px;
+  overflow: hidden;
+}
+
+.even-start-end-date {
+  display: flex;
+  width: 100%;
+}
+
+/* event date picker design */
+
+.datepicker-design {
+  height: 40px;
+}

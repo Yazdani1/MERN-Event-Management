@@ -49,7 +49,7 @@ const Navwebview = (props) => {
           </NavLink>
 
           <NavLink
-            to="/createpost"
+            to="/create-event"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
           >
@@ -59,7 +59,7 @@ const Navwebview = (props) => {
                   <RiEditFill size={20} />
                 </span>
 
-                <p>CreatePost</p>
+                <p>Create Event</p>
               </div>
             </div>
           </NavLink>
@@ -188,7 +188,7 @@ const Navwebview = (props) => {
           </NavLink>
 
           <NavLink
-            to="/createpost"
+            to="/create-event"
             style={{ textDecoration: "none" }}
             className={({ isActive }) =>
               isActive ? "largenavactive" : "inactive"
@@ -197,7 +197,7 @@ const Navwebview = (props) => {
             <div className="sidebar-large-navdesign">
               <p>
                 <RiEditFill size={15} />
-                Createpost
+                Create Event
               </p>
             </div>
           </NavLink>

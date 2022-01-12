@@ -9,6 +9,7 @@ import ResetPassword from "./components/auth/ResetPassword";
 import NewPassword from "./components/auth/NewPassword";
 import DashboardprotectedRoute from "./components/Dashboard/DashboardprotectedRoute";
 import Dashboard from "./components/Dashboard/Event/Dashboard";
+import CreateEvent from "./components/Dashboard/Event/CreateEvent";
 
 const App = () => {
   return (
@@ -28,7 +29,7 @@ const App = () => {
             <ProtectedRoute FrontProtected={SignIn} />
           </Route>
 
-          <Route exact path="/reset" >
+          <Route exact path="/reset">
             <ProtectedRoute FrontProtected={ResetPassword} />
           </Route>
 
@@ -40,6 +41,10 @@ const App = () => {
 
           <Route exact path="/dashboard">
             <DashboardprotectedRoute DashboardProtect={Dashboard} />
+          </Route>
+
+          <Route exact path="/create-event">
+            <DashboardprotectedRoute DashboardProtect={CreateEvent} />
           </Route>
         </Switch>
       </BrowserRouter>
