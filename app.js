@@ -19,9 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //router
 
 app.use("/api", require("./router/user"));
-// app.use("/auth", require("./router/post"));
-// app.use("/auth", require("./router/announcement"));
-// app.use("/auth", require("./router/profile"));
+
 
 //to deploy heroku
 // Serve static assets if in production
