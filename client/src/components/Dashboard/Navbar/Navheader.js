@@ -19,6 +19,7 @@ const Navheader = (props) => {
             <li>Home</li>
           </Link>
           <li>{state && state.user && state.user.name}</li>
+
           {/* <li>{state.user._id}</li> */}
 
           <div className="profile-image">

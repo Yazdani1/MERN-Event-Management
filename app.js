@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
@@ -12,27 +12,26 @@ require("dotenv").config();
 require("./model/db");
 
 app.use(cors());
-
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //router
 
 app.use("/api", require("./router/user"));
-app.use("/api", require("./router/EventPost"));
-
+app.use("/api", require("./router/eventpost"));
 
 //to deploy heroku
 // Serve static assets if in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
 
-  const path = require("path");
+//   const path = require("path");
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+//   });
+// }
 
 //to deploy vercel
 

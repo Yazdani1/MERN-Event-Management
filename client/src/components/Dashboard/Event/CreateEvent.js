@@ -8,8 +8,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { UserContext } from "../../UserContext";
+
+import { AddEvent } from "./APIevent";
 
 const CreateEvent = () => {
+  const [state, setState] = useContext(UserContext);
+
   const history = useHistory();
 
   //image upload
@@ -21,21 +26,62 @@ const CreateEvent = () => {
   const [location, setLocation] = useState("");
   const [maxmembers, setMaxmembers] = useState("");
 
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
+  // const [error, setError] = useState(false);
+  // const [success, setSuccess] = useState(false);
 
   const dataSubmit = (e) => {
     e.preventDefault();
+    console.log("clcked");
+    fetch("/api/create-event", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${state && state.token}`,
+      },
+      body: JSON.stringify({
+        name,
+        des,
+        location,
+        eventtypes,
+        startdate,
+        enddate,
+        maxmembers,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.error) {
+          toast.error(result.error, {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        } else {
+          toast.success("Post Created Successfully! ", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+
+          setName("");
+          setDes("");
+          setEventtypes("");
+          setStartdate("");
+          setEnddate("");
+          setLocation("");
+          setMaxmembers("");
+        }
+      })
+      .catch((err) => {
+        console.log("Error is here:" + err);
+      });
   };
 
-  const showError = () => {
-    <div
-      className="alert alert-danger"
-      style={{ display: error ? "" : "none" }}
-    >
-      {error}
-    </div>;
-  };
+  // const showError = () => {
+  //   <div
+  //     className="alert alert-danger"
+  //     style={{ display: error ? "" : "none" }}
+  //   >
+  //     {error}
+  //   </div>;
+  // };
 
   return (
     <div>
@@ -46,7 +92,7 @@ const CreateEvent = () => {
               <div className="text-center">
                 <h5 className="text-center">Create Yout Event</h5>
               </div>
-              <div
+              {/* <div
                 className="alert alert-success"
                 style={{ display: success ? "" : "none" }}
               >
@@ -57,7 +103,7 @@ const CreateEvent = () => {
                 style={{ display: error ? "" : "none" }}
               >
                 {error}
-              </div>
+              </div> */}
               <form>
                 <div className="event-form">
                   <label for="exampleInputEmail1" className="form-label">
@@ -183,6 +229,7 @@ const CreateEvent = () => {
                     type="submit"
                     name="btnSubmit"
                     className="create-event-button"
+                    onClick={dataSubmit}
                   >
                     Create Event
                   </button>

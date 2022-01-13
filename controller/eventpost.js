@@ -1,4 +1,5 @@
 const Eventpost = require("../model/EventPost");
+const { requireLogin } = require("../middleware/auth");
 
 const nodemailer = require("nodemailer");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
@@ -29,38 +30,41 @@ exports.createEvent = (req, res) => {
   if (!name) {
     return res.status(400).json({ error: "please add event name.." });
   }
-
-  if (!des) {
-    return res.status(400).json({ error: "please add event description.." });
-  }
   if (!location) {
     return res.status(400).json({ error: "please add event location.." });
+  }
+
+  if (!maxmembers) {
+    return res.status(400).json({ error: "please add event participants number.." });
   }
 
   if (!eventtypes) {
     return res.status(400).json({ error: "please add event types.." });
   }
 
+  if (!des) {
+    return res.status(400).json({ error: "please add event description.." });
+  }
+ 
+
+
   if (!startdate) {
     return res.status(400).json({ error: "please add event start date.." });
   }
 
   if (!enddate) {
-    return res.status(400).json({ error: "please add event start date.." });
+    return res.status(400).json({ error: "please add event end date.." });
   }
 
-  if (!maxmembers) {
-    return res.status(400).json({ error: "please add event start date.." });
-  }
+ 
 
-  const postData = Post({
+  const postData = Eventpost({
     name,
     des,
     location,
     eventtypes,
     startdate,
     enddate,
-    date,
     maxmembers,
     postedBy: req.user,
   });
