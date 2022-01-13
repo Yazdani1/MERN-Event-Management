@@ -13,13 +13,16 @@ const CreateEvent = () => {
   const history = useHistory();
 
   //image upload
-  const [title, setTitle] = useState("");
+  const [name, setName] = useState("");
   const [des, setDes] = useState("");
+  const [eventtypes, setEventtypes] = useState("Night");
+  const [startdate, setStartdate] = useState(null);
+  const [enddate, setEnddate] = useState(null);
+  const [location, setLocation] = useState("");
+  const [maxmembers, setMaxmembers] = useState("");
+
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
-
-  const [prolanguage, setProlanguage] = useState("JavaScript");
-  const [selectedDate, setSelectedDate] = useState(null);
 
   const dataSubmit = (e) => {
     e.preventDefault();
@@ -62,13 +65,13 @@ const CreateEvent = () => {
                   </label>
                   <input
                     type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     className="form-control"
                     maxLength="100"
                   />
                 </div>
-                <p>{title ? title.length : 0}/100</p>
+                <p>{name ? name.length : 0}/100</p>
 
                 <div className="event-form">
                   <label for="exampleInputEmail1" className="form-label">
@@ -76,8 +79,8 @@ const CreateEvent = () => {
                   </label>
                   <input
                     type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
                     className="form-control"
                     maxLength="100"
                   />
@@ -89,8 +92,8 @@ const CreateEvent = () => {
                   </label>
                   <input
                     type="number"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    value={maxmembers}
+                    onChange={(e) => setMaxmembers(e.target.value)}
                     className="form-control"
                     maxLength="100"
                   />
@@ -102,15 +105,15 @@ const CreateEvent = () => {
                   </label>
                   <select
                     className="custom-select"
-                    value={prolanguage}
-                    onChange={(e) => setProlanguage(e.target.value)}
+                    value={eventtypes}
+                    onChange={(e) => setEventtypes(e.target.value)}
                   >
-                    <option value="JavaScript">JavaScript</option>
-                    <option value="Nodejsddddddddddd">Nodejs</option>
+                    <option value="Night">Night</option>
+                    <option value="Day">Day</option>
 
-                    <option value="Reactjs">React js</option>
+                    <option value="Evening">Evening</option>
 
-                    <option value="VueJS">Vue JS</option>
+                    <option value="Day and Night">Day and Night</option>
                   </select>
                 </div>
 
@@ -134,10 +137,10 @@ const CreateEvent = () => {
                         </label>
                         <div className="datepicker-design">
                           <DatePicker
-                            selected={selectedDate}
+                            selected={startdate}
                             className="datepicker-design"
                             onChange={(date) => {
-                              setSelectedDate(date);
+                              setStartdate(date);
                             }}
                             placeholderText="Select Your Date"
                             dateFormat="dd/MM/yyyy"
@@ -157,10 +160,10 @@ const CreateEvent = () => {
 
                         <div className="datepicker-design">
                           <DatePicker
-                            selected={selectedDate}
+                            selected={enddate}
                             className="datepicker-design"
                             onChange={(date) => {
-                              setSelectedDate(date);
+                              setEnddate(date);
                             }}
                             placeholderText="Select Your Date"
                             dateFormat="dd/MM/yyyy"
