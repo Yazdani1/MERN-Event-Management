@@ -26,11 +26,11 @@ const Dashboard = () => {
 
   return (
     <React.Fragment>
-      <div className="container-fluid profile_items_container">
+      <div className="container-fluid dashboard_items_container">
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-            <div className="card public-profile-items">
-              <div className="profile-items_design">
+            <div className="card dashboard-items-info">
+              <div className="dashboard-items_design">
                 <SiMicrodotblog size={35} />
                 <p>Published Posts</p>
                 {/* <h4>{mypost.length}</h4> */}
@@ -39,8 +39,8 @@ const Dashboard = () => {
           </div>
 
           <div className="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-            <div className="card public-profile-items">
-              <div className="profile-items_design">
+            <div className="card dashboard-items-info">
+              <div className="dashboard-items_design">
                 <MdCardMembership size={35} />
                 <p>Member Since</p>
                 <p>{moment(state && state.user && state.user.createdAt).format("MMMM Do YYYY")}</p>
@@ -49,8 +49,8 @@ const Dashboard = () => {
           </div>
 
           <div className="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-            <div className="card public-profile-items">
-              <div className="profile-items_design">
+            <div className="card dashboard-items-info">
+              <div className="dashboard-items_design">
                 <FaUserGraduate size={35} />
                 <p>Member Type</p>
                 {/* <p> {mypost.length >= 5 ? "Pro Account" : "Starter Account"}</p> */}
@@ -59,8 +59,8 @@ const Dashboard = () => {
           </div>
 
           <div className="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-            <div className="card public-profile-items">
-              <div className="profile-items_design">
+            <div className="card dashboard-items-info">
+              <div className="dashboard-items_design">
                 <AiFillMessage size={35} />
 
                 <div className="profile-message">
