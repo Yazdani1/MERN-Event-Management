@@ -1,0 +1,7 @@
+
+
+exports.createEvent = (req,res)=>{
+
+
+
+};

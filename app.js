@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //router
 
 app.use("/api", require("./router/user"));
+app.use("/api", require("./router/EventPost"));
 
 
 //to deploy heroku
