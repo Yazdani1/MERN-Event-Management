@@ -96,15 +96,6 @@ const CreateEvent = () => {
                   />
                 </div>
 
-                <div className="form-group">
-                  <label for="exampleFormControlTextarea2">Description</label>
-                  <ReactQuill
-                    class="ql-editor rounded-0"
-                    value={des}
-                    onChange={(e) => setDes(e)}
-                  />
-                </div>
-
                 <div className="event-form">
                   <label for="exampleInputEmail1" className="form-label">
                     Event types
@@ -121,6 +112,15 @@ const CreateEvent = () => {
 
                     <option value="VueJS">Vue JS</option>
                   </select>
+                </div>
+
+                <div className="form-group">
+                  <label for="exampleFormControlTextarea2">Description</label>
+                  <ReactQuill
+                    class="ql-editor rounded-0"
+                    value={des}
+                    onChange={(e) => setDes(e)}
+                  />
                 </div>
 
                 {/* Even date */}
@@ -165,7 +165,6 @@ const CreateEvent = () => {
                             placeholderText="Select Your Date"
                             dateFormat="dd/MM/yyyy"
                             minDate={new Date()}
-                            
                             isClearable
                             showYearDropdown
                             showWeekNumbers

@@ -1,0 +1,41 @@
+
+  /* //user profile information section */
+  
+  .profile_items_container {
+    margin-top: 10px;
+    padding: 0px;
+  }
+  .public-profile-items {
+    height: 150px;
+    margin-top: 10px;
+  }
+  .profile-items_design {
+    position: relative;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    /* margin-top: 20px; */
+  }
+  .profile-items_design p {
+    font-size: 20px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+  }
+  .member-accountcreated-date {
+    font-size: 15px;
+    position: relative;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* end user profile page information */
+ 
+
+  
+ 
+  
