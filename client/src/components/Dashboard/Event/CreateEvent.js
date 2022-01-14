@@ -10,10 +10,10 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { UserContext } from "../../UserContext";
 
-import { AddEvent } from "./APIevent";
-
 const CreateEvent = () => {
   const [state, setState] = useContext(UserContext);
+
+  var toekn = state.token;
 
   const history = useHistory();
 
@@ -32,6 +32,7 @@ const CreateEvent = () => {
   const dataSubmit = (e) => {
     e.preventDefault();
     console.log("clcked");
+
     fetch("/api/create-event", {
       method: "post",
       headers: {

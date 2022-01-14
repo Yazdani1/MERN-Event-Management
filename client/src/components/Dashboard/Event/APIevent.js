@@ -6,12 +6,13 @@ export const AddEvent = ({
   startdate,
   enddate,
   maxmembers,
+  token
 }) => {
   return fetch("/api/create-event", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("tokenLogin")}`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name,
@@ -20,7 +21,7 @@ export const AddEvent = ({
       eventtypes,
       startdate,
       enddate,
-      maxmembers,
+      maxmembers,token
     }),
   })
     .then((res) => {
@@ -30,6 +31,3 @@ export const AddEvent = ({
       console.log(err);
     });
 };
-
-
-

@@ -24,13 +24,13 @@ import ReactHtmlParser from "react-html-parser";
 const Dashboard = () => {
   const [state, setState] = useContext(UserContext);
   const [myevents, setMyevents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const loadallEvents = () => {
     fetch("/api/get-allevent", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
         Authorization: `Bearer ${state && state.token}`,
       },
     })
@@ -46,6 +46,16 @@ const Dashboard = () => {
   useEffect(() => {
     loadallEvents();
   }, []);
+
+  // if (loading) {
+  //   return (
+  //     <div class="text-center my-25">
+  //       <h1>
+  //         <SyncOutlined spin />
+  //       </h1>
+  //     </div>
+  //   );
+  // }
 
   return (
     <React.Fragment>
@@ -118,7 +128,6 @@ const Dashboard = () => {
                   <th scope="col">Event Types</th>
                   <th scope="col">Total Members</th>
                   <th colspan="3">Action</th>
-                 
                 </tr>
               </thead>
               <tbody>
@@ -133,7 +142,6 @@ const Dashboard = () => {
                     <td>{item.location}</td>
                     <td>{item.eventtypes}</td>
                     <td>{item.maxmembers}</td>
-
 
                     {/* to loops the post comment in the admin dashboard */}
                     {/* <td>{item.comments.map(c=>(
