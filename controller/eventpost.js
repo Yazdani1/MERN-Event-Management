@@ -16,17 +16,9 @@ const transporter = nodemailer.createTransport(
 );
 
 exports.createEvent = (req, res) => {
-  const {
-    name,
-    des,
-    location,
-    eventtypes,
-    startdate,
-    enddate,
-    maxmembers,
-  } = req.body;
+  const { name, des, location, eventtypes, startdate, enddate, maxmembers } =
+    req.body;
 
-  
   if (!name) {
     return res.status(400).json({ error: "please add event name.." });
   }
@@ -35,7 +27,9 @@ exports.createEvent = (req, res) => {
   }
 
   if (!maxmembers) {
-    return res.status(400).json({ error: "please add event participants number.." });
+    return res
+      .status(400)
+      .json({ error: "please add event participants number.." });
   }
 
   if (!eventtypes) {
@@ -45,8 +39,6 @@ exports.createEvent = (req, res) => {
   if (!des) {
     return res.status(400).json({ error: "please add event description.." });
   }
- 
-
 
   if (!startdate) {
     return res.status(400).json({ error: "please add event start date.." });
@@ -55,8 +47,6 @@ exports.createEvent = (req, res) => {
   if (!enddate) {
     return res.status(400).json({ error: "please add event end date.." });
   }
-
- 
 
   const postData = Eventpost({
     name,
@@ -84,6 +74,18 @@ exports.createEvent = (req, res) => {
             </h1>`,
       });
       res.json(ourPostData);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+exports.getEvent = (req, res) => {
+  Eventpost.find({ postedBy: req.user._id })
+    .sort({ date: "DESC" })
+    .populate("postedBy", "_id name email")
+    .then((myevents) => {
+      res.json(myevents);
     })
     .catch((err) => {
       console.log(err);

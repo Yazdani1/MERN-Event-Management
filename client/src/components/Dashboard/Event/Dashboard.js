@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../UserContext";
 import moment from "moment";
 import { MdCardMembership } from "react-icons/md";
@@ -19,10 +19,33 @@ import { FcCustomerSupport } from "react-icons/fc";
 import { FcComboChart } from "react-icons/fc";
 import "./dashboard.css";
 import { EyeOutlined } from "@ant-design/icons";
+import ReactHtmlParser from "react-html-parser";
 
 const Dashboard = () => {
   const [state, setState] = useContext(UserContext);
+  const [myevents, setMyevents] = useState([]);
 
+  const loadallEvents = () => {
+    fetch("/api/get-allevent", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${state && state.token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        setMyevents(result);
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    loadallEvents();
+  }, []);
 
   return (
     <React.Fragment>
@@ -32,8 +55,8 @@ const Dashboard = () => {
             <div className="card dashboard-items-info">
               <div className="dashboard-items_design">
                 <SiMicrodotblog size={35} />
-                <p>Published Posts</p>
-                {/* <h4>{mypost.length}</h4> */}
+                <p>Total Events</p>
+                <h4>{myevents.length}</h4>
               </div>
             </div>
           </div>
@@ -43,7 +66,11 @@ const Dashboard = () => {
               <div className="dashboard-items_design">
                 <MdCardMembership size={35} />
                 <p>Member Since</p>
-                <p>{moment(state && state.user && state.user.createdAt).format("MMMM Do YYYY")}</p>
+                <p>
+                  {moment(state && state.user && state.user.createdAt).format(
+                    "MMMM Do YYYY"
+                  )}
+                </p>
               </div>
             </div>
           </div>
@@ -73,6 +100,91 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="container-fluid main_containers">
+        {/* table start */}
+
+        {myevents.length > 0 ? (
+          <div className="card table-horizontal">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Created</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Event Types</th>
+                  <th scope="col">Total Members</th>
+                  <th colspan="3">Action</th>
+                 
+                </tr>
+              </thead>
+              <tbody>
+                {myevents.map((item, index) => (
+                  <tr key={item._id}>
+                    <th scope="row">{index + 1}</th>
+
+                    <td>{item.name.substring(0, 30)}</td>
+                    <td>{ReactHtmlParser(item.des?.substring(0, 80))}</td>
+
+                    <td> {moment(item.date).format("lll")}</td>
+                    <td>{item.location}</td>
+                    <td>{item.eventtypes}</td>
+                    <td>{item.maxmembers}</td>
+
+
+                    {/* to loops the post comment in the admin dashboard */}
+                    {/* <td>{item.comments.map(c=>(
+                      <h1>{c.text}</h1>
+                    ))}</td> */}
+
+                    <td>
+                      <Link to={"/details/" + item._id}>
+                        <button className="btn btn-primary">
+                          <EyeOutlined style={{ fontSize: "20px" }} /> View
+                        </button>
+                      </Link>
+                    </td>
+
+                    <td>
+                      <Link to={"/editpost/" + item._id}>
+                        <button className="btn btn-success">
+                          <AiTwotoneEdit size={20} />
+                          Edit
+                        </button>
+                      </Link>
+                    </td>
+                    <td>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => {
+                          // deletemyPost(item._id);
+                        }}
+                      >
+                        <MdDelete size={20} /> Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <h5 className="card noposts-design">
+            <FcComboChart size={200} />
+            No data to show!
+          </h5>
+        )}
+
+        <ToastContainer autoClose={8000} />
+
+        {/* <div className="card pagination-user-list">
+          {mypost.length > 1 ? (
+            <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
+          ) : null}
+        </div> */}
       </div>
     </React.Fragment>
   );

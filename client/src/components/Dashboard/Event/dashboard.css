@@ -1,44 +1,45 @@
+/* //user profile information section */
 
-  /* //user profile information section */
-  
-  .dashboard_items_container {
-    margin-top: 10px;
-  }
-  .dashboard-items-info {
-    height: 150px;
-    margin-top: 10px;
-  }
-  .dashboard-items_design {
-    position: relative;
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-   
-  }
-  .dashboard-items_design p {
-    font-size: 18px;
-    font-family: Georgia, "Times New Roman", Times, serif;
-  }
-  .member-accountcreated-date {
-    font-size: 15px;
-    position: relative;
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-    align-items: center;
-    justify-content: center;
-  }
-  
- /* profile message button design */
+.dashboard_items_container {
+  margin-top: 10px;
+}
+.dashboard-items-info {
+  height: 150px;
+  margin-top: 10px;
+}
+.dashboard-items_design {
+  position: relative;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.dashboard-items_design p {
+  font-size: 18px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+.member-accountcreated-date {
+  font-size: 15px;
+  position: relative;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+}
 
- .profile-message{
-     margin-top: 20px;
- }
- 
+/* profile message button design */
 
-  
- 
-  
+.profile-message {
+  margin-top: 20px;
+}
+
+/* Dashboard Table design */
+
+.table-horizontal {
+  margin-top: 20px;
+  overflow: scroll;
+
+}
