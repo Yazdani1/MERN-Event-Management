@@ -32,7 +32,7 @@ const Navwebview = (props) => {
       {props.sidebar ? (
         <div className="sidebar-small-design">
           <NavLink
-            to="/Dashboard"
+            to="/dashboard"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
           >
@@ -174,7 +174,7 @@ const Navwebview = (props) => {
       ) : (
         <div className="sidebar-large">
           <NavLink
-            to="/Dashboard"
+            to="/dashboard"
             style={{ textDecoration: "none" }}
             className={({ isActive }) =>
               isActive ? "largenavactive" : "inactive"

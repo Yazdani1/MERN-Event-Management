@@ -11,7 +11,7 @@ const Navbarwebviewfront = () => {
   return (
     <>
       <div className="nav-dashboard-front">
-        {window.localStorage.getItem("tokenLogin") ? (
+        {state && state.token ? (
           <>
             <ul>
               <Link to={"/"} style={{ textDecoration: "none" }}>
