@@ -53,7 +53,6 @@ function SignIn() {
           window.localStorage.setItem("tokenLogin", JSON.stringify(result));
 
 
-
           history.push("/dashboard");
           setLoading(false);
         }

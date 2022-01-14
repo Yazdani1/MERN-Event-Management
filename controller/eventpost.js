@@ -80,12 +80,24 @@ exports.createEvent = (req, res) => {
     });
 };
 
-exports.getEvent = (req, res) => {
+exports.getmyEvents = (req, res) => {
   Eventpost.find({ postedBy: req.user._id })
     .sort({ date: "DESC" })
     .populate("postedBy", "_id name email")
     .then((myevents) => {
       res.json(myevents);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+exports.getallEvents = (req, res) => {
+  Eventpost.find({})
+    .sort({ date: "DESC" })
+    .populate("postedBy", "_id name email photo")
+    .then((allevents) => {
+      res.json(allevents);
     })
     .catch((err) => {
       console.log(err);

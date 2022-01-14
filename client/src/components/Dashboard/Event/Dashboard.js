@@ -39,6 +39,7 @@ const Dashboard = () => {
       .then((result) => {
         setMyevents(result);
         console.log(result);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -49,15 +50,15 @@ const Dashboard = () => {
 
   }, [state && state.token]);
 
-  // if (loading) {
-  //   return (
-  //     <div class="text-center my-25">
-  //       <h1>
-  //         <SyncOutlined spin />
-  //       </h1>
-  //     </div>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <div class="text-center my-25">
+        <h1>
+          <SyncOutlined spin />
+        </h1>
+      </div>
+    );
+  }
 
   return (
     <React.Fragment>
