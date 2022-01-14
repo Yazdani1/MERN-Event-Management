@@ -103,3 +103,14 @@ exports.getallEvents = (req, res) => {
       console.log(err);
     });
 };
+
+exports.deletemyEvents = (req, res) => {
+  var deletequery = { _id: req.params.id };
+  Eventpost.findByIdAndDelete(deletequery)
+    .then((deleteEvents) => {
+      res.json(deleteEvents);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

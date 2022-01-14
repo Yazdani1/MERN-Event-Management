@@ -46,22 +46,20 @@ const AllEvents = () => {
           {allevents.map((event, index) => (
             <div className="col-lg-12 col-md-12 col-sm-12 col-xl-12">
               <div className="card all-events">
-                {/* <h5>{event.name}</h5>
-                <p>Posted By: {event.postedBy.name}</p> */}
-
+        
                 <div className="profile-name-date">
                   {event?.postedBy?.photo ? (
                     <div className="profile-name-avatar-image">
-                      <img src={event.postedBy.photo} />
+                      <img src={event.postedBy?.photo} />
                     </div>
                   ) : (
                     <div className="profile-name-avatar">
-                      <p>{event.postedBy.name.substring(0, 2).toUpperCase()}</p>
+                      <p>{event.postedBy?.name.substring(0, 2).toUpperCase()}</p>
                     </div>
                   )}
 
                   <div className="profile-name-post-date">
-                    <p className="profile-name-size">{event.postedBy.name}</p>
+                    <p className="profile-name-size">{event.postedBy?.name}</p>
                     <p>{moment(event.date).format("MMMM Do YYYY")}</p>
                   </div>
                 </div>
@@ -72,7 +70,7 @@ const AllEvents = () => {
                   <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
                     <div className="events-date-and-place">
                       <p>
-                        Date: {moment(event.startdate).format("MMMM Do YYYY")} -{" "}
+                        Date: {moment(event.startdate).format("MMMM Do YYYY")} -
                       </p>
                       <p>{moment(event.enddate).format("MMMM Do YYYY")}.</p>
                       <p className="event-location">

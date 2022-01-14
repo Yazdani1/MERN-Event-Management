@@ -20,7 +20,7 @@ import { FcComboChart } from "react-icons/fc";
 import "./dashboard.css";
 import { EyeOutlined } from "@ant-design/icons";
 import ReactHtmlParser from "react-html-parser";
-import { getmyEvents } from "./Apievents";
+import { getmyEvents, deletemyEvents } from "./Apievents";
 
 const Dashboard = () => {
   const [state, setState] = useContext(UserContext);
@@ -38,6 +38,22 @@ const Dashboard = () => {
         console.log(err);
       });
   };
+
+  const deleteevents = (id) => {
+    deletemyEvents(id)
+      .then((result) => {
+        if (result) {
+          loadallEvents();
+          toast.success("Event Deleted Successfully! ", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     loadallEvents();
   }, []);
@@ -163,7 +179,7 @@ const Dashboard = () => {
                       <button
                         className="btn btn-danger"
                         onClick={() => {
-                          // deletemyPost(item._id);
+                          deleteevents(item._id);
                         }}
                       >
                         <MdDelete size={20} /> Delete
