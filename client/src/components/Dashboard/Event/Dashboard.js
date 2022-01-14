@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../UserContext";
 import moment from "moment";
 import { MdCardMembership } from "react-icons/md";
-import { MdAssessment } from "react-icons/md";
-import { GoCalendar } from "react-icons/go";
 import { ToastContainer, toast } from "react-toastify";
 import { MdDelete } from "react-icons/md";
 import { AiTwotoneEdit } from "react-icons/ai";
@@ -12,12 +10,10 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { SiMicrodotblog } from "react-icons/si";
 import { AiFillMessage } from "react-icons/ai";
 import { FaUserGraduate } from "react-icons/fa";
-import { RiSendPlaneFill } from "react-icons/ri";
-import { FaRegCommentDots } from "react-icons/fa";
-import { AiOutlineLike } from "react-icons/ai";
-import { FcCustomerSupport } from "react-icons/fc";
+import Pagination from "./Pagination";
 import { FcComboChart } from "react-icons/fc";
 import "./dashboard.css";
+import "./pagination.css";
 import { EyeOutlined } from "@ant-design/icons";
 import ReactHtmlParser from "react-html-parser";
 import { getmyEvents, deletemyEvents } from "./Apievents";
@@ -26,6 +22,15 @@ const Dashboard = () => {
   const [state, setState] = useContext(UserContext);
   const [myevents, setMyevents] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(5);
+
+  //Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = myevents.slice(indexOfFirstPost, indexOfLastPost);
+  const howManyPages = Math.ceil(myevents.length / postsPerPage);
 
   const loadallEvents = () => {
     getmyEvents()
@@ -126,7 +131,7 @@ const Dashboard = () => {
       <div className="container-fluid main_containers">
         {/* table start */}
 
-        {myevents.length > 0 ? (
+        {currentPosts.length > 0 ? (
           <div className="card table-horizontal">
             <table class="table table-bordered table-hover">
               <thead>
@@ -142,7 +147,7 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {myevents.map((item, index) => (
+                {currentPosts.map((item, index) => (
                   <tr key={item._id}>
                     <th scope="row">{index + 1}</th>
 
@@ -199,11 +204,11 @@ const Dashboard = () => {
 
         <ToastContainer autoClose={8000} />
 
-        {/* <div className="card pagination-user-list">
-          {mypost.length > 1 ? (
+        <div className="card pagination-user-list">
+          {myevents.length > 1 ? (
             <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
           ) : null}
-        </div> */}
+        </div>
       </div>
     </React.Fragment>
   );
