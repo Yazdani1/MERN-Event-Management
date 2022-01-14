@@ -55,3 +55,21 @@
 .profile-name-size {
   font-size: 15px;
 }
+
+/* event date and location design */
+.events-date-and-place {
+  display: flex;
+}
+.event-location {
+  margin-left: 10px;
+}
+.event-seats-and-participate {
+  display: flex;
+}
+.going-interested {
+ 
+  display: flex;
+}
+.going-interested p{
+  padding-left: 15px;
+}

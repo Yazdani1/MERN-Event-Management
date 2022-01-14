@@ -9,6 +9,7 @@ import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { UserContext } from "../../UserContext";
+import { createEvents } from "./Apievents";
 
 const CreateEvent = () => {
   const [state, setState] = useContext(UserContext);
@@ -33,24 +34,15 @@ const CreateEvent = () => {
     e.preventDefault();
     console.log("clcked");
 
-    fetch("/api/create-event", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${state && state.token}`,
-      },
-      body: JSON.stringify({
-        name,
-        des,
-        location,
-        eventtypes,
-        startdate,
-        enddate,
-        maxmembers,
-      }),
+    createEvents({
+      name,
+      des,
+      location,
+      eventtypes,
+      startdate,
+      enddate,
+      maxmembers,
     })
-      .then((res) => res.json())
       .then((result) => {
         if (result.error) {
           toast.error(result.error, {

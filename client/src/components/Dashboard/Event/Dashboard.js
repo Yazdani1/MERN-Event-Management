@@ -20,6 +20,7 @@ import { FcComboChart } from "react-icons/fc";
 import "./dashboard.css";
 import { EyeOutlined } from "@ant-design/icons";
 import ReactHtmlParser from "react-html-parser";
+import { getmyEvents } from "./Apievents";
 
 const Dashboard = () => {
   const [state, setState] = useContext(UserContext);
@@ -27,16 +28,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
   const loadallEvents = () => {
-    fetch("/api/get-myevents", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        // Authorization: `Bearer ${state.token}`,
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
-      .then((res) => res.json())
+    getmyEvents()
       .then((result) => {
         setMyevents(result);
         console.log(result);
