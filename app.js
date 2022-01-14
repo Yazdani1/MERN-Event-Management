@@ -23,28 +23,28 @@ app.use("/api", require("./router/eventpost"));
 
 //to deploy heroku
 // Serve static assets if in production
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
 
-//   const path = require("path");
+  const path = require("path");
 
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-//   });
-// }
-
-
-app.get('/*', function(req, res) {
-
-    const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 
-  res.sendFile(path.join(__dirname, "client", "public", "index.html"), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
+// app.get('/*', function(req, res) {
+
+//     const path = require("path");
+
+
+//   res.sendFile(path.join(__dirname, "client", "public", "index.html"), function(err) {
+//     if (err) {
+//       res.status(500).send(err)
+//     }
+//   })
+// })
 
 
 //to deploy vercel

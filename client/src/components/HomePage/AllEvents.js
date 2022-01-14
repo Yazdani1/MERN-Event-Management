@@ -49,7 +49,7 @@ const AllEvents = () => {
                     <p>{moment(event.date).format("MMMM Do YYYY")}</p>
                   </div>
                 </div>
-                <p>{event.name}</p>
+                <h5>{event.name}</h5>
                 <p>{ReactHtmlParser(event.des?.substring(0, 350))}</p>
 
               </div>
