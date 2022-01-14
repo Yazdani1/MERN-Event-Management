@@ -1,9 +1,10 @@
 import React from 'react'
+import FirstSection from "./FirstSection";
 
 const Home = () => {
     return (
         <div>
-            <h1>Home pagegfhfghfg</h1>
+            <FirstSection/>
         </div>
     )
 }

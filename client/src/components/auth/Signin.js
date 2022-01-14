@@ -54,9 +54,6 @@ function SignIn() {
 
 
 
-          // localStorage.setItem("tokenLogin", result.token, result.user);
-          // localStorage.setItem("user",result.user);
-
           history.push("/dashboard");
           setLoading(false);
         }

@@ -27,12 +27,12 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
   const loadallEvents = () => {
-    fetch("http://localhost:8080/api/get-allevent", {
+    fetch("/api/get-myevents", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: `Bearer ${state && state.token}`,
+        Authorization: `Bearer ${state.token}`,
       },
     })
       .then((res) => res.json())
@@ -46,7 +46,8 @@ const Dashboard = () => {
   };
   useEffect(() => {
     loadallEvents();
-  }, [myevents]);
+
+  }, [state && state.token]);
 
   // if (loading) {
   //   return (
