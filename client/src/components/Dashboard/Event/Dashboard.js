@@ -32,7 +32,8 @@ const Dashboard = () => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: `Bearer ${state.token}`,
+        // Authorization: `Bearer ${state.token}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
       .then((res) => res.json())
@@ -47,8 +48,7 @@ const Dashboard = () => {
   };
   useEffect(() => {
     loadallEvents();
-
-  }, [state && state.token]);
+  }, []);
 
   if (loading) {
     return (

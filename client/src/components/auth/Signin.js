@@ -51,6 +51,8 @@ function SignIn() {
 
           //save user info in local storage
           window.localStorage.setItem("tokenLogin", JSON.stringify(result));
+          localStorage.setItem("token", result.token);
+
 
 
           history.push("/dashboard");

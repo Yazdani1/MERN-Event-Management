@@ -1,0 +1,57 @@
+.all-events {
+  margin-top: 10px;
+  padding: 20px;
+}
+
+/* userinfo in the event post */
+
+.profile-name-date {
+  display: flex;
+}
+.profile-name-avatar {
+  height: 40px;
+  width: 40px;
+  background-color: black;
+  border-radius: 90px;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  text-align: center;
+  position: relative;
+}
+
+.profile-name-avatar p {
+  color: white;
+  border-radius: 90px;
+  height: 40px;
+  width: 40px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 90px;
+}
+
+.profile-name-avatar-image img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+
+  border-radius: 90px;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  text-align: center;
+  position: relative;
+}
+
+.profile-name-post-date {
+  padding: 5px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  line-height: 3px;
+  margin-top: 5px;
+}
+
+.profile-name-size {
+  font-size: 15px;
+}

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "../UserContext";
-import "./Homepage.css";
+import "./Homefirstsection.css";
 import { Link } from "react-router-dom";
 
 const FirstSection = () => {
