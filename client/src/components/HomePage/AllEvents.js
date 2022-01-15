@@ -7,10 +7,25 @@ import { FcApproval } from "react-icons/fc";
 import { getallEvents } from "./APIAllevents";
 import { SyncOutlined } from "@ant-design/icons";
 import { Spin, Space } from "antd";
+import Pagination from "../Dashboard/Event/Pagination";
+import Totalpostcount from "./TotalPostCount";
 
 const AllEvents = () => {
   const [allevents, setAllevents] = useState([]);
   const [loading, setLoading] = useState(true);
+
+
+  //pagination
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(8);
+
+  //Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = allevents.slice(indexOfFirstPost, indexOfLastPost);
+  const howManyPages = Math.ceil(allevents.length / postsPerPage);
+
 
   const loadallEvents = () => {
     getallEvents()
@@ -37,16 +52,14 @@ const AllEvents = () => {
     );
   }
 
-  
-
   return (
     <React.Fragment>
+      <Totalpostcount totalpost={allevents.length}/>
       <div className="container">
         <div className="row">
-          {allevents.map((event, index) => (
+          {currentPosts.map((event, index) => (
             <div className="col-lg-12 col-md-12 col-sm-12 col-xl-12">
               <div className="card all-events">
-        
                 <div className="profile-name-date">
                   {event?.postedBy?.photo ? (
                     <div className="profile-name-avatar-image">
@@ -54,7 +67,9 @@ const AllEvents = () => {
                     </div>
                   ) : (
                     <div className="profile-name-avatar">
-                      <p>{event.postedBy?.name.substring(0, 2).toUpperCase()}</p>
+                      <p>
+                        {event.postedBy?.name.substring(0, 2).toUpperCase()}
+                      </p>
                     </div>
                   )}
 
@@ -70,9 +85,9 @@ const AllEvents = () => {
                   <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
                     <div className="events-date-and-place">
                       <p>
-                        Date: {moment(event.startdate).format("MMMM Do YYYY")} -
+                        Date: {moment(event.startdate).format("MMMM Do YYYY")}
                       </p>
-                      <p>{moment(event.enddate).format("MMMM Do YYYY")}.</p>
+                      <p>-{moment(event.enddate).format("MMMM Do YYYY")}.</p>
                       <p className="event-location">
                         Location: {event.location}.
                       </p>
@@ -97,6 +112,11 @@ const AllEvents = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="card pagination-allevents">
+          {allevents.length > 1 ? (
+            <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
+          ) : null}
         </div>
       </div>
     </React.Fragment>

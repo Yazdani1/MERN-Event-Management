@@ -52,3 +52,9 @@
   vertical-align: middle;
   position: relative;
 }
+
+
+/* pagination */
+.pagination-dashboard{
+  margin-top: 10px;
+}

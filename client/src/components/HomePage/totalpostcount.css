@@ -1,0 +1,13 @@
+/* total post count */
+.total-post-info {
+  margin-top: 10px;
+}
+
+.home-post-count {
+  height: 250px;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  text-align: center;
+  position: relative;
+}

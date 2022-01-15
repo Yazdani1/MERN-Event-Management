@@ -73,3 +73,8 @@
 .going-interested p{
   padding-left: 15px;
 }
+
+/* pagination */
+.pagination-allevents{
+  margin-top: 15px;
+}

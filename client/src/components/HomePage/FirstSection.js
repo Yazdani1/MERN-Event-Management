@@ -22,7 +22,7 @@ const FirstSection = () => {
                         Become a member today and start sharing your Events
                       </h5>
                       <Link to={"/signup"}>
-                        <span className="create-account">Create your account</span>
+                        <button className="btn btn-primary">Create your account</button>
                       </Link>
                     </>
                   ) : (

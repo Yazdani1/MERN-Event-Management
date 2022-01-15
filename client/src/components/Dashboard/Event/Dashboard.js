@@ -204,7 +204,7 @@ const Dashboard = () => {
 
         <ToastContainer autoClose={8000} />
 
-        <div className="card pagination-user-list">
+        <div className="card pagination-dashboard">
           {myevents.length > 1 ? (
             <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
           ) : null}
