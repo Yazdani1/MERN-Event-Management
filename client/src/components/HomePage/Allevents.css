@@ -2,6 +2,14 @@
   margin-top: 10px;
   padding: 20px;
 }
+.all-events:hover {
+  box-shadow: -6px 11px 5px -4px rgba(0, 0, 0, 0.42);
+  -webkit-box-shadow: -6px 11px 5px -4px rgba(0, 0, 0, 0.42);
+  -moz-box-shadow: -6px 11px 5px -4px rgba(0, 0, 0, 0.42);
+
+  cursor: pointer;
+  transition-duration: 1s;
+}
 
 /* userinfo in the event post */
 
@@ -67,14 +75,13 @@
   display: flex;
 }
 .going-interested {
- 
   display: flex;
 }
-.going-interested p{
+.going-interested p {
   padding-left: 15px;
 }
 
 /* pagination */
-.pagination-allevents{
+.pagination-allevents {
   margin-top: 15px;
 }
