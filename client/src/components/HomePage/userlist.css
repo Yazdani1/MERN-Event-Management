@@ -1,0 +1,98 @@
+
+/* user list information */
+
+.user-infocard {
+    /* position: relative;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    margin-top: 10px;
+    width: 100%; */
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+    height: 300px;
+    margin-top: 10px;
+  }
+  
+  .user-infocard:hover {
+    box-shadow: -6px 11px 5px -4px rgba(0, 0, 0, 0.42);
+    -webkit-box-shadow: -6px 11px 5px -4px rgba(0, 0, 0, 0.42);
+    -moz-box-shadow: -6px 11px 5px -4px rgba(0, 0, 0, 0.42);
+  
+    cursor: pointer;
+    transition-duration: 1s;
+  }
+  
+  .user-profile-pic {
+    height: 100px;
+    width: 100px;
+    background-color: rgb(236, 22, 22);
+    border-radius: 90px;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+  }
+  
+  .user-profile-picture-image img {
+    height: 100px;
+    width: 100px;
+    border-radius: 90px;
+    border: 3px solid rgb(14, 154, 236);
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+    object-fit: cover;
+  }
+  
+  .user-profile-pic p {
+    color: white;
+    border-radius: 90px;
+    height: 100px;
+    width: 100px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 90px;
+    font-size: 25px;
+  }
+  
+  .profile-pic-and-name p {
+    line-height: 40px;
+  }
+  
+  .view-profile {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+    margin-left: 5px;
+    margin-top: 30px;
+    border-radius: 5px;
+  }
+  
+  .view-profile-button {
+    margin-top: 30px;
+  }
+  
+  .view-profile:hover {
+    opacity: 1;
+    background-color: #f4511e;
+    color: aliceblue;
+  }
+  
+  .pagination-user-list {
+    margin-top: 10px;
+  }
+  
+  /* end user list information */

@@ -9,3 +9,19 @@ export const getallEvents = () => {
       console.log(err);
     });
 };
+
+
+export const getallUsers = () => {
+  return fetch("/api/getall-users", {
+    method: "GET",
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+
