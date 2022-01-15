@@ -61,18 +61,18 @@ exports.createEvent = (req, res) => {
 
   Eventpost.create(postData)
     .then((ourPostData) => {
-      transporter.sendMail({
-        to: "yaz4good@gmail.com",
-        from: "yaz4noor@gmail.com",
-        subject: "Your Post has been published",
-        html: `<h1 className="card">Congratulations! Your post is live now.
-            <ul>
-            <li>Post Title:${ourPostData.name} </li>
-            <li>Post Description:${ourPostData.des} </li>
+      // transporter.sendMail({
+      //   to: "yaz4good@gmail.com",
+      //   from: "yaz4noor@gmail.com",
+      //   subject: "Your Post has been published",
+      //   html: `<h1 className="card">Congratulations! Your post is live now.
+      //       <ul>
+      //       <li>Post Title:${ourPostData.name} </li>
+      //       <li>Post Description:${ourPostData.des} </li>
   
-            </ul>
-            </h1>`,
-      });
+      //       </ul>
+      //       </h1>`,
+      // });
       res.json(ourPostData);
     })
     .catch((err) => {
