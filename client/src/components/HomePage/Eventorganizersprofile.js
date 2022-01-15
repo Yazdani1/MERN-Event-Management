@@ -8,24 +8,27 @@ import Pagination from "../Dashboard/Event/Pagination";
 import { BsCalendar2DateFill } from "react-icons/bs";
 import Totalpostcount from "./TotalPostCount";
 
-const UserList = () => {
-  const [alluser, setAlluser] = useState([]);
+const Eventorganizersprofile = () => {
+  const [eventorganizers, setEventorganizers] = useState([]);
 
   //for pagination state..
 
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [postsPerPage] = useState(12);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(12);
 
   //Get current posts
-  // const indexOfLastPost = currentPage * postsPerPage;
-  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  // const currentUsers = alluser.slice(indexOfFirstPost, indexOfLastPost);
-  // const howManyPages = Math.ceil(alluser.length / postsPerPage);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentUsers = eventorganizers?.slice(
+    indexOfFirstPost,
+    indexOfLastPost
+  );
+  const howManyPages = Math.ceil(eventorganizers.length / postsPerPage);
 
   const loadallUser = () => {
     getallUsers()
       .then((result) => {
-        setAlluser(result);
+        setEventorganizers(result);
       })
       .catch((err) => {
         console.log(err);
@@ -38,10 +41,8 @@ const UserList = () => {
 
   return (
     <div className="container">
-      <p className="latest-post-title">Visit Member Profile</p>
-
       <div className="row">
-        {alluser.map((user, index) => (
+        {currentUsers.map((user, index) => (
           <div className="col-lg-4 col-md-6 col-sm-6 col-xl-3" key={index}>
             <div className="user-infocard card">
               {user && user.photo ? (
@@ -72,22 +73,16 @@ const UserList = () => {
           </div>
         ))}
       </div>
-      <Link to={"/event-organizers-profile"} style={{ textDecoration: "none" }}>
-        <div className="main_container-button">
-          <span className="view-allusers-button">
-            View All Event Organizers
-          </span>
-        </div>
-      </Link>
 
-      {/* <div className="card pagination-user-list">
-        {alluser.length > 1 ? (
+      <div className="card pagination-user-list">
+        {eventorganizers.length > 1 ? (
           <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
         ) : (
           "No Posts so far"
         )}
-      </div> */}
+      </div>
     </div>
   );
 };
-export default UserList;
+
+export default Eventorganizersprofile;

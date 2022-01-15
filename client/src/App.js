@@ -10,6 +10,7 @@ import NewPassword from "./components/auth/NewPassword";
 import DashboardprotectedRoute from "./components/Dashboard/DashboardprotectedRoute";
 import Dashboard from "./components/Dashboard/Event/Dashboard";
 import CreateEvent from "./components/Dashboard/Event/CreateEvent";
+import Eventorganizersprofile from "./components/HomePage/Eventorganizersprofile";
 
 const App = () => {
   return (
@@ -35,6 +36,10 @@ const App = () => {
 
           <Route exact path="/reset/:token">
             <ProtectedRoute FrontProtected={NewPassword} />
+          </Route>
+
+          <Route exact path="/event-organizers-profile">
+            <ProtectedRoute FrontProtected={Eventorganizersprofile} />
           </Route>
 
           {/* Protected route for admin side */}

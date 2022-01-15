@@ -23,7 +23,7 @@ const AllEvents = () => {
   //Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = allevents.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = allevents?.slice(indexOfFirstPost, indexOfLastPost);
   const howManyPages = Math.ceil(allevents.length / postsPerPage);
 
 

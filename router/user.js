@@ -9,7 +9,10 @@ const {
   newPassword,
 } = require("../controller/userauth");
 
-const { getallUsers } = require("../controller/userinfo");
+const {
+  getallUsers,
+  getallEventorganizers,
+} = require("../controller/userinfo");
 
 //Userauth
 
@@ -21,5 +24,6 @@ router.post("/reset-password", passwordReset);
 
 router.post("/new-password", newPassword);
 router.get("/getall-users", getallUsers);
+router.get("/getall-eventorganizers", getallEventorganizers);
 
 module.exports = router;
