@@ -1,4 +1,5 @@
 const User = require("../model/User");
+const Eventpost = require("../model/EventPost");
 
 exports.getallUsers = (req, res) => {
   User.find({})
@@ -18,9 +19,12 @@ exports.getallEventorganizers = (req, res) => {
     .sort({ createdAt: "DESC" })
     .select("-password")
     .then((result) => {
+
       res.json(result);
     })
     .catch((err) => {
       console.log(err);
     });
 };
+
+
