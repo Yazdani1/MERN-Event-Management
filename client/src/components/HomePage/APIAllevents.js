@@ -37,4 +37,17 @@ export const getallEventorganizers = () => {
 
 
 
+export const usersPublicprofile = (id) => {
+  return fetch("/api/eventusers-public-profile/"+id, {
+    method: "GET",
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
 

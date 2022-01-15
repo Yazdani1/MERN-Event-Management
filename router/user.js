@@ -12,6 +12,7 @@ const {
 const {
   getallUsers,
   getallEventorganizers,
+  userspublicProfile
 } = require("../controller/userinfo");
 
 //Userauth
@@ -25,5 +26,6 @@ router.post("/reset-password", passwordReset);
 router.post("/new-password", newPassword);
 router.get("/getall-users", getallUsers);
 router.get("/getall-eventorganizers", getallEventorganizers);
+router.get("/eventusers-public-profile/:id", userspublicProfile);
 
 module.exports = router;

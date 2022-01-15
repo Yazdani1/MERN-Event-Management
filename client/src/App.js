@@ -11,6 +11,7 @@ import DashboardprotectedRoute from "./components/Dashboard/DashboardprotectedRo
 import Dashboard from "./components/Dashboard/Event/Dashboard";
 import CreateEvent from "./components/Dashboard/Event/CreateEvent";
 import Eventorganizersprofile from "./components/HomePage/Eventorganizersprofile";
+import UserPublicProfile from "../src/components/HomePage/Userinfo/UserPublicProfile";
 
 const App = () => {
   return (
@@ -40,6 +41,9 @@ const App = () => {
 
           <Route exact path="/event-organizers-profile">
             <ProtectedRoute FrontProtected={Eventorganizersprofile} />
+          </Route>
+          <Route exact path="/organizers-public-profile/:id">
+            <ProtectedRoute FrontProtected={UserPublicProfile} />
           </Route>
 
           {/* Protected route for admin side */}
