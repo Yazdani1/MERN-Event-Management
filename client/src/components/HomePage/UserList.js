@@ -13,14 +13,14 @@ const UserList = () => {
 
   //for pagination state..
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(12);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [postsPerPage] = useState(12);
 
   //Get current posts
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentUsers = alluser.slice(indexOfFirstPost, indexOfLastPost);
-  const howManyPages = Math.ceil(alluser.length / postsPerPage);
+  // const indexOfLastPost = currentPage * postsPerPage;
+  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  // const currentUsers = alluser.slice(indexOfFirstPost, indexOfLastPost);
+  // const howManyPages = Math.ceil(alluser.length / postsPerPage);
 
   const loadallUser = () => {
     getallUsers()
@@ -41,7 +41,7 @@ const UserList = () => {
       <p className="latest-post-title">Visit Member Profile</p>
 
       <div className="row">
-        {currentUsers.map((user, index) => (
+        {alluser.map((user, index) => (
           <div className="col-lg-4 col-md-6 col-sm-6 col-xl-3" key={index}>
             <div className="user-infocard card">
               {user && user.photo ? (
@@ -61,7 +61,10 @@ const UserList = () => {
 
               <p>{moment(user.createdAt).format("MMMM Do YYYY")}</p>
               <div className="view-profile-button">
-                <Link to={"/userprofile/" + user._id} style={{ textDecoration: "none" }}>
+                <Link
+                  to={"/userprofile/" + user._id}
+                  style={{ textDecoration: "none" }}
+                >
                   <span className="view-profile">View Profile</span>
                 </Link>
               </div>
@@ -69,13 +72,17 @@ const UserList = () => {
           </div>
         ))}
       </div>
-      <div className="card pagination-user-list">
+      <div className="main_container-button">
+        <span className="view-allusers-button">View All Event Organizers</span>
+      </div>
+
+      {/* <div className="card pagination-user-list">
         {alluser.length > 1 ? (
           <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
         ) : (
           "No Posts so far"
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
