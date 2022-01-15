@@ -16,7 +16,6 @@ exports.getallUsers = (req, res) => {
 exports.getallEventorganizers = (req, res) => {
   User.find({})
     .sort({ createdAt: "DESC" })
-
     .select("-password")
     .then((result) => {
       res.json(result);

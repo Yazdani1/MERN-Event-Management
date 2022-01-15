@@ -23,5 +23,18 @@ export const getallUsers = () => {
     });
 };
 
+export const getallEventorganizers = () => {
+  return fetch("/api/getall-eventorganizers", {
+    method: "GET",
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
 
 

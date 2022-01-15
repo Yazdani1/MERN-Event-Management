@@ -38,7 +38,6 @@ const UserList = () => {
 
   return (
     <div className="container">
-      <p className="latest-post-title">Visit Member Profile</p>
 
       <div className="row">
         {alluser.map((user, index) => (

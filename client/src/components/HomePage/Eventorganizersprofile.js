@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { getallUsers } from "./APIAllevents";
+import { getallEventorganizers } from "./APIAllevents";
 import moment from "moment";
-import "./userlist.css";
+import "./eventorganizersprofile.css";
 import { CgProfile } from "react-icons/cg";
 import { Link, useHistory, useParams } from "react-router-dom";
 import Pagination from "../Dashboard/Event/Pagination";
 import { BsCalendar2DateFill } from "react-icons/bs";
 import Totalpostcount from "./TotalPostCount";
+import { SyncOutlined } from "@ant-design/icons";
 
 const Eventorganizersprofile = () => {
   const [eventorganizers, setEventorganizers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   //for pagination state..
 
@@ -26,9 +28,11 @@ const Eventorganizersprofile = () => {
   const howManyPages = Math.ceil(eventorganizers.length / postsPerPage);
 
   const loadallUser = () => {
-    getallUsers()
+    getallEventorganizers()
       .then((result) => {
         setEventorganizers(result);
+        setLoading(false);
+
       })
       .catch((err) => {
         console.log(err);
@@ -38,6 +42,16 @@ const Eventorganizersprofile = () => {
   useEffect(() => {
     loadallUser();
   }, []);
+
+  if (loading) {
+    return (
+      <div class="text-center my-25">
+        <h1>
+          <SyncOutlined spin />
+        </h1>
+      </div>
+    );
+  }
 
   return (
     <div className="container">
@@ -74,12 +88,10 @@ const Eventorganizersprofile = () => {
         ))}
       </div>
 
-      <div className="card pagination-user-list">
+      <div className="card pagination-event-organizers">
         {eventorganizers.length > 1 ? (
           <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
-        ) : (
-          "No Posts so far"
-        )}
+        ) : null}
       </div>
     </div>
   );
