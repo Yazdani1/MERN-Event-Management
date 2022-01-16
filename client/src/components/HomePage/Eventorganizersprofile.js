@@ -9,6 +9,9 @@ import { BsCalendar2DateFill } from "react-icons/bs";
 import Totalpostcount from "./TotalPostCount";
 import { SyncOutlined } from "@ant-design/icons";
 
+import ReactStars from "react-rating-stars-component";
+import { render } from "react-dom";
+
 const Eventorganizersprofile = () => {
   const [eventorganizers, setEventorganizers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,7 +35,6 @@ const Eventorganizersprofile = () => {
       .then((result) => {
         setEventorganizers(result);
         setLoading(false);
-
       })
       .catch((err) => {
         console.log(err);
@@ -42,6 +44,13 @@ const Eventorganizersprofile = () => {
   useEffect(() => {
     loadallUser();
   }, []);
+
+  // const [star, setStar] = useState(null);
+
+  // const ratingChanged = (newRating) => {
+  //   console.log(newRating);
+  //   setStar(newRating);
+  // };
 
   if (loading) {
     return (
@@ -93,6 +102,17 @@ const Eventorganizersprofile = () => {
           <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
         ) : null}
       </div>
+      {/* <div className="container">
+        <h5>{star}</h5>
+        <ReactStars
+          count={5}
+          onChange={ratingChanged}
+          size={24}
+          isHalf={true}
+          activeColor="#ffd700"
+        />
+        
+      </div> */}
     </div>
   );
 };
