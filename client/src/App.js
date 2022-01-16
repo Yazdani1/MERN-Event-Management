@@ -39,7 +39,7 @@ const App = () => {
             <ProtectedRoute FrontProtected={NewPassword} />
           </Route>
 
-          <Route exact path="/event-organizers-profile">
+          <Route exact path="/event-organizers">
             <ProtectedRoute FrontProtected={Eventorganizersprofile} />
           </Route>
           <Route exact path="/organizers-public-profile/:id">

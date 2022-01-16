@@ -77,7 +77,7 @@ const Eventorganizersprofile = () => {
               <p>{moment(user.createdAt).format("MMMM Do YYYY")}</p>
               <div className="view-profile-button">
                 <Link
-                  to={"/userprofile/" + user._id}
+                  to={"/organizers-public-profile/" + user._id}
                   style={{ textDecoration: "none" }}
                 >
                   <span className="view-profile">View Profile</span>

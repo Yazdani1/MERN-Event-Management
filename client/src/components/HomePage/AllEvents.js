@@ -9,11 +9,11 @@ import { SyncOutlined } from "@ant-design/icons";
 import { Spin, Space } from "antd";
 import Pagination from "../Dashboard/Event/Pagination";
 import Totalpostcount from "./TotalPostCount";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 const AllEvents = () => {
   const [allevents, setAllevents] = useState([]);
   const [loading, setLoading] = useState(true);
-
 
   //pagination
 
@@ -25,7 +25,6 @@ const AllEvents = () => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allevents?.slice(indexOfFirstPost, indexOfLastPost);
   const howManyPages = Math.ceil(allevents.length / postsPerPage);
-
 
   const loadallEvents = () => {
     getallEvents()
@@ -54,30 +53,38 @@ const AllEvents = () => {
 
   return (
     <React.Fragment>
-      <Totalpostcount totalpost={allevents.length}/>
+      <Totalpostcount totalpost={allevents.length} />
       <div className="container">
         <div className="row">
           {currentPosts.map((event, index) => (
             <div className="col-lg-12 col-md-12 col-sm-12 col-xl-12">
               <div className="card all-events">
-                <div className="profile-name-date">
-                  {event?.postedBy?.photo ? (
-                    <div className="profile-name-avatar-image">
-                      <img src={event.postedBy?.photo} />
-                    </div>
-                  ) : (
-                    <div className="profile-name-avatar">
-                      <p>
-                        {event.postedBy?.name.substring(0, 2).toUpperCase()}
-                      </p>
-                    </div>
-                  )}
+                <Link
+                  to={"/organizers-public-profile/" + event.postedBy?._id}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="profile-name-date">
+                    {event?.postedBy?.photo ? (
+                      <div className="profile-name-avatar-image">
+                        <img src={event.postedBy?.photo} />
+                      </div>
+                    ) : (
+                      <div className="profile-name-avatar">
+                        <p>
+                          {event.postedBy?.name.substring(0, 2).toUpperCase()}
+                        </p>
+                      </div>
+                    )}
 
-                  <div className="profile-name-post-date">
-                    <p className="profile-name-size">{event.postedBy?.name}</p>
-                    <p>{moment(event.date).format("MMMM Do YYYY")}</p>
+                    <div className="profile-name-post-date">
+                      <p className="profile-name-size">
+                        {event.postedBy?.name}
+                      </p>
+                      <p>{moment(event.date).format("MMMM Do YYYY")}</p>
+                    </div>
                   </div>
-                </div>
+                </Link>
+
                 <h5>{event.name}</h5>
                 <p>{ReactHtmlParser(event.des?.substring(0, 350))}</p>
 

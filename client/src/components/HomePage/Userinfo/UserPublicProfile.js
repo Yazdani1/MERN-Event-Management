@@ -15,19 +15,18 @@ import ReactHtmlParser from "react-html-parser";
 import { SyncOutlined } from "@ant-design/icons";
 import { ToastContainer, toast } from "react-toastify";
 import "./Userpublicprofile.css";
-import { UserContext } from "../../UserContext";
+import "../Allevents.css";
+import { FcOk } from "react-icons/fc";
+import { FcApproval } from "react-icons/fc";
 import { AiFillLike } from "react-icons/ai";
 import { usersPublicprofile } from "../../HomePage/APIAllevents";
 import { FcButtingIn } from "react-icons/fc";
 
-// import { UserProfileContext } from "./UserprofileContext";
 
 const UserPublicProfile = () => {
-  const [mypost, setData] = useState([]);
+  const [myevents, setMyevents] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useContext(UserContext);
 
-  // const [mypost, setData] = useContext(UserProfileContext);
 
   const { id } = useParams();
   const history = useHistory();
@@ -37,7 +36,9 @@ const UserPublicProfile = () => {
   const getMypost = () => {
     usersPublicprofile(id)
       .then((result) => {
-        setData(result);
+        setMyevents(result);
+        console.log(result)
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -46,7 +47,7 @@ const UserPublicProfile = () => {
 
   useEffect(() => {
     getMypost();
-  }, [mypost]);
+  }, []);
 
   if (loading) {
     return (
@@ -61,22 +62,26 @@ const UserPublicProfile = () => {
   return (
     <>
       <div className="container profile-header-margin">
-        <div className="card">
-          <div className="profile-headers">
-            {mypost?.userInfo?.photo ? (
-              <div className="user-profile-image-incircles img">
-                <img src={mypost?.userInfo?.photo} />
-              </div>
-            ) : (
-              <div className="profile-pic-user-profiles">
-                <h2 className="user-profile-name-incircles">
-                  {mypost?.userInfo?.name.substring(0, 2).toUpperCase()}
-                </h2>
-              </div>
-            )}
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="card">
+              <div className="profile-headers">
+                {myevents?.userInfo?.photo ? (
+                  <div className="user-profile-image-incircles img">
+                    <img src={myevents?.userInfo?.photo} />
+                  </div>
+                ) : (
+                  <div className="profile-pic-user-profiles">
+                    <h2 className="user-profile-name-incircles">
+                      {myevents?.userInfo?.name.substring(0, 2).toUpperCase()}
+                    </h2>
+                  </div>
+                )}
 
-            <div className="profile-pic-user-profile-names">
-              <h2>{mypost?.userInfo?.name}</h2>
+                <div className="profile-pic-user-profile-names">
+                  <h2>{myevents?.userInfo?.name}</h2>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -91,7 +96,7 @@ const UserPublicProfile = () => {
                 <p>Member Since</p>
               </div>
               <p className="member-accountcreated-date">
-                {moment(mypost?.userInfo?.createdAt).format("MMMM Do YYYY")}
+                {moment(myevents?.userInfo?.createdAt).format("MMMM Do YYYY")}
               </p>
             </div>
           </div>
@@ -101,7 +106,7 @@ const UserPublicProfile = () => {
               <div className="profile-items_design">
                 <SiMicrodotblog size={35} />
                 <p>Published Posts</p>
-                <h4>{mypost?.postsData?.length}</h4>
+                <h4>{myevents?.postsData?.length}</h4>
               </div>
             </div>
           </div>
@@ -112,11 +117,11 @@ const UserPublicProfile = () => {
                 <FaUserGraduate size={35} />
                 <p>Member Type</p>
                 <p>
-                  {" "}
-                  {mypost?.postsData?.length >= 5 ? (
-                    <p>Pro User</p>
+                
+                  {myevents?.postsData?.length >= 5 ? (
+                    <p>Pro Account</p>
                   ) : (
-                    "New User"
+                    "Starter Account"
                   )}
                 </p>
               </div>
@@ -223,7 +228,66 @@ const UserPublicProfile = () => {
         </div>
       ) : null} */}
 
-      <div className="container user-main-posts-section"></div>
+      <div className="container all-events-container">
+        <div className="row">
+          {myevents?.postsData?.map((event, index) => (
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xl-12">
+              <div className="card all-events">
+                <div className="profile-name-date">
+                  {event?.postedBy?.photo ? (
+                    <div className="profile-name-avatar-image">
+                      <img src={event.postedBy?.photo} />
+                    </div>
+                  ) : (
+                    <div className="profile-name-avatar">
+                      <p>
+                        {event.postedBy?.name.substring(0, 2).toUpperCase()}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="profile-name-post-date">
+                    <p className="profile-name-size">{event.postedBy?.name}</p>
+                    <p>{moment(event.date).format("MMMM Do YYYY")}</p>
+                  </div>
+                </div>
+                <h5>{event.name}</h5>
+                <p>{ReactHtmlParser(event.des?.substring(0, 350))}</p>
+
+                <div className="row">
+                  <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
+                    <div className="events-date-and-place">
+                      <p>
+                        Date: {moment(event.startdate).format("MMMM Do YYYY")}
+                      </p>
+                      <p>-{moment(event.enddate).format("MMMM Do YYYY")}.</p>
+                      <p className="event-location">
+                        Location: {event.location}.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
+                    <div className="event-seats-and-participate">
+                      <p>Max seats: {event.maxmembers}</p>
+                      <div className="going-interested">
+                        <p>
+                          {" "}
+                          Going <FcOk /> 10
+                        </p>
+                        <p>
+                          {" "}
+                          Interested <FcApproval /> 50
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      
+      </div>
       <ToastContainer autoClose={8000} />
     </>
   );
