@@ -10,7 +10,6 @@ export const getallEvents = () => {
     });
 };
 
-
 export const getallUsers = () => {
   return fetch("/api/getall-users", {
     method: "GET",
@@ -35,10 +34,8 @@ export const getallEventorganizers = () => {
     });
 };
 
-
-
 export const usersPublicprofile = (id) => {
-  return fetch("/api/eventusers-public-profile/"+id, {
+  return fetch("/api/eventusers-public-profile/" + id, {
     method: "GET",
   })
     .then((res) => {
@@ -49,5 +46,40 @@ export const usersPublicprofile = (id) => {
     });
 };
 
+//search event
 
+export const searchallEvents = (query) => {
+  return fetch("/api/search-events", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(query),
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
+//search event organizers profiles.
+
+export const eventorganizerProfile = (query) => {
+  return fetch("/api/search-eventorganizers", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(query),
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

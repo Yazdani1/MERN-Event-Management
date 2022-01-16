@@ -69,7 +69,7 @@ exports.createEvent = (req, res) => {
       //       <ul>
       //       <li>Post Title:${ourPostData.name} </li>
       //       <li>Post Description:${ourPostData.des} </li>
-  
+
       //       </ul>
       //       </h1>`,
       // });
@@ -109,6 +109,23 @@ exports.deletemyEvents = (req, res) => {
   Eventpost.findByIdAndDelete(deletequery)
     .then((deleteEvents) => {
       res.json(deleteEvents);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+//search event api
+
+exports.searchEvents = (req, res) => {
+  let searchPattern = req.body.query;
+
+  Eventpost.find({
+    name: { $regex: searchPattern, $options: "i" },
+  })
+    .populate("postedBy", "_id name email photo")
+    .then((eventsearchresult) => {
+      res.json(eventsearchresult);
     })
     .catch((err) => {
       console.log(err);

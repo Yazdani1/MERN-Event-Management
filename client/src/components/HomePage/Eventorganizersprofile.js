@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getallEventorganizers } from "./APIAllevents";
+import { getallEventorganizers, eventorganizerProfile } from "./APIAllevents";
 import moment from "moment";
 import "./eventorganizersprofile.css";
 import { CgProfile } from "react-icons/cg";
@@ -69,19 +69,10 @@ const Eventorganizersprofile = () => {
   // };
 
   const searchUser = () => {
-    fetch("/api/search-eventorganizers", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        query: search,
-      }),
-    })
-      .then((res) => res.json())
+    eventorganizerProfile({ query: search })
       .then((searchresult) => {
         setEventorganizers(searchresult.usersearchrecord);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -129,6 +120,8 @@ const Eventorganizersprofile = () => {
                     />
                   </div>
                 </form>
+                <span>{eventorganizers.length} Users found</span>
+
               </div>
             </div>
             <div className="col-lg-4 col-md-4 col-sm-4 col-xl-4">
@@ -142,45 +135,40 @@ const Eventorganizersprofile = () => {
 
       <div className="container">
         <div className="row">
-          {eventorganizers.length
-            ? currentUsers.map((user, index) => (
-                <div
-                  className="col-lg-4 col-md-6 col-sm-6 col-xl-3"
-                  key={index}
-                >
-                  <div className="user-infocard card">
-                    {user && user.photo ? (
-                      <div className="user-profile-picture-image">
-                        <img src={user && user.photo} />
+          {eventorganizers.length ? (
+            currentUsers.map((user, index) => (
+              <div className="col-lg-4 col-md-6 col-sm-6 col-xl-3" key={index}>
+                <div className="user-infocard card">
+                  {user && user.photo ? (
+                    <div className="user-profile-picture-image">
+                      <img src={user && user.photo} />
 
-                        <p>{user.name}</p>
-                      </div>
-                    ) : (
-                      <div className="profile-pic-and-name">
-                        <div className="user-profile-pic">
-                          <p>
-                            {user && user.name.substring(0, 2).toUpperCase()}
-                          </p>
-                        </div>
-                        <p>{user.name}</p>
-                      </div>
-                    )}
-
-                    <p>{moment(user.createdAt).format("MMMM Do YYYY")}</p>
-                    <div className="view-profile-button">
-                      <Link
-                        to={"/organizers-public-profile/" + user._id}
-                        style={{ textDecoration: "none" }}
-                      >
-                        <span className="view-profile">View Profile</span>
-                      </Link>
+                      <p>{user.name}</p>
                     </div>
+                  ) : (
+                    <div className="profile-pic-and-name">
+                      <div className="user-profile-pic">
+                        <p>{user && user.name.substring(0, 2).toUpperCase()}</p>
+                      </div>
+                      <p>{user.name}</p>
+                    </div>
+                  )}
+
+                  <p>{moment(user.createdAt).format("MMMM Do YYYY")}</p>
+                  <div className="view-profile-button">
+                    <Link
+                      to={"/organizers-public-profile/" + user._id}
+                      style={{ textDecoration: "none" }}
+                    >
+                      <span className="view-profile">View Profile</span>
+                    </Link>
                   </div>
                 </div>
-              ))
-            : (
-              <h5 className="card">No search result found with your query</h5>
-            )}
+              </div>
+            ))
+          ) : (
+            <h5 className="card">No search result found with your query</h5>
+          )}
         </div>
 
         <div className="card pagination-event-organizers">

@@ -4,7 +4,7 @@ import moment from "moment";
 import ReactHtmlParser from "react-html-parser";
 import { FcOk } from "react-icons/fc";
 import { FcApproval } from "react-icons/fc";
-import { getallEvents } from "./APIAllevents";
+import { getallEvents, searchallEvents } from "./APIAllevents";
 import { SyncOutlined } from "@ant-design/icons";
 import { Spin, Space } from "antd";
 import Pagination from "../Dashboard/Event/Pagination";
@@ -14,6 +14,8 @@ import { Link, useHistory, useParams } from "react-router-dom";
 const AllEvents = () => {
   const [allevents, setAllevents] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [search, setSearch] = useState("");
 
   //pagination
 
@@ -37,6 +39,20 @@ const AllEvents = () => {
       });
   };
 
+  const searchEvents = () => {
+    searchallEvents({ query: search })
+      .then((searchresult) => {
+        if (searchresult) {
+          setAllevents(searchresult);
+          setLoading(false);
+        } 
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setSearch("");
+  };
+
   useEffect(() => {
     loadallEvents();
   }, []);
@@ -53,75 +69,109 @@ const AllEvents = () => {
 
   return (
     <React.Fragment>
-      <Totalpostcount totalpost={allevents.length} />
+      <div className="container  search-container">
+        <div className="card">
+          <div className="row ">
+            <div className="col-lg-8 col-md-8 col-sm-8 col-xl-8">
+              <div className="eventorganizer-search">
+                <form>
+                  <div className="event-form">
+                    <input
+                      type="text"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                      className="form-control"
+                      maxLength="100"
+                      placeholder="search event organizers name.."
+                    />
+                  </div>
+                </form>
+                <span>{allevents.length} Events found</span>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-4 col-sm-4 col-xl-4">
+              <div className="eventorganizer-search">
+                <p onClick={searchEvents}>Search</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="container">
         <div className="row">
-          {currentPosts.map((event, index) => (
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xl-12">
-              <div className="card all-events">
-                <Link
-                  to={"/organizers-public-profile/" + event.postedBy?._id}
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="profile-name-date">
-                    {event?.postedBy?.photo ? (
-                      <div className="profile-name-avatar-image">
-                        <img src={event.postedBy?.photo} />
+          {allevents.length ? (
+            currentPosts.map((event, index) => (
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xl-12">
+                <div className="card all-events">
+                  <Link
+                    to={"/organizers-public-profile/" + event.postedBy?._id}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <div className="profile-name-date">
+                      {event?.postedBy?.photo ? (
+                        <div className="profile-name-avatar-image">
+                          <img src={event.postedBy?.photo} />
+                        </div>
+                      ) : (
+                        <div className="profile-name-avatar">
+                          <p>
+                            {event.postedBy?.name
+                              ?.substring(0, 2)
+                              .toUpperCase()}
+                          </p>
+                        </div>
+                      )}
+
+                      <div className="profile-name-post-date">
+                        <p className="profile-name-size">
+                          {event.postedBy?.name}
+                        </p>
+                        <p>{moment(event.date).format("MMMM Do YYYY")}</p>
                       </div>
-                    ) : (
-                      <div className="profile-name-avatar">
+                    </div>
+                  </Link>
+
+                  <h5>{event.name}</h5>
+                  <p>{ReactHtmlParser(event.des?.substring(0, 350))}</p>
+
+                  <div className="row">
+                    <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
+                      <div className="events-date-and-place">
                         <p>
-                          {event.postedBy?.name.substring(0, 2).toUpperCase()}
+                          Date: {moment(event.startdate).format("MMMM Do YYYY")}
+                        </p>
+                        <p>-{moment(event.enddate).format("MMMM Do YYYY")}.</p>
+                        <p className="event-location">
+                          Location: {event.location}.
                         </p>
                       </div>
-                    )}
-
-                    <div className="profile-name-post-date">
-                      <p className="profile-name-size">
-                        {event.postedBy?.name}
-                      </p>
-                      <p>{moment(event.date).format("MMMM Do YYYY")}</p>
                     </div>
-                  </div>
-                </Link>
-
-                <h5>{event.name}</h5>
-                <p>{ReactHtmlParser(event.des?.substring(0, 350))}</p>
-
-                <div className="row">
-                  <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
-                    <div className="events-date-and-place">
-                      <p>
-                        Date: {moment(event.startdate).format("MMMM Do YYYY")}
-                      </p>
-                      <p>-{moment(event.enddate).format("MMMM Do YYYY")}.</p>
-                      <p className="event-location">
-                        Location: {event.location}.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
-                    <div className="event-seats-and-participate">
-                      <p>Max seats: {event.maxmembers}</p>
-                      <div className="going-interested">
-                        <p>
-                          {" "}
-                          Going <FcOk /> 10
-                        </p>
-                        <p>
-                          {" "}
-                          Interested <FcApproval /> 50
-                        </p>
+                    <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
+                      <div className="event-seats-and-participate">
+                        <p>Max seats: {event.maxmembers}</p>
+                        <div className="going-interested">
+                          <p>
+                            {" "}
+                            Going <FcOk /> 10
+                          </p>
+                          <p>
+                            {" "}
+                            Interested <FcApproval /> 50
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <h5 className="card">No search result found with your query</h5>
+          )}
         </div>
         <div className="card pagination-allevents">
-          {allevents.length > 1 ? (
+          {allevents.length > 8 ? (
             <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
           ) : null}
         </div>
