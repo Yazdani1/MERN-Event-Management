@@ -18,7 +18,10 @@ const Navbarwebviewfront = () => {
                 <li>Home</li>
               </Link>
               <Link to={"/dashboard"} style={{ textDecoration: "none" }}>
-                <li>Dashboard</li>
+                <li>Create Events</li>
+              </Link>
+              <Link to={"/dashboard"} style={{ textDecoration: "none" }}>
+                <li>My Events</li>
               </Link>
               <li>{state && state.user && state.user.name}</li>
 
