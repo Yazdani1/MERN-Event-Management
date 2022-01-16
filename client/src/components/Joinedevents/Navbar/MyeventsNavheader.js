@@ -19,6 +19,9 @@ const MyeventsNavheader = (props) => {
             <Link to={"/"} style={{ textDecoration: "none" }}>
               <li>Home</li>
             </Link>
+            <Link to={"/dashboard"} style={{ textDecoration: "none" }}>
+                <li>Create Events</li>
+              </Link>
             <li>{state && state.user && state.user.name}</li>
   
             {/* <li>{state.user._id}</li> */}

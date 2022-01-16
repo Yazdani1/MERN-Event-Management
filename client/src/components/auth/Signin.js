@@ -55,7 +55,7 @@ function SignIn() {
 
 
 
-          history.push("/dashboard");
+          history.push("/");
           setLoading(false);
         }
       })

@@ -12,6 +12,8 @@ import Dashboard from "./components/Dashboard/Event/Dashboard";
 import CreateEvent from "./components/Dashboard/Event/CreateEvent";
 import Eventorganizersprofile from "./components/HomePage/Eventorganizersprofile";
 import UserPublicProfile from "../src/components/HomePage/Userinfo/UserPublicProfile";
+import JoinedEventsRoute from "./components/Joinedevents/JoinedEventsRoute";
+import JoinedEvents from "./components/Joinedevents/JoinedEvents";
 
 const App = () => {
   return (
@@ -46,7 +48,7 @@ const App = () => {
             <ProtectedRoute FrontProtected={UserPublicProfile} />
           </Route>
 
-          {/* Protected route for admin side */}
+          {/* Protected route for create event side */}
 
           <Route exact path="/dashboard">
             <DashboardprotectedRoute DashboardProtect={Dashboard} />
@@ -55,6 +57,13 @@ const App = () => {
           <Route exact path="/create-event">
             <DashboardprotectedRoute DashboardProtect={CreateEvent} />
           </Route>
+          {/* Protected end route for create event side */}
+
+          {/* Protected route for joined  event side */}
+          <Route exact path="/joined-events">
+            <JoinedEventsRoute JoinedevenRouteprotect={JoinedEvents} />
+          </Route>
+          {/* Protected route end for joined  event side */}
         </Switch>
       </BrowserRouter>
     </UserProvider>
