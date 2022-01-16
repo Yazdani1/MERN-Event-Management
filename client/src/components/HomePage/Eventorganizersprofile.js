@@ -18,7 +18,7 @@ const Eventorganizersprofile = () => {
   const [loading, setLoading] = useState(true);
 
   const [search, setSearch] = useState("");
-  const [searchresult, setSearchresult] = useState([]);
+  // const [searchresult, setSearchresult] = useState([]);
 
   //for pagination state..
 
@@ -142,7 +142,7 @@ const Eventorganizersprofile = () => {
 
       <div className="container">
         <div className="row">
-          {eventorganizers
+          {eventorganizers.length
             ? currentUsers.map((user, index) => (
                 <div
                   className="col-lg-4 col-md-6 col-sm-6 col-xl-3"
@@ -178,7 +178,9 @@ const Eventorganizersprofile = () => {
                   </div>
                 </div>
               ))
-            : "No search resul"}
+            : (
+              <h5 className="card">No search result found with your query</h5>
+            )}
         </div>
 
         <div className="card pagination-event-organizers">
