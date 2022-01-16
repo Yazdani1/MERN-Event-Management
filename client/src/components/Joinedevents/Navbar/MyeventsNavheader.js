@@ -16,10 +16,10 @@ const MyeventsNavheader = (props) => {
             <GiHamburgerMenu size={25} onClick={props.data} />
           </li>
           <ul>
-            <Link to={"/"} style={{ textDecoration: "none" }}>
+            <Link to={"/"} style={{ textDecoration: "none",color:"black" }}>
               <li>Home</li>
             </Link>
-            <Link to={"/dashboard"} style={{ textDecoration: "none" }}>
+            <Link to={"/dashboard"} style={{ textDecoration: "none",color:"black" }}>
                 <li>Create Events</li>
               </Link>
             <li>{state && state.user && state.user.name}</li>

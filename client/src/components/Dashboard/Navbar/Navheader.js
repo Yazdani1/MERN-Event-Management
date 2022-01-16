@@ -15,7 +15,7 @@ const Navheader = (props) => {
           <GiHamburgerMenu size={25} onClick={props.data} />
         </li>
         <ul>
-          <Link to={"/"} style={{ textDecoration: "none" }}>
+          <Link to={"/"} style={{ textDecoration: "none",color:"black" }}>
             <li>Home</li>
           </Link>
           <Link to={"/joined-events"} style={{ textDecoration: "none",color:"black" }}>
