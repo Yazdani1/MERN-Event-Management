@@ -58,18 +58,15 @@ exports.serachEventorganizers = (req, res) => {
   //   return res.status(400).json({ error: "add search items" });
   // }
 
-  let searchPattern = new RegExp("^" + req.body.query);
+  // let searchPattern = new RegExp("^" + req.body.query);
+  let searchPattern = req.body.query;
 
-  User.find({ email: { $regex: searchPattern } })
+  User.find({ name: { $regex: searchPattern, $options: "i" } })
     .select("name email photo createdAt")
     .then((usersearchrecord) => {
-      if (usersearchrecord) {
-        res.json({ usersearchrecord });
-      }else{
-        return res.status(400).json({ resultnotfound: "No search result founds" });
-      }
+      res.json({ usersearchrecord });
     })
     .catch((err) => {
-      return res.status(400).json({ resultnotfound: "No search result founds" });
+      console.log(err);
     });
 };

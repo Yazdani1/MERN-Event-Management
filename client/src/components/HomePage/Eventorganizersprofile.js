@@ -8,6 +8,7 @@ import Pagination from "../Dashboard/Event/Pagination";
 import { BsCalendar2DateFill } from "react-icons/bs";
 import Totalpostcount from "./TotalPostCount";
 import { SyncOutlined } from "@ant-design/icons";
+import { ToastContainer, toast } from "react-toastify";
 
 import ReactStars from "react-rating-stars-component";
 import { render } from "react-dom";
@@ -80,13 +81,6 @@ const Eventorganizersprofile = () => {
     })
       .then((res) => res.json())
       .then((searchresult) => {
-        // if (searchresult.error) {
-        //   console.log(searchresult.error);
-        // } else {
-        //   console.log(searchresult.usersearchrecord);
-        //   setEventorganizers(searchresult.usersearchrecord);
-        // }
-
         setEventorganizers(searchresult.usersearchrecord);
       })
       .catch((err) => {
@@ -148,7 +142,7 @@ const Eventorganizersprofile = () => {
 
       <div className="container">
         <div className="row">
-          {currentUsers
+          {eventorganizers
             ? currentUsers.map((user, index) => (
                 <div
                   className="col-lg-4 col-md-6 col-sm-6 col-xl-3"
@@ -204,6 +198,7 @@ const Eventorganizersprofile = () => {
         
       </div> */}
       </div>
+      <ToastContainer autoClose={8000} />
     </React.Fragment>
   );
 };
