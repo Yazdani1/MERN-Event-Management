@@ -31,7 +31,7 @@ const Eventorganizersprofile = () => {
     indexOfFirstPost,
     indexOfLastPost
   );
-  const howManyPages = Math.ceil(eventorganizers.length / postsPerPage);
+  const howManyPages = Math.ceil(eventorganizers?.length / postsPerPage);
 
   const loadallUser = () => {
     getallEventorganizers()
@@ -80,13 +80,14 @@ const Eventorganizersprofile = () => {
     })
       .then((res) => res.json())
       .then((searchresult) => {
-        if (searchresult.error) {
-          console.log(searchresult.error);
-        } else {
-          console.log(searchresult.usersearchrecord);
-          setSearchresult(searchresult.usersearchrecord);
-          setEventorganizers(searchresult.usersearchrecord);
-        }
+        // if (searchresult.error) {
+        //   console.log(searchresult.error);
+        // } else {
+        //   console.log(searchresult.usersearchrecord);
+        //   setEventorganizers(searchresult.usersearchrecord);
+        // }
+
+        setEventorganizers(searchresult.usersearchrecord);
       })
       .catch((err) => {
         console.log(err);
@@ -144,41 +145,46 @@ const Eventorganizersprofile = () => {
           </div>
         </div>
       </div>
- 
-
 
       <div className="container">
         <div className="row">
-          {currentUsers.map((user, index) => (
-            <div className="col-lg-4 col-md-6 col-sm-6 col-xl-3" key={index}>
-              <div className="user-infocard card">
-                {user && user.photo ? (
-                  <div className="user-profile-picture-image">
-                    <img src={user && user.photo} />
+          {currentUsers
+            ? currentUsers.map((user, index) => (
+                <div
+                  className="col-lg-4 col-md-6 col-sm-6 col-xl-3"
+                  key={index}
+                >
+                  <div className="user-infocard card">
+                    {user && user.photo ? (
+                      <div className="user-profile-picture-image">
+                        <img src={user && user.photo} />
 
-                    <p>{user.name}</p>
-                  </div>
-                ) : (
-                  <div className="profile-pic-and-name">
-                    <div className="user-profile-pic">
-                      <p>{user && user.name.substring(0, 2).toUpperCase()}</p>
+                        <p>{user.name}</p>
+                      </div>
+                    ) : (
+                      <div className="profile-pic-and-name">
+                        <div className="user-profile-pic">
+                          <p>
+                            {user && user.name.substring(0, 2).toUpperCase()}
+                          </p>
+                        </div>
+                        <p>{user.name}</p>
+                      </div>
+                    )}
+
+                    <p>{moment(user.createdAt).format("MMMM Do YYYY")}</p>
+                    <div className="view-profile-button">
+                      <Link
+                        to={"/organizers-public-profile/" + user._id}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <span className="view-profile">View Profile</span>
+                      </Link>
                     </div>
-                    <p>{user.name}</p>
                   </div>
-                )}
-
-                <p>{moment(user.createdAt).format("MMMM Do YYYY")}</p>
-                <div className="view-profile-button">
-                  <Link
-                    to={"/organizers-public-profile/" + user._id}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <span className="view-profile">View Profile</span>
-                  </Link>
                 </div>
-              </div>
-            </div>
-          ))}
+              ))
+            : "No search resul"}
         </div>
 
         <div className="card pagination-event-organizers">

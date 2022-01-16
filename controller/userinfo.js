@@ -52,20 +52,24 @@ exports.userspublicProfile = (req, res) => {
 //search event organizers
 
 exports.serachEventorganizers = (req, res) => {
-  var searchquery  = req.body.query;
+  // var searchquery  = req.body.query;
 
-  if(!searchquery){
-    return res.status(400).json({ error: "add search items" });
-  }
+  // if(!searchquery){
+  //   return res.status(400).json({ error: "add search items" });
+  // }
 
-  let searchPattern = new RegExp("^" + searchquery);
+  let searchPattern = new RegExp("^" + req.body.query);
 
   User.find({ email: { $regex: searchPattern } })
     .select("name email photo createdAt")
     .then((usersearchrecord) => {
-      res.json({ usersearchrecord });
+      if (usersearchrecord) {
+        res.json({ usersearchrecord });
+      }else{
+        return res.status(400).json({ resultnotfound: "No search result founds" });
+      }
     })
     .catch((err) => {
-      console.log(err);
+      return res.status(400).json({ resultnotfound: "No search result founds" });
     });
 };
