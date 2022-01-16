@@ -63,46 +63,74 @@ const Eventorganizersprofile = () => {
   }
 
   return (
-    <div className="container">
-      <div className="row">
-        {currentUsers.map((user, index) => (
-          <div className="col-lg-4 col-md-6 col-sm-6 col-xl-3" key={index}>
-            <div className="user-infocard card">
-              {user && user.photo ? (
-                <div className="user-profile-picture-image">
-                  <img src={user && user.photo} />
-
-                  <p>{user.name}</p>
-                </div>
-              ) : (
-                <div className="profile-pic-and-name">
-                  <div className="user-profile-pic">
-                    <p>{user && user.name.substring(0, 2).toUpperCase()}</p>
+    <React.Fragment>
+      <div className="container  search-container">
+        <div className="card">
+          <div className="row ">
+            <div className="col-lg-8 col-md-8 col-sm-8 col-xl-8">
+              <div className="eventorganizer-search">
+                <form>
+                  <div className="event-form">
+                    <input
+                      type="text"
+                      // value={name}
+                      // onChange={(e) => setName(e.target.value)}
+                      className="form-control"
+                      maxLength="100"
+                      placeholder="search event organizers name.."
+                    />
                   </div>
-                  <p>{user.name}</p>
-                </div>
-              )}
-
-              <p>{moment(user.createdAt).format("MMMM Do YYYY")}</p>
-              <div className="view-profile-button">
-                <Link
-                  to={"/organizers-public-profile/" + user._id}
-                  style={{ textDecoration: "none" }}
-                >
-                  <span className="view-profile">View Profile</span>
-                </Link>
+                </form>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-4 col-sm-4 col-xl-4">
+              <div className="eventorganizer-search">
+                <p>Search</p>
               </div>
             </div>
           </div>
-        ))}
+        </div>
       </div>
+      <div className="container">
+        <div className="row">
+          {currentUsers.map((user, index) => (
+            <div className="col-lg-4 col-md-6 col-sm-6 col-xl-3" key={index}>
+              <div className="user-infocard card">
+                {user && user.photo ? (
+                  <div className="user-profile-picture-image">
+                    <img src={user && user.photo} />
 
-      <div className="card pagination-event-organizers">
-        {eventorganizers.length > 1 ? (
-          <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
-        ) : null}
-      </div>
-      {/* <div className="container">
+                    <p>{user.name}</p>
+                  </div>
+                ) : (
+                  <div className="profile-pic-and-name">
+                    <div className="user-profile-pic">
+                      <p>{user && user.name.substring(0, 2).toUpperCase()}</p>
+                    </div>
+                    <p>{user.name}</p>
+                  </div>
+                )}
+
+                <p>{moment(user.createdAt).format("MMMM Do YYYY")}</p>
+                <div className="view-profile-button">
+                  <Link
+                    to={"/organizers-public-profile/" + user._id}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <span className="view-profile">View Profile</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="card pagination-event-organizers">
+          {eventorganizers.length > 1 ? (
+            <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
+          ) : null}
+        </div>
+        {/* <div className="container">
         <h5>{star}</h5>
         <ReactStars
           count={5}
@@ -113,7 +141,8 @@ const Eventorganizersprofile = () => {
         />
         
       </div> */}
-    </div>
+      </div>
+    </React.Fragment>
   );
 };
 

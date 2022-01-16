@@ -11,17 +11,6 @@ import Totalpostcount from "./TotalPostCount";
 const UserList = () => {
   const [alluser, setAlluser] = useState([]);
 
-  //for pagination state..
-
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [postsPerPage] = useState(12);
-
-  //Get current posts
-  // const indexOfLastPost = currentPage * postsPerPage;
-  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  // const currentUsers = alluser.slice(indexOfFirstPost, indexOfLastPost);
-  // const howManyPages = Math.ceil(alluser.length / postsPerPage);
-
   const loadallUser = () => {
     getallUsers()
       .then((result) => {
@@ -38,7 +27,6 @@ const UserList = () => {
 
   return (
     <div className="container">
-
       <div className="row">
         {alluser.map((user, index) => (
           <div className="col-lg-4 col-md-6 col-sm-6 col-xl-3" key={index}>
@@ -71,21 +59,16 @@ const UserList = () => {
           </div>
         ))}
       </div>
-      <Link to={"/event-organizers"} style={{ textDecoration: "none" }}>
-        <div className="main_container-button">
-          <span className="view-allusers-button">
-            View All Event Organizers
-          </span>
-        </div>
-      </Link>
 
-      {/* <div className="card pagination-user-list">
-        {alluser.length > 1 ? (
-          <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
-        ) : (
-          "No Posts so far"
-        )}
-      </div> */}
+      {alluser ? (
+        <Link to={"/event-organizers"} style={{ textDecoration: "none" }}>
+          <div className="main_container-button">
+            <span className="view-allusers-button">
+              View All Event Organizers
+            </span>
+          </div>
+        </Link>
+      ) : null}
     </div>
   );
 };

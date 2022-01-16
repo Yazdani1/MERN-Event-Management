@@ -83,7 +83,7 @@ const CreateEvent = () => {
           <div className="col-lg-10 col-md-12 col-sm-12">
             <div className="card event-form-design">
               <div className="text-center">
-                <h5 className="text-center">Create Yout Event</h5>
+                <h5 className="text-center">Create Your Event</h5>
               </div>
               {/* <div
                 className="alert alert-success"
