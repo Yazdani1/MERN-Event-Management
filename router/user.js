@@ -12,7 +12,8 @@ const {
 const {
   getallUsers,
   getallEventorganizers,
-  userspublicProfile
+  userspublicProfile,
+  serachEventorganizers
 } = require("../controller/userinfo");
 
 //Userauth
@@ -27,5 +28,7 @@ router.post("/new-password", newPassword);
 router.get("/getall-users", getallUsers);
 router.get("/getall-eventorganizers", getallEventorganizers);
 router.get("/eventusers-public-profile/:id", userspublicProfile);
+router.post("/search-eventorganizers",serachEventorganizers)
+
 
 module.exports = router;

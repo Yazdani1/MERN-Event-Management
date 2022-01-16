@@ -16,6 +16,9 @@ const Eventorganizersprofile = () => {
   const [eventorganizers, setEventorganizers] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [search, setSearch] = useState("");
+  const [searchresult, setSearchresult] = useState([]);
+
   //for pagination state..
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,6 +42,56 @@ const Eventorganizersprofile = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  //this to get search without button click
+  // const searchUser = (query) => {
+  //   setSearch(query);
+  //   fetch("/api/search-eventorganizers", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       query,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((searchresult) => {
+  //       console.log(searchresult.usersearchrecord);
+  //       setSearchresult(searchresult.usersearchrecord);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
+  const searchUser = () => {
+    fetch("/api/search-eventorganizers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        query: search,
+      }),
+    })
+      .then((res) => res.json())
+      .then((searchresult) => {
+        if (searchresult.error) {
+          console.log(searchresult.error);
+        } else {
+          console.log(searchresult.usersearchrecord);
+          setSearchresult(searchresult.usersearchrecord);
+          setEventorganizers(searchresult.usersearchrecord);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setSearch("");
   };
 
   useEffect(() => {
@@ -73,8 +126,8 @@ const Eventorganizersprofile = () => {
                   <div className="event-form">
                     <input
                       type="text"
-                      // value={name}
-                      // onChange={(e) => setName(e.target.value)}
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
                       className="form-control"
                       maxLength="100"
                       placeholder="search event organizers name.."
@@ -85,12 +138,15 @@ const Eventorganizersprofile = () => {
             </div>
             <div className="col-lg-4 col-md-4 col-sm-4 col-xl-4">
               <div className="eventorganizer-search">
-                <p>Search</p>
+                <p onClick={searchUser}>Search</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+ 
+
+
       <div className="container">
         <div className="row">
           {currentUsers.map((user, index) => (
