@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-import Navwebview from "./Navbar/Navwebview";
-import Navheader from "./Navbar/Navheader";
+import MyeventsNavheader from "./Navbar/MyeventsNavheader";
+import MyeventsNavweb from "./Navbar/MyeventsNavweb";
 
-import "../Dashboard/Navbar/navheader.css";
-import "../Dashboard/Navbar/navweb.css";
-import "../Dashboard/Navbar/navmobile.css";
 const JoinedEventsRoute = (props) => {
   const history = useHistory();
-  let DashboardProtected = props.DashboardProtect;
+  let Joinedeventprotected = props.JoinedevenRouteprotect;
 
   useEffect(() => {
     if (!localStorage.getItem("tokenLogin")) {
@@ -26,18 +23,15 @@ const JoinedEventsRoute = (props) => {
 
   return (
     <div className="container-fluid">
-      <Navheader data={openNavbar} />
+      <MyeventsNavheader data={openNavbar} />
 
-      {/* <div className="container fluid"> */}
       <div className="row">
         <div className="col-xl-2">
-          <Navwebview sidebar={sidebar} />
-          {/* <DashboardNav /> */}
+          <MyeventsNavweb sidebar={sidebar} />
         </div>
         <div className="col-xl-10">
-          <DashboardProtected />
+          <Joinedeventprotected />
         </div>
-        {/* </div> */}
       </div>
     </div>
   );

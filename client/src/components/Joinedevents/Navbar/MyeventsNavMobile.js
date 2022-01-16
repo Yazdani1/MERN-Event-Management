@@ -1,4 +1,5 @@
 import React from 'react'
+import "./MyeventsNavMobile.css";
 
 const MyeventsNavMobile = () => {
     return (
