@@ -17,12 +17,13 @@ const Detailsevents = () => {
   const { id } = useParams();
 
   const [detailsevents, setDetailsevents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const loadDetailsevents = () => {
     getdetailsEvents(id)
       .then((detailsevent) => {
         setDetailsevents(detailsevent);
-        console.log(detailsevent);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -33,6 +34,15 @@ const Detailsevents = () => {
     loadDetailsevents();
   }, [detailsevents]);
 
+  if (loading) {
+    return (
+      <div class="text-center my-25">
+        <h1>
+          <SyncOutlined spin />
+        </h1>
+      </div>
+    );
+  }
   return (
     <React.Fragment>
       <div className="container">
@@ -84,7 +94,7 @@ const Detailsevents = () => {
           <div className="col-lg-4 col-md-12 col-sm-12 col-xl-4">
             <div className="card event-form-designs">
               <div className="text-center">
-                <h5 className="text-center">Create Your Event</h5>
+                <h5 className="text-center">Join this Event</h5>
               </div>
               {/* <div
                 className="alert alert-success"

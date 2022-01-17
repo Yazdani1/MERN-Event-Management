@@ -4,17 +4,19 @@ import "./moreevents.css";
 import Alleventmobileview from "../Alleventmobileview";
 import AlleventXLview from "../AlleventXLview";
 import { Link, useHistory, useParams } from "react-router-dom";
+import { SyncOutlined } from "@ant-design/icons";
 
 const Moreevents = () => {
-    const { id } = useParams();
+  const { id } = useParams();
 
   const [moreeventsdetails, setMoreevents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const loadDetailsevents = () => {
     getdetailsEvents(id)
       .then((resultevents) => {
         setMoreevents(resultevents);
-        console.log(resultevents);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -24,6 +26,16 @@ const Moreevents = () => {
   useEffect(() => {
     loadDetailsevents();
   }, [moreeventsdetails]);
+
+  if (loading) {
+    return (
+      <div class="text-center my-25">
+        <h1>
+          <SyncOutlined spin />
+        </h1>
+      </div>
+    );
+  }
 
   return (
     <React.Fragment>
