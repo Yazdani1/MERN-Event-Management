@@ -86,3 +86,23 @@
 .pagination-allevents {
   margin-top: 15px;
 }
+
+
+/* responsive design for different screen size */
+
+.mobile-view-allevents{
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  
+  .large-screen-allevent-view{
+    display: none;
+  }
+  .mobile-view-allevents{
+    display: flex;
+  }
+}
+
+
+

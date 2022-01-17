@@ -38,32 +38,32 @@ const Detailsevents = () => {
         <div className="row">
           <div className="col-lg-8 col-md-12 col-sm-12 col-xl-8">
             <Detailseventwebview
-              name={detailsevents && detailsevents.name}
-              des={detailsevents && detailsevents.des}
-              id={detailsevents && detailsevents.postedBy?._id}
-              photo={detailsevents && detailsevents.postedBy?.photo}
-              username={detailsevents && detailsevents.postedBy?.name}
-              date={detailsevents && detailsevents && detailsevents.date}
-              startdate={detailsevents && detailsevents.startdate}
-              enddate={detailsevents && detailsevents.enddate}
-              location={detailsevents && detailsevents.location}
-              maxmembers={detailsevents && detailsevents.maxmembers}
+              name={detailsevents && detailsevents?.singleevents?.name}
+              des={detailsevents && detailsevents?.singleevents?.des}
+              id={detailsevents && detailsevents?.singleevents?.postedBy?._id}
+              photo={detailsevents && detailsevents?.singleevents?.postedBy?.photo}
+              username={detailsevents && detailsevents?.singleevents?.postedBy?.name}
+              date={detailsevents && detailsevents?.singleevents?.date}
+              startdate={detailsevents && detailsevents?.singleevents?.startdate}
+              enddate={detailsevents && detailsevents?.singleevents?.enddate}
+              location={detailsevents && detailsevents?.singleevents?.location}
+              maxmembers={detailsevents && detailsevents?.singleevents?.maxmembers}
             />
           </div>
 
           {/* small screen details view */}
 
           <Mobileviewdetailsevent
-            name={detailsevents && detailsevents.name}
-            des={detailsevents && detailsevents.des}
-            id={detailsevents && detailsevents.postedBy?._id}
-            photo={detailsevents && detailsevents.postedBy?.photo}
-            username={detailsevents && detailsevents.postedBy?.name}
-            date={detailsevents && detailsevents && detailsevents.date}
-            startdate={detailsevents && detailsevents.startdate}
-            enddate={detailsevents && detailsevents.enddate}
-            location={detailsevents && detailsevents.location}
-            maxmembers={detailsevents && detailsevents.maxmembers}
+             name={detailsevents && detailsevents?.singleevents?.name}
+             des={detailsevents && detailsevents?.singleevents?.des}
+             id={detailsevents && detailsevents?.singleevents?.postedBy?._id}
+             photo={detailsevents && detailsevents?.singleevents?.postedBy?.photo}
+             username={detailsevents && detailsevents?.singleevents?.postedBy?.name}
+             date={detailsevents && detailsevents?.singleevents?.date}
+             startdate={detailsevents && detailsevents?.singleevents?.startdate}
+             enddate={detailsevents && detailsevents?.singleevents?.enddate}
+             location={detailsevents && detailsevents?.singleevents?.location}
+             maxmembers={detailsevents && detailsevents?.singleevents?.maxmembers}
           />
 
           <div className="col-lg-4 col-md-12 col-sm-12 col-xl-4">

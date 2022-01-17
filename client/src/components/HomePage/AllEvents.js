@@ -11,6 +11,9 @@ import Pagination from "../Dashboard/Event/Pagination";
 import Totalpostcount from "./TotalPostCount";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { MdLocationPin } from "react-icons/md";
+import AlleventWebview from "./AlleventWebview";
+import Alleventmobileview from "./Alleventmobileview";
+import AlleventXLview from "./AlleventXLview";
 
 const AllEvents = () => {
   const [allevents, setAllevents] = useState([]);
@@ -103,75 +106,53 @@ const AllEvents = () => {
         <div className="row">
           {allevents.length ? (
             currentPosts.map((event, index) => (
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xl-12">
-                <div className="card all-events">
-                  <Link
-                    to={"/organizers-public-profile/" + event.postedBy?._id}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <div className="profile-name-date">
-                      {event?.postedBy?.photo ? (
-                        <div className="profile-name-avatar-image">
-                          <img src={event.postedBy?.photo} />
-                        </div>
-                      ) : (
-                        <div className="profile-name-avatar">
-                          <p>
-                            {event.postedBy?.name
-                              ?.substring(0, 2)
-                              .toUpperCase()}
-                          </p>
-                        </div>
-                      )}
+              //for large to medium screen
 
-                      <div className="profile-name-post-date">
-                        <p className="profile-name-size">
-                          {event.postedBy?.name}
-                        </p>
-                        <p>{moment(event.date).format("MMMM Do YYYY")}</p>
-                      </div>
-                    </div>
-                  </Link>
+              <>
+                {/* <AlleventWebview
+                  name={event.name}
+                  des={event.des}
+                  id={event.postedBy?._id}
+                  photo={event?.postedBy?.photo}
+                  username={event.postedBy?.name}
+                  postid={event._id}
+                  date={event.date}
+                  startdate={event.startdate}
+                  enddate={event.enddate}
+                  location={event.location}
+                  maxmembers={event.maxmembers}
+                /> */}
+                {/* for mobiel escreen */}
+                <Alleventmobileview
+                  name={event.name}
+                  des={event.des}
+                  id={event.postedBy?._id}
+                  photo={event?.postedBy?.photo}
+                  username={event.postedBy?.name}
+                  postid={event._id}
+                  date={event.date}
+                  startdate={event.startdate}
+                  enddate={event.enddate}
+                  location={event.location}
+                  maxmembers={event.maxmembers}
+                />
 
-                  <Link
-                    to={"/event-details-page/" + event._id}
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    <h5>{event.name}</h5>
-                    <p>{ReactHtmlParser(event.des?.substring(0, 350))}</p>
-                  </Link>
+                {/* for extra large screen */}
 
-                  <div className="row">
-                    <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
-                      <div className="events-date-and-place">
-                        <p>
-                          Date: {moment(event.startdate).format("MMMM Do YYYY")}
-                        </p>
-                        <p>-{moment(event.enddate).format("MMMM Do YYYY")}.</p>
-                        <p className="event-location">
-                          Location: <MdLocationPin style={{ color: "red" }} />{" "}
-                          {event.location}.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
-                      <div className="event-seats-and-participate">
-                        <p>Max seats: {event.maxmembers}</p>
-                        <div className="going-interested">
-                          <p>
-                            {" "}
-                            Going <FcOk /> 10
-                          </p>
-                          <p>
-                            {" "}
-                            Interested <FcApproval /> 50
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                <AlleventXLview
+                  name={event.name}
+                  des={event.des}
+                  id={event.postedBy?._id}
+                  photo={event?.postedBy?.photo}
+                  username={event.postedBy?.name}
+                  postid={event._id}
+                  date={event.date}
+                  startdate={event.startdate}
+                  enddate={event.enddate}
+                  location={event.location}
+                  maxmembers={event.maxmembers}
+                />
+              </>
             ))
           ) : (
             <h5 className="card">No search result found with your query</h5>
