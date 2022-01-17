@@ -133,8 +133,10 @@ const AllEvents = () => {
                     </div>
                   </Link>
 
-                  <h5>{event.name}</h5>
-                  <p>{ReactHtmlParser(event.des?.substring(0, 350))}</p>
+                  <Link to={"/event-details-page/" + event._id}>
+                    <h5>{event.name}</h5>
+                    <p>{ReactHtmlParser(event.des?.substring(0, 350))}</p>
+                  </Link>
 
                   <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">

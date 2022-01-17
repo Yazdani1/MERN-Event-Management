@@ -14,6 +14,7 @@ import Eventorganizersprofile from "./components/HomePage/Eventorganizersprofile
 import UserPublicProfile from "../src/components/HomePage/Userinfo/UserPublicProfile";
 import JoinedEventsRoute from "./components/Joinedevents/JoinedEventsRoute";
 import JoinedEvents from "./components/Joinedevents/JoinedEvents";
+import Detailsevents from "./components/HomePage/DetailsEvents/Detailsevents";
 
 const App = () => {
   return (
@@ -46,6 +47,10 @@ const App = () => {
           </Route>
           <Route exact path="/organizers-public-profile/:id">
             <ProtectedRoute FrontProtected={UserPublicProfile} />
+          </Route>
+
+          <Route exact path="/event-details-page/:id">
+            <ProtectedRoute FrontProtected={Detailsevents} />
           </Route>
 
           {/* Protected route for create event side */}
