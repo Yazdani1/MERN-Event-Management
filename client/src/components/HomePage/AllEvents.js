@@ -10,6 +10,7 @@ import { Spin, Space } from "antd";
 import Pagination from "../Dashboard/Event/Pagination";
 import Totalpostcount from "./TotalPostCount";
 import { Link, useHistory, useParams } from "react-router-dom";
+import { MdLocationPin } from "react-icons/md";
 
 const AllEvents = () => {
   const [allevents, setAllevents] = useState([]);
@@ -45,7 +46,7 @@ const AllEvents = () => {
         if (searchresult) {
           setAllevents(searchresult);
           setLoading(false);
-        } 
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -143,7 +144,8 @@ const AllEvents = () => {
                         </p>
                         <p>-{moment(event.enddate).format("MMMM Do YYYY")}.</p>
                         <p className="event-location">
-                          Location: {event.location}.
+                          Location: <MdLocationPin style={{ color: "red" }} />{" "}
+                          {event.location}.
                         </p>
                       </div>
                     </div>
