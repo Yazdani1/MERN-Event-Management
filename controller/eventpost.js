@@ -131,3 +131,19 @@ exports.searchEvents = (req, res) => {
       console.log(err);
     });
 };
+
+//events details
+
+exports.eventDetails = (req, res) => {
+  var detailsquery = { _id: req.params.id };
+
+  Eventpost.findOne(detailsquery)
+    .populate("postedBy", "_id name photo")
+    .populate("comments.postedBy", "_id name photo")
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

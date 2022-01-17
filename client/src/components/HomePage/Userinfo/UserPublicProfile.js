@@ -21,6 +21,7 @@ import { FcApproval } from "react-icons/fc";
 import { AiFillLike } from "react-icons/ai";
 import { usersPublicprofile } from "../../HomePage/APIAllevents";
 import { FcButtingIn } from "react-icons/fc";
+import { MdLocationPin } from "react-icons/md";
 
 
 const UserPublicProfile = () => {
@@ -262,7 +263,7 @@ const UserPublicProfile = () => {
                       </p>
                       <p>-{moment(event.enddate).format("MMMM Do YYYY")}.</p>
                       <p className="event-location">
-                        Location: {event.location}.
+                        Location:<MdLocationPin style={{ color: "red" }} /> {event.location}.
                       </p>
                     </div>
                   </div>
