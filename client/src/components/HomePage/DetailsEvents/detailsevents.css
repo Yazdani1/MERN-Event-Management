@@ -1,0 +1,16 @@
+
+.mobile-view-detailspage{
+    display: none;
+}
+
+@media (max-width: 700px) {
+  
+    .details-webview {
+      display: none;
+    }
+    .mobile-view-detailspage{
+        display: flex;
+    }
+    
+  }
+

@@ -133,7 +133,10 @@ const AllEvents = () => {
                     </div>
                   </Link>
 
-                  <Link to={"/event-details-page/" + event._id}>
+                  <Link
+                    to={"/event-details-page/" + event._id}
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
                     <h5>{event.name}</h5>
                     <p>{ReactHtmlParser(event.des?.substring(0, 350))}</p>
                   </Link>
