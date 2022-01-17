@@ -11,6 +11,7 @@ import { Spin, Space } from "antd";
 import { MdLocationPin } from "react-icons/md";
 import Mobileviewdetailsevent from "./Mobileviewdetailsevent";
 import { Detailseventwebview } from "./Detailseventwebview";
+import Moreevents from "./Moreevents";
 
 const Detailsevents = () => {
   const { id } = useParams();
@@ -41,29 +42,43 @@ const Detailsevents = () => {
               name={detailsevents && detailsevents?.singleevents?.name}
               des={detailsevents && detailsevents?.singleevents?.des}
               id={detailsevents && detailsevents?.singleevents?.postedBy?._id}
-              photo={detailsevents && detailsevents?.singleevents?.postedBy?.photo}
-              username={detailsevents && detailsevents?.singleevents?.postedBy?.name}
+              photo={
+                detailsevents && detailsevents?.singleevents?.postedBy?.photo
+              }
+              username={
+                detailsevents && detailsevents?.singleevents?.postedBy?.name
+              }
               date={detailsevents && detailsevents?.singleevents?.date}
-              startdate={detailsevents && detailsevents?.singleevents?.startdate}
+              startdate={
+                detailsevents && detailsevents?.singleevents?.startdate
+              }
               enddate={detailsevents && detailsevents?.singleevents?.enddate}
               location={detailsevents && detailsevents?.singleevents?.location}
-              maxmembers={detailsevents && detailsevents?.singleevents?.maxmembers}
+              maxmembers={
+                detailsevents && detailsevents?.singleevents?.maxmembers
+              }
             />
           </div>
 
           {/* small screen details view */}
 
           <Mobileviewdetailsevent
-             name={detailsevents && detailsevents?.singleevents?.name}
-             des={detailsevents && detailsevents?.singleevents?.des}
-             id={detailsevents && detailsevents?.singleevents?.postedBy?._id}
-             photo={detailsevents && detailsevents?.singleevents?.postedBy?.photo}
-             username={detailsevents && detailsevents?.singleevents?.postedBy?.name}
-             date={detailsevents && detailsevents?.singleevents?.date}
-             startdate={detailsevents && detailsevents?.singleevents?.startdate}
-             enddate={detailsevents && detailsevents?.singleevents?.enddate}
-             location={detailsevents && detailsevents?.singleevents?.location}
-             maxmembers={detailsevents && detailsevents?.singleevents?.maxmembers}
+            name={detailsevents && detailsevents?.singleevents?.name}
+            des={detailsevents && detailsevents?.singleevents?.des}
+            id={detailsevents && detailsevents?.singleevents?.postedBy?._id}
+            photo={
+              detailsevents && detailsevents?.singleevents?.postedBy?.photo
+            }
+            username={
+              detailsevents && detailsevents?.singleevents?.postedBy?.name
+            }
+            date={detailsevents && detailsevents?.singleevents?.date}
+            startdate={detailsevents && detailsevents?.singleevents?.startdate}
+            enddate={detailsevents && detailsevents?.singleevents?.enddate}
+            location={detailsevents && detailsevents?.singleevents?.location}
+            maxmembers={
+              detailsevents && detailsevents?.singleevents?.maxmembers
+            }
           />
 
           <div className="col-lg-4 col-md-12 col-sm-12 col-xl-4">
@@ -128,6 +143,11 @@ const Detailsevents = () => {
               </form>
             </div>
           </div>
+        </div>
+
+        <div className="moreevents-design">
+          <h5>More Events</h5>
+          <Moreevents />
         </div>
       </div>
     </React.Fragment>

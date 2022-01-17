@@ -11,7 +11,6 @@ import Pagination from "../Dashboard/Event/Pagination";
 import Totalpostcount from "./TotalPostCount";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { MdLocationPin } from "react-icons/md";
-import AlleventWebview from "./AlleventWebview";
 import Alleventmobileview from "./Alleventmobileview";
 import AlleventXLview from "./AlleventXLview";
 
@@ -109,19 +108,7 @@ const AllEvents = () => {
               //for large to medium screen
 
               <>
-                {/* <AlleventWebview
-                  name={event.name}
-                  des={event.des}
-                  id={event.postedBy?._id}
-                  photo={event?.postedBy?.photo}
-                  username={event.postedBy?.name}
-                  postid={event._id}
-                  date={event.date}
-                  startdate={event.startdate}
-                  enddate={event.enddate}
-                  location={event.location}
-                  maxmembers={event.maxmembers}
-                /> */}
+               
                 {/* for mobiel escreen */}
                 <Alleventmobileview
                   name={event.name}
