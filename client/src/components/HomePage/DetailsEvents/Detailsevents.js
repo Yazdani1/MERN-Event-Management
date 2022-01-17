@@ -10,6 +10,7 @@ import { SyncOutlined } from "@ant-design/icons";
 import { Spin, Space } from "antd";
 import { MdLocationPin } from "react-icons/md";
 import Mobileviewdetailsevent from "./Mobileviewdetailsevent";
+import { Detailseventwebview } from "./Detailseventwebview";
 
 const Detailsevents = () => {
   const { id } = useParams();
@@ -36,89 +37,7 @@ const Detailsevents = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-8 col-md-12 col-sm-12 col-xl-8">
-            <div className="details-webview">
-              <div className="card all-events">
-                <Link
-                  to={
-                    "/organizers-public-profile/" + detailsevents.postedBy?._id
-                  }
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="profile-name-date">
-                    {detailsevents?.postedBy?.photo ? (
-                      <div className="profile-name-avatar-image">
-                        <img src={detailsevents.postedBy?.photo} />
-                      </div>
-                    ) : (
-                      <div className="profile-name-avatar">
-                        <p>
-                          {detailsevents.postedBy?.name
-                            ?.substring(0, 2)
-                            .toUpperCase()}
-                        </p>
-                      </div>
-                    )}
-
-                    <div className="profile-name-post-date">
-                      <p className="profile-name-size">
-                        {detailsevents.postedBy?.name}
-                      </p>
-                      <p>
-                        {moment(detailsevents && detailsevents.date).format(
-                          "MMMM Do YYYY"
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-
-                <h5>{detailsevents && detailsevents.name}</h5>
-                <p>{ReactHtmlParser(detailsevents && detailsevents.des)}</p>
-
-                <div className="row">
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-xl-12">
-                    <div className="events-date-and-place">
-                      <p>
-                        Date:{" "}
-                        {moment(
-                          detailsevents && detailsevents.startdate
-                        ).format("MMMM Do YYYY")}
-                      </p>
-                      <p>
-                        -
-                        {moment(detailsevents && detailsevents.enddate).format(
-                          "MMMM Do YYYY"
-                        )}
-                        .
-                      </p>
-                      <p className="event-location">
-                        Location: <MdLocationPin style={{ color: "red" }} />{" "}
-                        {detailsevents && detailsevents.location}.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-xl-12">
-                    <div className="event-seats-and-participate">
-                      <p>
-                        Max seats: {detailsevents && detailsevents.maxmembers}
-                      </p>
-                      <div className="going-interested">
-                        <p>
-                          {" "}
-                          Going <FcOk /> 10
-                        </p>
-                        <p>
-                          {" "}
-                          Interested <FcApproval /> 50
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* small screen details view */}
-            <Mobileviewdetailsevent
+            <Detailseventwebview
               name={detailsevents && detailsevents.name}
               des={detailsevents && detailsevents.des}
               id={detailsevents && detailsevents.postedBy?._id}
@@ -132,8 +51,23 @@ const Detailsevents = () => {
             />
           </div>
 
+          {/* small screen details view */}
+
+          <Mobileviewdetailsevent
+            name={detailsevents && detailsevents.name}
+            des={detailsevents && detailsevents.des}
+            id={detailsevents && detailsevents.postedBy?._id}
+            photo={detailsevents && detailsevents.postedBy?.photo}
+            username={detailsevents && detailsevents.postedBy?.name}
+            date={detailsevents && detailsevents && detailsevents.date}
+            startdate={detailsevents && detailsevents.startdate}
+            enddate={detailsevents && detailsevents.enddate}
+            location={detailsevents && detailsevents.location}
+            maxmembers={detailsevents && detailsevents.maxmembers}
+          />
+
           <div className="col-lg-4 col-md-12 col-sm-12 col-xl-4">
-            <div className="card event-form-design">
+            <div className="card event-form-designs">
               <div className="text-center">
                 <h5 className="text-center">Create Your Event</h5>
               </div>

@@ -10,12 +10,22 @@ import { SyncOutlined } from "@ant-design/icons";
 import { Spin, Space } from "antd";
 import { MdLocationPin } from "react-icons/md";
 
-
-const Mobileviewdetailsevent = ({name,des,id,photo,username,date,startdate,enddate,location,maxmembers}) => {
+const Mobileviewdetailsevent = ({
+  name,
+  des,
+  id,
+  photo,
+  username,
+  date,
+  startdate,
+  enddate,
+  location,
+  maxmembers,
+}) => {
   return (
     <React.Fragment>
       <div className="mobile-view-detailspage">
-        <div className="card all-events">
+        <div className="card details-mob-view">
           <Link
             to={"/organizers-public-profile/" + id}
             style={{ textDecoration: "none" }}
@@ -27,58 +37,33 @@ const Mobileviewdetailsevent = ({name,des,id,photo,username,date,startdate,endda
                 </div>
               ) : (
                 <div className="profile-name-avatar">
-                  <p>
-                    {username
-                      ?.substring(0, 2)
-                      .toUpperCase()}
-                  </p>
+                  <p>{username?.substring(0, 2).toUpperCase()}</p>
                 </div>
               )}
 
               <div className="profile-name-post-date">
-                <p className="profile-name-size">
-                  {username}
-                </p>
-                <p>
-                  {moment(date).format(
-                    "MMMM Do YYYY"
-                  )}
-                </p>
+                <p className="profile-name-size">{username}</p>
+                <p>{moment(date).format("MMMM Do YYYY")}</p>
               </div>
             </div>
           </Link>
 
-
           <h5>{name}</h5>
           <p>{ReactHtmlParser(des)}</p>
 
-
-
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xl-3">
-              <p>
-                Date:{" "}
-                {moment(startdate).format(
-                  "MMMM Do YYYY"
-                )}
-              </p>
+              <p>Date: {moment(startdate).format("MMMM Do YYYY")}</p>
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xl-3">
-              <p>
-                -
-                {moment(enddate).format(
-                  "MMMM Do YYYY"
-                )}
-                .
-              </p>
+              <p>-{moment(enddate).format("MMMM Do YYYY")}.</p>
             </div>
           </div>
 
           <div className="row">
             <div className="col-lg-3 col-md-12 col-sm-12 col-xl-3">
               <p className="event-locations">
-                Location: <MdLocationPin style={{ color: "red" }} />{" "}
-                {location}.
+                Location: <MdLocationPin style={{ color: "red" }} /> {location}.
               </p>
             </div>
             <div className="col-lg-3 col-md-12 col-sm-12 col-xl-3">
