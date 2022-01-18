@@ -83,7 +83,7 @@ const Dashboard = () => {
             <div className="card dashboard-items-info">
               <div className="dashboard-items_design">
                 <SiMicrodotblog size={35} />
-                <p>Total Events</p>
+                <p>Published Events</p>
                 <h4>{myevents.length}</h4>
               </div>
             </div>

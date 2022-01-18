@@ -141,7 +141,6 @@ const UserPublicProfile = () => {
                 >
                   Send Message <RiSendPlaneFill size={25} />
                 </button>
-
                 <div
                   className="modal fade"
                   id="exampleModalCenter"
@@ -169,28 +168,59 @@ const UserPublicProfile = () => {
                       </div>
                       <div className="modal-body">
                         <form>
-                          <div class="form-group">
-                            <label for="exampleFormControlTextarea2"></label>
-                            <textarea
-                              class="form-control rounded-0"
-                              placeholder="Type your message.."
-                              // value={about}
-                              rows="8"
-                              // value={text}
-                              // onChange={(e) => setText(e.target.value)}
-                              // maxLength="150"
+                          <div className="event-form">
+                            <label
+                              for="exampleInputEmail1"
+                              className="form-label"
+                            >
+                              Your name
+                            </label>
+                            <input
+                              type="text"
+                              // value={name}
+                              // onChange={(e) => setName(e.target.value)}
+                              className="form-control"
+                              maxLength="100"
                             />
-                            {/* <p>{text ? text.length : 0} </p> */}
                           </div>
-                          {/* <button
-                            type="submit"
-                            class="btn btn-success custBtn"
-                            onClick={(e) =>
-                              sendmessage(e, mypost?.userInfo?._id)
-                            }
-                          >
-                            SEND
-                          </button> */}
+
+                          <div className="event-form">
+                            <label
+                              for="exampleInputEmail1"
+                              className="form-label"
+                            >
+                              Your E-mail
+                            </label>
+                            <input
+                              type="text"
+                              // value={name}
+                              // onChange={(e) => setName(e.target.value)}
+                              className="form-control"
+                              maxLength="100"
+                            />
+                          </div>
+
+                          <div className="event-form">
+                            <label
+                              for="exampleInputEmail1"
+                              className="form-label"
+                            >
+                              Message(optional)
+                            </label>
+                            <textarea
+                              type="number"
+                              // value={maxmembers}
+                              // onChange={(e) => setMaxmembers(e.target.value)}
+                              className="form-control"
+                              rows={3}
+                              maxLength="100"
+                            />
+                          </div>
+                          <div className="main_container-button">
+                            <span className="view-allusers-button">
+                              Join Event
+                            </span>
+                          </div>
                         </form>
                       </div>
                     </div>
@@ -201,6 +231,7 @@ const UserPublicProfile = () => {
           </div>
         </div>
       </div>
+
       {/* user about section */}
 
       {/* {mypost?.userInfo?.about ? (

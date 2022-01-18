@@ -148,6 +148,19 @@ const Detailsevents = () => {
                     maxLength="100"
                   />
                 </div>
+                <div className="event-form">
+                  <label for="exampleInputEmail1" className="form-label">
+                    Message(optional)
+                  </label>
+                  <textarea
+                    type="number"
+                    // value={maxmembers}
+                    // onChange={(e) => setMaxmembers(e.target.value)}
+                    className="form-control"
+                    rows={3}
+                    maxLength="100"
+                  />
+                </div>
                 <div className="main_container-button">
                   <span className="view-allusers-button">Join Event</span>
                 </div>
@@ -155,14 +168,13 @@ const Detailsevents = () => {
             </div>
           </div>
         </div>
-
         <div className="moreevents-design">
           <h5>More Events</h5>
           <Moreevents />
         </div>
-       
       </div>
-      <Footer/>
+
+      <Footer />
     </React.Fragment>
   );
 };
