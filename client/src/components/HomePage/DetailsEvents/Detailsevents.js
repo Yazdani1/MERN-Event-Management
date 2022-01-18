@@ -12,6 +12,7 @@ import { MdLocationPin } from "react-icons/md";
 import Mobileviewdetailsevent from "./Mobileviewdetailsevent";
 import { Detailseventwebview } from "./Detailseventwebview";
 import Moreevents from "./Moreevents";
+import Footer from "../../Footer/Footer";
 
 const Detailsevents = () => {
   const { id } = useParams();
@@ -159,7 +160,9 @@ const Detailsevents = () => {
           <h5>More Events</h5>
           <Moreevents />
         </div>
+       
       </div>
+      <Footer/>
     </React.Fragment>
   );
 };

@@ -18,6 +18,7 @@ import { EyeOutlined } from "@ant-design/icons";
 import ReactHtmlParser from "react-html-parser";
 import { getmyEvents, deletemyEvents } from "./Apievents";
 
+
 const Dashboard = () => {
   const [state, setState] = useContext(UserContext);
   const [myevents, setMyevents] = useState([]);
@@ -210,6 +211,7 @@ const Dashboard = () => {
           ) : null}
         </div>
       </div>
+
     </React.Fragment>
   );
 };
