@@ -155,9 +155,9 @@ const UserPublicProfile = () => {
                   >
                     <div className="modal-content">
                       <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLongTitle">
+                        <p className="modal-title" id="exampleModalLongTitle">
                           Write your message
-                        </h5>
+                        </p>
                         <button
                           type="button"
                           className="btn btn-danger"
@@ -205,7 +205,7 @@ const UserPublicProfile = () => {
                               for="exampleInputEmail1"
                               className="form-label"
                             >
-                              Message(optional)
+                              Message
                             </label>
                             <textarea
                               type="number"
@@ -218,7 +218,7 @@ const UserPublicProfile = () => {
                           </div>
                           <div className="main_container-button">
                             <span className="view-allusers-button">
-                              Join Event
+                              Send Message
                             </span>
                           </div>
                         </form>
