@@ -76,6 +76,7 @@ const Dashboard = () => {
 
   return (
     <React.Fragment>
+
       <div className="container-fluid dashboard_items_container">
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-12 col-xl-3">
@@ -128,6 +129,8 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
+      
 
       <div className="container-fluid main_containers">
         {/* table start */}
