@@ -4,6 +4,7 @@ import AllEvents from "./AllEvents";
 import UserList from "./UserList";
 import Totalpostcount from "./TotalPostCount";
 import { getallEvents, getallEventorganizers } from "./APIAllevents";
+import Footer from "../Footer/Footer";
 
 const Home = () => {
   const [allevent, setAllevents] = useState([]);
@@ -39,6 +40,7 @@ const Home = () => {
       <Totalpostcount totalpost={allevent.length} totaluser={allusers.length} />
       <AllEvents />
       <UserList />
+      <Footer />
     </div>
   );
 };
