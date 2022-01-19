@@ -132,9 +132,12 @@ const Detailsevents = () => {
               }
               enddate={detailsevents && detailsevents?.singleevents?.enddate}
               location={detailsevents && detailsevents?.singleevents?.location}
+              joinedeventnumbers={detailsevents && detailsevents?.singleevents?.application.length}
+
               maxmembers={
                 detailsevents && detailsevents?.singleevents?.maxmembers
               }
+              postid={detailsevents && detailsevents?.singleevents?._id}
             />
           </div>
 
@@ -157,6 +160,8 @@ const Detailsevents = () => {
             maxmembers={
               detailsevents && detailsevents?.singleevents?.maxmembers
             }
+            postid={detailsevents && detailsevents?.singleevents?._id}
+
           />
 
           <div className="col-lg-4 col-md-12 col-sm-12 col-xl-4">
@@ -216,7 +221,6 @@ const Detailsevents = () => {
                     onChange={messageChange}
                     className="form-control"
                     rows={3}
-                    maxLength="100"
                   />
                 </div>
                 <div className="main_container-button">

@@ -21,6 +21,8 @@ export const Detailseventwebview = ({
   enddate,
   location,
   maxmembers,
+  joinedeventnumbers,
+  postid,
 }) => {
   return (
     <React.Fragment>
@@ -37,46 +39,29 @@ export const Detailseventwebview = ({
                 </div>
               ) : (
                 <div className="profile-name-avatar">
-                  <p>
-                    {username
-                      ?.substring(0, 2)
-                      .toUpperCase()}
-                  </p>
+                  <p>{username?.substring(0, 2).toUpperCase()}</p>
                 </div>
               )}
 
               <div className="profile-name-post-date">
-                <p className="profile-name-size">
-                  {username}
-                </p>
-                <p>
-                  {moment(date).format(
-                    "MMMM Do YYYY"
-                  )}
-                </p>
+                <p className="profile-name-size">{username}</p>
+                <p>{moment(date).format("MMMM Do YYYY")}</p>
               </div>
             </div>
           </Link>
 
-          <h5>{name}</h5>
-          <p>{ReactHtmlParser(des)}</p>
-
+          <Link
+            to={"/event-details-page/" + postid}
+            style={{ textDecoration: "none",color:"black" }}
+          >
+            <h5>{name}</h5>
+            <p>{ReactHtmlParser(des)}</p>
+          </Link>
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xl-12">
               <div className="events-date-and-place">
-                <p>
-                  Date:{" "}
-                  {moment(startdate).format(
-                    "MMMM Do YYYY"
-                  )}
-                </p>
-                <p>
-                  -
-                  {moment(enddate).format(
-                    "MMMM Do YYYY"
-                  )}
-                  .
-                </p>
+                <p>Date: {moment(startdate).format("MMMM Do YYYY")}</p>
+                <p>-{moment(enddate).format("MMMM Do YYYY")}.</p>
                 <p className="event-location">
                   Location: <MdLocationPin style={{ color: "red" }} />{" "}
                   {location}.
@@ -89,7 +74,7 @@ export const Detailseventwebview = ({
                 <div className="going-interested">
                   <p>
                     {" "}
-                    Going <FcOk /> 10
+                    Going <FcOk /> {joinedeventnumbers}
                   </p>
                   <p>
                     {" "}

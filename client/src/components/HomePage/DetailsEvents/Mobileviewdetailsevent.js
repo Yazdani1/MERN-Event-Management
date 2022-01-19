@@ -21,6 +21,8 @@ const Mobileviewdetailsevent = ({
   enddate,
   location,
   maxmembers,
+  joinedeventnumbers,
+  postid
 }) => {
   return (
     <React.Fragment>
@@ -48,8 +50,13 @@ const Mobileviewdetailsevent = ({
             </div>
           </Link>
 
-          <h5>{name}</h5>
-          <p>{ReactHtmlParser(des)}</p>
+          <Link
+            to={"/event-details-page/" + postid}
+            style={{ textDecoration: "none",color:"black" }}
+          >
+            <h5>{name}</h5>
+            <p>{ReactHtmlParser(des)}</p>
+          </Link>
 
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xl-3">
@@ -75,7 +82,7 @@ const Mobileviewdetailsevent = ({
             <div className="col-lg-3 col-md-12 col-sm-12 col-xl-3">
               <p>
                 {" "}
-                Going <FcOk /> 10
+                Going <FcOk /> {joinedeventnumbers}
               </p>
             </div>
             <div className="col-lg-3 col-md-12 col-sm-12 col-xl-3">
