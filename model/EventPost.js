@@ -39,9 +39,12 @@ var postSchema = mongoose.Schema({
       // postedBy: { type: ObjectId, ref: "User" },
     },
   ],
-  comments: [
+  application: [
     {
-      text: String,
+      name: String,
+      email: String,
+      participants: Number,
+      message: String,
       postedBy: { type: ObjectId, ref: "User" },
       date: {
         type: Date,
@@ -49,6 +52,7 @@ var postSchema = mongoose.Schema({
       },
     },
   ],
+
   postedBy: {
     type: ObjectId,
     ref: "User",

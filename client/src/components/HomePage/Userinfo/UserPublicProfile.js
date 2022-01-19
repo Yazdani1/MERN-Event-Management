@@ -74,7 +74,7 @@ const UserPublicProfile = () => {
                 ) : (
                   <div className="profile-pic-user-profiles">
                     <h2 className="user-profile-name-incircles">
-                      {myevents?.userInfo?.name.substring(0, 2).toUpperCase()}
+                      {myevents?.userInfo?.name?.substring(0, 2).toUpperCase()}
                     </h2>
                   </div>
                 )}

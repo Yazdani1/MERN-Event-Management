@@ -139,13 +139,13 @@ exports.eventDetails = (req, res) => {
 
   Eventpost.findOne(detailsquery)
     .populate("postedBy", "_id name photo")
-    .populate("comments.postedBy", "_id name photo")
+    .populate("application.postedBy", "_id name photo")
     .then((singleevents) => {
       Eventpost.find({ _id: { $ne: detailsquery } })
         .sort({ date: "DESC" })
         .limit(6)
         .populate("postedBy", "_id name email photo")
-        .populate("comments.postedBy", "_id name")
+        .populate("application.postedBy", "_id name photo")
         .exec((err, moreevents) => {
           if (err) {
             return res.status(400).json({ error: err });
