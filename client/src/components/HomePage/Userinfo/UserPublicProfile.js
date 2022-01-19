@@ -173,7 +173,7 @@ const UserPublicProfile = () => {
                               for="exampleInputEmail1"
                               className="form-label"
                             >
-                              Your name
+                             Name
                             </label>
                             <input
                               type="text"
@@ -181,6 +181,7 @@ const UserPublicProfile = () => {
                               // onChange={(e) => setName(e.target.value)}
                               className="form-control"
                               maxLength="100"
+                              placeholder="Your name.."
                             />
                           </div>
 
@@ -189,7 +190,7 @@ const UserPublicProfile = () => {
                               for="exampleInputEmail1"
                               className="form-label"
                             >
-                              Your E-mail
+                               E-mail
                             </label>
                             <input
                               type="text"
@@ -197,6 +198,8 @@ const UserPublicProfile = () => {
                               // onChange={(e) => setName(e.target.value)}
                               className="form-control"
                               maxLength="100"
+                              placeholder="Your E-mail.."
+
                             />
                           </div>
 
@@ -214,6 +217,8 @@ const UserPublicProfile = () => {
                               className="form-control"
                               rows={3}
                               maxLength="100"
+                              placeholder="Your message.."
+
                             />
                           </div>
                           <div className="main_container-button">

@@ -9,16 +9,12 @@
   background-color: black;
   color: white;
   padding: 10px;
-  border-radius: 10px;
-  margin-top: 10px !important;
+  border-radius: 20px;
+  width: 30%;
+  margin-top: 20px !important;
 }
 
-.create-event-button:hover {
-  background-color: rgb(238, 92, 34);
-  border: 1px solid black;
-  color: white;
-  transition-duration: 1s;
-}
+
 
 .event-form input {
   height: 50px;

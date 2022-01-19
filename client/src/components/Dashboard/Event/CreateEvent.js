@@ -218,6 +218,7 @@ const CreateEvent = () => {
                 </div>
 
                 <div class="form-group justify-content-center align-items-center">
+                  
                   <button
                     type="submit"
                     name="btnSubmit"

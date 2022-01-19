@@ -121,10 +121,10 @@ const Eventorganizersprofile = () => {
                   </div>
                 </form>
                 <span>{eventorganizers.length} Users found</span>
-
               </div>
             </div>
             <div className="col-lg-4 col-md-4 col-sm-4 col-xl-4">
+             
               <div className="eventorganizer-search">
                 <p onClick={searchUser}>Search</p>
               </div>

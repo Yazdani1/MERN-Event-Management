@@ -10,11 +10,12 @@
   padding: 30px;
 }
 
+
+
 .eventorganizer-search p{
   background-color: black;
   color: white;
   padding: 10px;
-  /* margin-top: 20px!important; */
   border-radius: 20px;
   width: auto;
   cursor: pointer;
@@ -24,3 +25,4 @@
   text-align: center;
   position: relative;
 }
+
