@@ -13,12 +13,65 @@ import Mobileviewdetailsevent from "./Mobileviewdetailsevent";
 import { Detailseventwebview } from "./Detailseventwebview";
 import Moreevents from "./Moreevents";
 import Footer from "../../Footer/Footer";
+import { ToastContainer, toast } from "react-toastify";
 
 const Detailsevents = () => {
   const { id } = useParams();
 
   const [detailsevents, setDetailsevents] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  //to join the events
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [participants, setParticipants] = useState("");
+  const [message, setMessage] = useState("");
+
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const joinevents = (e, eventId) => {
+    e.preventDefault();
+    setError("");
+    setSuccess(false);
+    fetch("/api/join-event", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        participants,
+        message,
+        eventId: eventId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        if (result.error) {
+          setError(result.error);
+        } else {
+          setError("");
+          setSuccess(true);
+          toast.success("You have joined to this event", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+
+          setName("");
+          setEmail("");
+          setParticipants("");
+          setMessage("");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const loadDetailsevents = () => {
     getdetailsEvents(id)
@@ -34,6 +87,15 @@ const Detailsevents = () => {
   useEffect(() => {
     loadDetailsevents();
   }, [detailsevents]);
+
+  const showError = () => (
+    <div
+      className="alert alert-danger"
+      style={{ display: error ? "" : "none" }}
+    >
+      {error}
+    </div>
+  );
 
   if (loading) {
     return (
@@ -97,18 +159,9 @@ const Detailsevents = () => {
               <div className="text-center">
                 <h5 className="text-center">Join this Event</h5>
               </div>
-              {/* <div
-                className="alert alert-success"
-                style={{ display: success ? "" : "none" }}
-              >
-                Your post has been posted Successfully!
-              </div>
-              <div
-                className="alert alert-danger"
-                style={{ display: error ? "" : "none" }}
-              >
-                {error}
-              </div> */}
+
+              {showError()}
+
               <form>
                 <div className="event-form">
                   <label for="exampleInputEmail1" className="form-label">
@@ -116,8 +169,8 @@ const Detailsevents = () => {
                   </label>
                   <input
                     type="text"
-                    // value={name}
-                    // onChange={(e) => setName(e.target.value)}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     className="form-control"
                     maxLength="100"
                   />
@@ -129,8 +182,8 @@ const Detailsevents = () => {
                   </label>
                   <input
                     type="text"
-                    // value={name}
-                    // onChange={(e) => setName(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="form-control"
                     maxLength="100"
                   />
@@ -142,8 +195,8 @@ const Detailsevents = () => {
                   </label>
                   <input
                     type="number"
-                    // value={maxmembers}
-                    // onChange={(e) => setMaxmembers(e.target.value)}
+                    value={participants}
+                    onChange={(e) => setParticipants(e.target.value)}
                     className="form-control"
                     maxLength="100"
                   />
@@ -154,15 +207,25 @@ const Detailsevents = () => {
                   </label>
                   <textarea
                     type="number"
-                    // value={maxmembers}
-                    // onChange={(e) => setMaxmembers(e.target.value)}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     className="form-control"
                     rows={3}
                     maxLength="100"
                   />
                 </div>
                 <div className="main_container-button">
-                  <span className="view-allusers-button">Join Event</span>
+                  <span
+                    className="view-allusers-button"
+                    onClick={(e) =>
+                      joinevents(
+                        e,
+                        detailsevents && detailsevents?.singleevents?._id
+                      )
+                    }
+                  >
+                    Join Event
+                  </span>
                 </div>
               </form>
             </div>
@@ -173,6 +236,7 @@ const Detailsevents = () => {
           <Moreevents />
         </div>
       </div>
+      <ToastContainer autoClose={8000} />
 
       <Footer />
     </React.Fragment>

@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api", require("./router/user"));
 app.use("/api", require("./router/eventpost"));
-
+app.use("/api", require("./router/joinevents"));
 //to deploy heroku
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
