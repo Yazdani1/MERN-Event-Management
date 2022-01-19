@@ -53,6 +53,8 @@ const Moreevents = () => {
             enddate={event.enddate}
             location={event.location}
             maxmembers={event.maxmembers}
+            joinedeventnumbers={event.application.length}
+
           />
 
           <AlleventXLview
@@ -67,6 +69,8 @@ const Moreevents = () => {
             enddate={event.enddate}
             location={event.location}
             maxmembers={event.maxmembers}
+            joinedeventnumbers={event.application.length}
+
           />
         </>
       ))}

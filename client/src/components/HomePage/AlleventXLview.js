@@ -21,6 +21,7 @@ const AlleventXLview = ({
   location,
   maxmembers,
   postid,
+  joinedeventnumbers
 }) => {
   return (
     <React.Fragment>
@@ -73,7 +74,7 @@ const AlleventXLview = ({
                 <div className="going-interested">
                   <p>
                     {" "}
-                    Going <FcOk /> 10
+                    Going <FcOk /> {joinedeventnumbers}
                   </p>
                   <p>
                     {" "}

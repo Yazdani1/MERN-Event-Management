@@ -21,6 +21,7 @@ const Alleventmobileview = ({
   location,
   maxmembers,
   postid,
+  joinedeventnumbers
 }) => {
   return (
     <React.Fragment>
@@ -80,7 +81,7 @@ const Alleventmobileview = ({
             <div className="col-lg-3 col-md-12 col-sm-12 col-xl-3">
               <p>
                 {" "}
-                Going <FcOk /> 10
+                Going <FcOk />{joinedeventnumbers}
               </p>
             </div>
             <div className="col-lg-3 col-md-12 col-sm-12 col-xl-3">

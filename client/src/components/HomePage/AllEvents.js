@@ -122,6 +122,7 @@ const AllEvents = () => {
                   enddate={event.enddate}
                   location={event.location}
                   maxmembers={event.maxmembers}
+                  joinedeventnumbers={event.application.length}
                 />
 
                 {/* for extra large screen */}
@@ -138,6 +139,8 @@ const AllEvents = () => {
                   enddate={event.enddate}
                   location={event.location}
                   maxmembers={event.maxmembers}
+                  joinedeventnumbers={event.application.length}
+
                 />
               </>
             ))

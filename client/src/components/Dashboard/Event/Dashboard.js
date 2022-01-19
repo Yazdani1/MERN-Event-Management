@@ -11,13 +11,13 @@ import { SiMicrodotblog } from "react-icons/si";
 import { AiFillMessage } from "react-icons/ai";
 import { FaUserGraduate } from "react-icons/fa";
 import Pagination from "./Pagination";
-import { FcComboChart } from "react-icons/fc";
+import { FcComboChart, FcFilledFilter } from "react-icons/fc";
 import "./dashboard.css";
 import "./pagination.css";
 import { EyeOutlined } from "@ant-design/icons";
 import ReactHtmlParser from "react-html-parser";
 import { getmyEvents, deletemyEvents } from "./Apievents";
-
+import { HiHand } from "react-icons/hi";
 
 const Dashboard = () => {
   const [state, setState] = useContext(UserContext);
@@ -76,7 +76,6 @@ const Dashboard = () => {
 
   return (
     <React.Fragment>
-
       <div className="container-fluid dashboard_items_container">
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-12 col-xl-3">
@@ -130,8 +129,6 @@ const Dashboard = () => {
         </div>
       </div>
 
-      
-
       <div className="container-fluid main_containers">
         {/* table start */}
 
@@ -147,7 +144,7 @@ const Dashboard = () => {
                   <th scope="col">Location</th>
                   <th scope="col">Event Types</th>
                   <th scope="col">Total Members</th>
-                  <th colspan="3">Action</th>
+                  <th colspan="4">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -162,6 +159,22 @@ const Dashboard = () => {
                     <td>{item.location}</td>
                     <td>{item.eventtypes}</td>
                     <td>{item.maxmembers}</td>
+
+                    {/* to get all the joined members for each event post */}
+
+                    {/* {item.application.map((joinedmembers) => (
+                      <>
+                        <p>{joinedmembers.name}</p>
+                      </>
+                    ))} */}
+
+                    <td>
+                      <Link to={"/details/" + item._id}>
+                        <button className="btn btn-primary">
+                         {item.application.length} <HiHand style={{ fontSize: "20px" }} /> Joined
+                        </button>
+                      </Link>
+                    </td>
 
                     {/* to loops the post comment in the admin dashboard */}
                     {/* <td>{item.comments.map(c=>(
@@ -216,8 +229,6 @@ const Dashboard = () => {
       </div>
 
       <ToastContainer autoClose={8000} />
-
-
     </React.Fragment>
   );
 };

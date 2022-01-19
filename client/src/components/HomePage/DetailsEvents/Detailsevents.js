@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./detailsevents.css";
-import { getdetailsEvents } from "./APIDetails";
+import { getdetailsEvents, joinevent } from "./APIDetails";
 import { Link, useHistory, useParams } from "react-router-dom";
 import moment from "moment";
 import ReactHtmlParser from "react-html-parser";
@@ -31,26 +31,31 @@ const Detailsevents = () => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const nameChange = (e) => {
+    setError("");
+    setName(e.target.value);
+  };
+
+  const emailChange = (e) => {
+    setError("");
+    setEmail(e.target.value);
+  };
+  const participantsChange = (e) => {
+    setError("");
+    setParticipants(e.target.value);
+  };
+
+  const messageChange = (e) => {
+    setError("");
+    setMessage(e.target.value);
+  };
+
   const joinevents = (e, eventId) => {
     e.preventDefault();
     setError("");
     setSuccess(false);
-    fetch("/api/join-event", {
-      method: "put",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        participants,
-        message,
-        eventId: eventId,
-      }),
-    })
-      .then((res) => res.json())
+
+    joinevent({ name, email, participants, message, eventId })
       .then((result) => {
         console.log(result);
         if (result.error) {
@@ -170,7 +175,7 @@ const Detailsevents = () => {
                   <input
                     type="text"
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={nameChange}
                     className="form-control"
                     maxLength="100"
                   />
@@ -183,7 +188,7 @@ const Detailsevents = () => {
                   <input
                     type="text"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={emailChange}
                     className="form-control"
                     maxLength="100"
                   />
@@ -196,7 +201,7 @@ const Detailsevents = () => {
                   <input
                     type="number"
                     value={participants}
-                    onChange={(e) => setParticipants(e.target.value)}
+                    onChange={participantsChange}
                     className="form-control"
                     maxLength="100"
                   />
@@ -208,7 +213,7 @@ const Detailsevents = () => {
                   <textarea
                     type="number"
                     value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    onChange={messageChange}
                     className="form-control"
                     rows={3}
                     maxLength="100"
