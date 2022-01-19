@@ -15,6 +15,7 @@ import UserPublicProfile from "../src/components/HomePage/Userinfo/UserPublicPro
 import JoinedEventsRoute from "./components/Joinedevents/JoinedEventsRoute";
 import JoinedEvents from "./components/Joinedevents/JoinedEvents";
 import Detailsevents from "./components/HomePage/DetailsEvents/Detailsevents";
+import Eventapplication from "./components/Dashboard/Eventapplication/Eventapplication";
 
 const App = () => {
   return (
@@ -61,6 +62,10 @@ const App = () => {
 
           <Route exact path="/create-event">
             <DashboardprotectedRoute DashboardProtect={CreateEvent} />
+          </Route>
+
+          <Route exact path="/event-application/:id">
+            <DashboardprotectedRoute DashboardProtect={Eventapplication} />
           </Route>
           {/* Protected end route for create event side */}
 

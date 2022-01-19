@@ -56,3 +56,17 @@ exports.joinEvent = (req, res) => {
       }
     });
 };
+
+exports.joineventApplication = (req, res) => {
+  var detailsquery = { _id: req.params.id };
+
+  Eventpost.findOne(detailsquery)
+    .populate("postedBy", "_id name photo")
+    .populate("application.postedBy", "_id name photo date")
+    .then((joinapplications) => {
+      res.json(joinapplications);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

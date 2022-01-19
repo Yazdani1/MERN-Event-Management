@@ -169,7 +169,7 @@ const Dashboard = () => {
                     ))} */}
 
                     <td>
-                      <Link to={"/details/" + item._id}>
+                      <Link to={"/event-application/" + item._id}>
                         <button className="btn btn-primary">
                          {item.application.length} <HiHand style={{ fontSize: "20px" }} /> Joined
                         </button>
