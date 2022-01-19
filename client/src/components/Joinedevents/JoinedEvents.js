@@ -10,8 +10,11 @@ import { SiMicrodotblog } from "react-icons/si";
 import { AiFillMessage } from "react-icons/ai";
 import { FaUserGraduate } from "react-icons/fa";
 
-
 const JoinedEvents = () => {
+  //to add collapse option
+
+  const [show, setShow] = useState(false);
+
   return (
     <React.Fragment>
       <div className="container-fluid dashboard_items_container">
@@ -65,6 +68,43 @@ const JoinedEvents = () => {
             </div>
           </div>
         </div>
+
+        {/* <div className="container p-5">
+          <button onClick={() => setShow(true)} className="btn btn-primary">
+            Show
+          </button>
+        </div>
+        <button onClick={() => setShow(!show)} className="btn btn-danger">
+          {show ? "Close" : "Add"}
+        </button> */}
+
+        {/* {show ? (
+          <div className="card m-10">
+            <input type="text" placeholder="Your name.." />
+            <input type="text" placeholder="Your name.." />
+            <button onClick={() => setShow(false)} className="btn btn-danger">
+              Hide
+            </button>
+          </div>
+        ) : (
+          "result false"
+        )} */}
+
+        {/* <div className="card">
+          <h5 onClick={() => setShow(true)}>
+            This is a post title <SiMicrodotblog />
+          </h5>
+          {show ? (
+            <div className="card">
+              <p>This is a post description</p>
+              <p>This is a post details information</p>
+              <p onClick={() => setShow(false)}>
+                {" "}
+                <FaUserGraduate />
+              </p>
+            </div>
+          ) : null}
+        </div> */}
       </div>
     </React.Fragment>
   );
