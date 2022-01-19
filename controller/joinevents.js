@@ -62,7 +62,7 @@ exports.joineventApplication = (req, res) => {
 
   Eventpost.findOne(detailsquery)
     .populate("postedBy", "_id name photo")
-    .populate("application.postedBy", "_id name photo date")
+    .populate("application.postedBy", "_id name photo")
     .then((joinapplications) => {
       res.json(joinapplications);
     })
