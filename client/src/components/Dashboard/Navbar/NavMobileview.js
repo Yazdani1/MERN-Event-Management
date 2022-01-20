@@ -25,6 +25,9 @@ const NavMobileview = () => {
 
   const logOut = () => {
     window.localStorage.removeItem("tokenLogin");
+    window.localStorage.removeItem("token");
+
+
     setState(null);
     history.push("/signin");
   };
