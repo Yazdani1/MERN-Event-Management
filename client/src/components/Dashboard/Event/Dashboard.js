@@ -182,7 +182,7 @@ const Dashboard = () => {
                     ))}</td> */}
 
                     <td>
-                      <Link to={"/details/" + item._id}>
+                      <Link to={"/event-details-page/" + item._id}>
                         <button className="btn btn-primary">
                           <EyeOutlined style={{ fontSize: "20px" }} /> View
                         </button>
