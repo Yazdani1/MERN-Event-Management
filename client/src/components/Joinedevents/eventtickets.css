@@ -5,14 +5,16 @@
     color: white;
     margin-top: 15px;
     padding: 30px;
+    border-radius: 20px;
 }
 .ticket-design h5{
     text-align: center;
     justify-content: center;
-    line-height: 40px;
+    line-height: 30px;
 
 }
 .event-user-info{
     display: flex;
     justify-content: space-evenly;
+    padding-top: 20px;
 }

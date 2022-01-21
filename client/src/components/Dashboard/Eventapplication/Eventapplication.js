@@ -95,18 +95,7 @@ const Eventapplication = () => {
           Total applications: {eventapplication.application?.length}
         </p>
 
-        {eventapplication.application.map((eacheventapp) => (
-          <>
-            {eacheventapp.postedBy?._id === state.user._id ? (
-              <>
-                <h5>{eventapplication && eventapplication?.name}</h5>
-                <p>{eacheventapp.name}</p>
-                <p>{eacheventapp.email}</p>
-              </>
-            ) : null}
-          </>
-        ))}
-
+  
         <div
           className="event-application"
           //   style={{ maxHeight: "550px", overflow: "scroll" }}
