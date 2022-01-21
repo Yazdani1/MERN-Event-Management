@@ -16,6 +16,7 @@ import JoinedEventsRoute from "./components/Joinedevents/JoinedEventsRoute";
 import JoinedEvents from "./components/Joinedevents/JoinedEvents";
 import Detailsevents from "./components/HomePage/DetailsEvents/Detailsevents";
 import Eventapplication from "./components/Dashboard/Eventapplication/Eventapplication";
+import EventTickets from "./components/Joinedevents/EventTickets";
 
 const App = () => {
   return (
@@ -73,6 +74,13 @@ const App = () => {
           <Route exact path="/joined-events">
             <JoinedEventsRoute JoinedevenRouteprotect={JoinedEvents} />
           </Route>
+
+          <Route exact path="/event-tickets/:id">
+            <JoinedEventsRoute JoinedevenRouteprotect={EventTickets} />
+          </Route>
+
+
+
           {/* Protected route end for joined  event side */}
         </Switch>
       </BrowserRouter>

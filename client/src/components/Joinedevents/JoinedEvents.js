@@ -23,6 +23,8 @@ const JoinedEvents = () => {
 
   const [state, setState] = useContext(UserContext);
   const [userinfo, setUserinfo] = useState([]);
+  const [loading, setLoading] = useState(true);
+
 
   const loadlogedinuserInfo = () => {
     fetch("/api/logedinuser-allinfo", {
@@ -36,6 +38,7 @@ const JoinedEvents = () => {
       .then((res) => res.json())
       .then((result) => {
         setUserinfo(result);
+        setLoading(false);
         console.log("User all the details:" + result);
       })
       .catch((err) => {
@@ -65,6 +68,16 @@ const JoinedEvents = () => {
     loadlogedinuserInfo();
 
   }, []);
+
+  if (loading) {
+    return (
+      <div class="text-center my-25">
+        <h1>
+          <SyncOutlined spin />
+        </h1>
+      </div>
+    );
+  }
 
   return (
     <React.Fragment>
@@ -165,10 +178,10 @@ const JoinedEvents = () => {
                     ))} */}
 
                         <td>
-                          <Link to={"/event-application/" + item._id}>
+                          <Link to={"/event-tickets/" + item._id}>
                             <button className="btn btn-primary">
                               {item.application?.length}{" "}
-                              <HiHand style={{ fontSize: "20px" }} /> Joined
+                              Tickets
                             </button>
                           </Link>
                         </td>

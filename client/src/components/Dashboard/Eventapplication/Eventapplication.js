@@ -99,9 +99,9 @@ const Eventapplication = () => {
           <>
             {eacheventapp.postedBy?._id === state.user._id ? (
               <>
+                <h5>{eventapplication && eventapplication?.name}</h5>
                 <p>{eacheventapp.name}</p>
                 <p>{eacheventapp.email}</p>
-
               </>
             ) : null}
           </>
