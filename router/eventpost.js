@@ -7,7 +7,9 @@ const {
   getallEvents,
   deletemyEvents,
   searchEvents,
-  eventDetails
+  eventDetails,
+  likeEvents,
+  unlikeEvents
 } = require("../controller/eventpost");
 
 router.post("/create-event", requireLogin, createEvent);
@@ -17,10 +19,12 @@ router.delete("/delete-myevents/:id", requireLogin, deletemyEvents);
 
 router.post("/search-events", searchEvents);
 
-//events details 
+//events details
 
-router.get("/event-details/:id",eventDetails);
+router.get("/event-details/:id", eventDetails);
 
-
+//like and unlike events
+router.put("/like", requireLogin, likeEvents);
+router.put("/unlike", requireLogin, unlikeEvents);
 
 module.exports = router;

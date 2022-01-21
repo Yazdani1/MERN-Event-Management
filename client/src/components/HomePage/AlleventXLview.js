@@ -63,8 +63,8 @@ const AlleventXLview = ({
           <div className="row">
             <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
               <div className="events-date-and-place">
-                <p>Date: {moment(startdate).format("MMMM Do YYYY")}</p>
-                <p>-{moment(enddate).format("MMMM Do YYYY")}.</p>
+                <p>Start date: {moment(startdate).format("MMMM Do YYYY")}</p>
+                {/* <p>-{moment(enddate).format("MMMM Do YYYY")}.</p> */}
                 <p className="event-location">
                   Location: <MdLocationPin style={{ color: "red" }} />{" "}
                   {location}.

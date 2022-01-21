@@ -165,3 +165,47 @@ exports.eventDetails = (req, res) => {
       console.log(err);
     });
 };
+
+//like events
+
+exports.likeEvents = () => {
+  Eventpost.findByIdAndUpdate(
+    req.body.postId,
+    {
+      $push: { likes: req.user._id },
+    },
+    {
+      new: true,
+    }
+  )
+    .populate("postedBy", "_id name")
+    .exec((err, result) => {
+      if (err) {
+        return res.status(422).json({ error: err });
+      } else {
+        res.json(result);
+      }
+    });
+};
+
+//unlike events
+
+exports.unlikeEvents = () => {
+  Eventpost.findByIdAndUpdate(
+    req.body.postId,
+    {
+      $pull: { likes: req.user._id },
+    },
+    {
+      new: true,
+    }
+  )
+    .populate("postedBy", "_id name")
+    .exec((err, result) => {
+      if (err) {
+        return res.status(422).json({ error: err });
+      } else {
+        res.json(result);
+      }
+    });
+};
