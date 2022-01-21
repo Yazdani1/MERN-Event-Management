@@ -30,7 +30,7 @@ export const joinevent = (joinevent) => {
     });
 };
 
-//to get all the vent list user has joined
+//to get all the event list user has joined
 
 export const joinedeventList = (postID) => {
   return fetch("/api/joined-events", {

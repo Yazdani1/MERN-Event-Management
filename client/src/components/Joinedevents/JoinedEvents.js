@@ -97,7 +97,8 @@ const JoinedEvents = () => {
             <div className="card dashboard-items-info">
               <div className="dashboard-items_design">
                 <MdCardMembership size={35} />
-                <p>Member Since</p>
+                <p>Wishlist Event</p>
+                <p>{userinfo.wishlist.length}</p>
                 {/* <p>
                   {moment(state && state.user && state.user.createdAt).format(
                     "MMMM Do YYYY"
