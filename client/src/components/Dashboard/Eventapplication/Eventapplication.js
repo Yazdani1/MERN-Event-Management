@@ -1,6 +1,6 @@
 import "./Eventapplication.css";
 import { geteventApplication } from "./APIeventapplication";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import moment from "moment";
 import ReactHtmlParser from "react-html-parser";
@@ -10,13 +10,14 @@ import { SyncOutlined } from "@ant-design/icons";
 import { Spin, Space } from "antd";
 import { MdLocationPin } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
-
+import { UserContext } from "../../UserContext";
 import Mobileviewdetailsevent from "../../HomePage/DetailsEvents/Mobileviewdetailsevent";
 import { Detailseventwebview } from "../../HomePage/DetailsEvents/Detailseventwebview";
 import Pagination from "../Event/Pagination";
 
 const Eventapplication = () => {
   const { id } = useParams();
+  const [state, setState] = useContext(UserContext);
 
   const [eventapplication, setEventapplication] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -89,15 +90,25 @@ const Eventapplication = () => {
           location={eventapplication && eventapplication?.location}
           maxmembers={eventapplication && eventapplication?.maxmembers}
           postid={eventapplication && eventapplication?._id}
-
         />
-          <p className="total-application">Total applications: {eventapplication.application?.length}</p>
+        <p className="total-application">
+          Total applications: {eventapplication.application?.length}
+        </p>
+
+        {eventapplication.application.map((eacheventapp) => (
+          <>
+            {eacheventapp.postedBy?._id === state.user._id ? (
+              <>
+                <p>{eacheventapp.name}</p>
+              </>
+            ) : null}
+          </>
+        ))}
 
         <div
           className="event-application"
           //   style={{ maxHeight: "550px", overflow: "scroll" }}
         >
-
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xl-12">
               {currentPosts.map((application) => (
@@ -130,9 +141,7 @@ const Eventapplication = () => {
                             {application.postedBy?.name}
                           </p>
                           <p>
-                            {moment(application.date).format(
-                              "MMMM Do YYYY"
-                            )}
+                            {moment(application.date).format("MMMM Do YYYY")}
                           </p>
                         </div>
                       </div>

@@ -25,6 +25,7 @@ const JoinedEvents = () => {
   const [userinfo, setUserinfo] = useState([]);
 
   const loadlogedinuserInfo = () => {
+
     fetch("/api/logedinuser-allinfo", {
       method: "GET",
       headers: {
@@ -41,6 +42,7 @@ const JoinedEvents = () => {
       .catch((err) => {
         console.log(err);
       });
+
   };
 
   const removeeventList = (e, postID) => {
@@ -138,7 +140,7 @@ const JoinedEvents = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {userinfo.joinedevents?.map((item, index) => (
+                  {userinfo.joinedevents && [...userinfo.joinedevents].reverse().map((item, index) => (
                     <tr key={item._id}>
                       <th scope="row">{index + 1}</th>
 
@@ -149,6 +151,7 @@ const JoinedEvents = () => {
                       <td>{item.location}</td>
                       <td>{item.eventtypes}</td>
                       <td>{item.maxmembers}</td>
+                      <td>{item.postedBy?.name}</td>
 
                       {/* to get all the joined members for each event post */}
 

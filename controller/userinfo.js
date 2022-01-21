@@ -81,7 +81,7 @@ exports.logedinuserInfo = (req, res) => {
   User.findOne({ _id: req.user._id })
     .populate(
       "joinedevents",
-      "name des location eventtypes startdate enddate date maxmembers application "
+      "name des location eventtypes startdate enddate date maxmembers application"
     )
 
     .then((userData) => {
