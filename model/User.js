@@ -16,17 +16,17 @@ const userSchema = mongoose.Schema(
       type: String,
     },
 
-    favourite: [
+    wishlist: [
       {
         type: ObjectId,
-        ref: "Post",
+        ref: "EventPost",
       },
     ],
 
-    mycomments: [
+    joinedevents: [
       {
         type: ObjectId,
-        ref: "Post",
+        ref: "EventPost",
       },
     ],
 

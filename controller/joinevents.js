@@ -1,4 +1,6 @@
 const Eventpost = require("../model/EventPost");
+const User = require("../model/User");
+
 const { requireLogin } = require("../middleware/auth");
 
 const nodemailer = require("nodemailer");
@@ -57,6 +59,7 @@ exports.joinEvent = (req, res) => {
     });
 };
 
+//to get application for each event joined members
 exports.joineventApplication = (req, res) => {
   var detailsquery = { _id: req.params.id };
 
@@ -69,4 +72,20 @@ exports.joineventApplication = (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+//the event user have joined..
+
+exports.joinedeventList = (req, res) => {
+  const { postID } = req.body;
+
+  User.findByIdAndUpdate(req.user._id, {
+    $push: { joinedevents: postID },
+  }).exec((err, result) => {
+    if (err) {
+      return res.status(400).json({ error: err });
+    } else {
+      res.json(result);
+    }
+  });
 };
