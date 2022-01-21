@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./detailsevents.css";
 import { getdetailsEvents, joinevent, joinedeventList } from "./APIDetails";
 import { Link, useHistory, useParams } from "react-router-dom";
@@ -14,7 +14,7 @@ import { Detailseventwebview } from "./Detailseventwebview";
 import Moreevents from "./Moreevents";
 import Footer from "../../Footer/Footer";
 import { ToastContainer, toast } from "react-toastify";
-import {UserContext} from "../../UserContext";
+import { UserContext } from "../../UserContext";
 
 const Detailsevents = () => {
   const { id } = useParams();
@@ -93,6 +93,10 @@ const Detailsevents = () => {
       });
   };
 
+  useEffect(() => {
+    loadDetailsevents();
+  }, [detailsevents]);
+
   const savejoinedEvent = (e, postID) => {
     e.preventDefault();
     joinedeventList(postID)
@@ -103,25 +107,19 @@ const Detailsevents = () => {
           });
           console.log("event has saved");
 
-           //update user information
-           setState({
-            user: result.resultjoinedevents,
-            // token: result.token
-          });
+          //get user state from local storage
 
-          //save user info in local storage
-          window.localStorage.setItem("tokenLogin", JSON.stringify(result));
+          // let auth = JSON.parse(window.localStorage.getItem("tokenLogin"));
+          // auth.user = result;
+          // window.localStorage.setItem("tokenLogin", JSON.stringify(auth));
 
+          // setState({ ...state, user: result });
         }
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
-  useEffect(() => {
-    loadDetailsevents();
-  }, [detailsevents]);
 
   const showError = () => (
     <div

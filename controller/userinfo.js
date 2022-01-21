@@ -31,6 +31,10 @@ exports.getallEventorganizers = (req, res) => {
 exports.userspublicProfile = (req, res) => {
   User.findOne({ _id: req.params.id })
     .select("-password")
+    .populate(
+      "joinedevents",
+      "name des location eventtypes startdate enddate date maxmembers application "
+    )
     .then((userInfo) => {
       Eventpost.find({ postedBy: req.params.id })
         .populate("postedBy", "_id name email photo")
@@ -65,6 +69,23 @@ exports.serachEventorganizers = (req, res) => {
     .select("name email photo createdAt")
     .then((usersearchrecord) => {
       res.json({ usersearchrecord });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+//loged in user info
+
+exports.logedinuserInfo = (req, res) => {
+  User.findOne({ _id: req.user._id })
+    .populate(
+      "joinedevents",
+      "name des location eventtypes startdate enddate date maxmembers application "
+    )
+
+    .then((userData) => {
+      res.json(userData);
     })
     .catch((err) => {
       console.log(err);

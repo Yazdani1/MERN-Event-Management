@@ -8,12 +8,61 @@ import { SyncOutlined } from "@ant-design/icons";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { SiMicrodotblog } from "react-icons/si";
 import { AiFillMessage } from "react-icons/ai";
+import { UserContext } from "../UserContext";
+import { HiHand } from "react-icons/hi";
 import { FaUserGraduate } from "react-icons/fa";
+import ReactHtmlParser from "react-html-parser";
+import { EyeOutlined } from "@ant-design/icons";
+import { FcComboChart, FcFilledFilter } from "react-icons/fc";
+import { removejoinedeventList } from "../HomePage/DetailsEvents/APIDetails";
 
 const JoinedEvents = () => {
   //to add collapse option
 
   const [show, setShow] = useState(false);
+
+  const [state, setState] = useContext(UserContext);
+  const [userinfo, setUserinfo] = useState([]);
+
+  const loadlogedinuserInfo = () => {
+    fetch("/api/logedinuser-allinfo", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        setUserinfo(result);
+        console.log("User all the details:" + result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const removeeventList = (e, postID) => {
+    e.preventDefault();
+
+    removejoinedeventList(postID)
+      .then((result) => {
+        if (result) {
+          toast.success("Your event has been removed", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          loadlogedinuserInfo();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    loadlogedinuserInfo();
+  }, []);
 
   return (
     <React.Fragment>
@@ -24,7 +73,7 @@ const JoinedEvents = () => {
               <div className="dashboard-items_design">
                 <SiMicrodotblog size={35} />
                 <p>Joined Events</p>
-                {/* <h4>{myevents.length}</h4> */}
+                <h4>{userinfo.joinedevents?.length}</h4>
               </div>
             </div>
           </div>
@@ -48,6 +97,7 @@ const JoinedEvents = () => {
               <div className="dashboard-items_design">
                 <FaUserGraduate size={35} />
                 <p>Member Type</p>
+
                 {/* <p> {mypost.length >= 5 ? "Pro Account" : "Starter Account"}</p> */}
               </div>
             </div>
@@ -67,6 +117,97 @@ const JoinedEvents = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="container-fluid main_containers">
+          {/* table start */}
+
+          {userinfo.joinedevents?.length > 0 ? (
+            <div className="card table-horizontal">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Event Types</th>
+                    <th scope="col">Total Members</th>
+                    <th colspan="4">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {userinfo.joinedevents?.map((item, index) => (
+                    <tr key={item._id}>
+                      <th scope="row">{index + 1}</th>
+
+                      <td>{item.name?.substring(0, 30)}</td>
+                      <td>{ReactHtmlParser(item.des?.substring(0, 80))}</td>
+
+                      <td> {moment(item.date).format("lll")}</td>
+                      <td>{item.location}</td>
+                      <td>{item.eventtypes}</td>
+                      <td>{item.maxmembers}</td>
+
+                      {/* to get all the joined members for each event post */}
+
+                      {/* {item.application.map((joinedmembers) => (
+                      <>
+                        <p>{joinedmembers.name}</p>
+                      </>
+                    ))} */}
+
+                      <td>
+                        <Link to={"/event-application/" + item._id}>
+                          <button className="btn btn-primary">
+                            {item.application?.length}{" "}
+                            <HiHand style={{ fontSize: "20px" }} /> Joined
+                          </button>
+                        </Link>
+                      </td>
+
+                      {/* to loops the post comment in the admin dashboard */}
+                      {/* <td>{item.comments.map(c=>(
+                      <h1>{c.text}</h1>
+                    ))}</td> */}
+
+                      <td>
+                        <Link to={"/event-details-page/" + item._id}>
+                          <button className="btn btn-primary">
+                            <EyeOutlined style={{ fontSize: "20px" }} /> View
+                          </button>
+                        </Link>
+                      </td>
+                      <td>
+                        <button
+                          className="btn btn-danger"
+                          onClick={(e) => {
+                            removeeventList(e, item._id);
+                          }}
+                        >
+                          <MdDelete size={20} /> Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <h5 className="card noposts-design">
+              <FcComboChart size={200} />
+              No data to show!
+            </h5>
+          )}
+
+          <ToastContainer autoClose={8000} />
+
+          {/* <div className="card pagination-dashboard">
+          {myevents.length > 1 ? (
+            <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
+          ) : null}
+        </div> */}
         </div>
 
         {/* <div className="container p-5">
@@ -105,6 +246,7 @@ const JoinedEvents = () => {
             </div>
           ) : null}
         </div> */}
+        <ToastContainer autoClose={8000} />
       </div>
     </React.Fragment>
   );

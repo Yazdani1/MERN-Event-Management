@@ -13,7 +13,8 @@ const {
   getallUsers,
   getallEventorganizers,
   userspublicProfile,
-  serachEventorganizers
+  serachEventorganizers,
+  logedinuserInfo
 } = require("../controller/userinfo");
 
 //Userauth
@@ -28,7 +29,10 @@ router.post("/new-password", newPassword);
 router.get("/getall-users", getallUsers);
 router.get("/getall-eventorganizers", getallEventorganizers);
 router.get("/eventusers-public-profile/:id", userspublicProfile);
-router.post("/search-eventorganizers",serachEventorganizers)
+router.post("/search-eventorganizers", serachEventorganizers);
 
+//loged in user information
+
+router.get("/logedinuser-allinfo", requireLogin, logedinuserInfo);
 
 module.exports = router;
