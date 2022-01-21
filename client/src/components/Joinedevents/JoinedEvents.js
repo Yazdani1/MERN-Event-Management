@@ -25,7 +25,6 @@ const JoinedEvents = () => {
   const [userinfo, setUserinfo] = useState([]);
 
   const loadlogedinuserInfo = () => {
-
     fetch("/api/logedinuser-allinfo", {
       method: "GET",
       headers: {
@@ -42,7 +41,6 @@ const JoinedEvents = () => {
       .catch((err) => {
         console.log(err);
       });
-
   };
 
   const removeeventList = (e, postID) => {
@@ -62,8 +60,10 @@ const JoinedEvents = () => {
       });
   };
 
+
   useEffect(() => {
     loadlogedinuserInfo();
+
   }, []);
 
   return (
@@ -121,6 +121,8 @@ const JoinedEvents = () => {
           </div>
         </div>
 
+   
+
         <div className="container-fluid main_containers">
           {/* table start */}
 
@@ -140,60 +142,61 @@ const JoinedEvents = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {userinfo.joinedevents && [...userinfo.joinedevents].reverse().map((item, index) => (
-                    <tr key={item._id}>
-                      <th scope="row">{index + 1}</th>
+                  {userinfo.joinedevents &&
+                    [...userinfo.joinedevents].reverse().map((item, index) => (
+                      <tr key={item._id}>
+                        <th scope="row">{index + 1}</th>
 
-                      <td>{item.name?.substring(0, 30)}</td>
-                      <td>{ReactHtmlParser(item.des?.substring(0, 80))}</td>
+                        <td>{item.name?.substring(0, 30)}</td>
+                        <td>{ReactHtmlParser(item.des?.substring(0, 80))}</td>
 
-                      <td> {moment(item.date).format("lll")}</td>
-                      <td>{item.location}</td>
-                      <td>{item.eventtypes}</td>
-                      <td>{item.maxmembers}</td>
-                      <td>{item.postedBy?.name}</td>
+                        <td> {moment(item.date).format("lll")}</td>
+                        <td>{item.location}</td>
+                        <td>{item.eventtypes}</td>
+                        <td>{item.maxmembers}</td>
+                        <td>{item.postedBy?.name}</td>
 
-                      {/* to get all the joined members for each event post */}
+                        {/* to get all the joined members for each event post */}
 
-                      {/* {item.application.map((joinedmembers) => (
+                        {/* {item.application.map((joinedmembers) => (
                       <>
                         <p>{joinedmembers.name}</p>
                       </>
                     ))} */}
 
-                      <td>
-                        <Link to={"/event-application/" + item._id}>
-                          <button className="btn btn-primary">
-                            {item.application?.length}{" "}
-                            <HiHand style={{ fontSize: "20px" }} /> Joined
-                          </button>
-                        </Link>
-                      </td>
+                        <td>
+                          <Link to={"/event-application/" + item._id}>
+                            <button className="btn btn-primary">
+                              {item.application?.length}{" "}
+                              <HiHand style={{ fontSize: "20px" }} /> Joined
+                            </button>
+                          </Link>
+                        </td>
 
-                      {/* to loops the post comment in the admin dashboard */}
-                      {/* <td>{item.comments.map(c=>(
+                        {/* to loops the post comment in the admin dashboard */}
+                        {/* <td>{item.comments.map(c=>(
                       <h1>{c.text}</h1>
                     ))}</td> */}
 
-                      <td>
-                        <Link to={"/event-details-page/" + item._id}>
-                          <button className="btn btn-primary">
-                            <EyeOutlined style={{ fontSize: "20px" }} /> View
+                        <td>
+                          <Link to={"/event-details-page/" + item._id}>
+                            <button className="btn btn-primary">
+                              <EyeOutlined style={{ fontSize: "20px" }} /> View
+                            </button>
+                          </Link>
+                        </td>
+                        <td>
+                          <button
+                            className="btn btn-danger"
+                            onClick={(e) => {
+                              removeeventList(e, item._id);
+                            }}
+                          >
+                            <MdDelete size={20} /> Delete
                           </button>
-                        </Link>
-                      </td>
-                      <td>
-                        <button
-                          className="btn btn-danger"
-                          onClick={(e) => {
-                            removeeventList(e, item._id);
-                          }}
-                        >
-                          <MdDelete size={20} /> Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>

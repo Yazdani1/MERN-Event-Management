@@ -84,6 +84,11 @@ exports.getmyEvents = (req, res) => {
   Eventpost.find({ postedBy: req.user._id })
     .sort({ date: "DESC" })
     .populate("postedBy", "_id name email")
+    .populate("application.postedBy", "_id name email photo")
+    .populate(
+      "application",
+      "name des location eventtypes startdate enddate date maxmembers"
+    )
     .then((myevents) => {
       res.json(myevents);
     })
