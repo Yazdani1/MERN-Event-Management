@@ -130,7 +130,7 @@ const Eventapplication = () => {
                             {application.postedBy?.name}
                           </p>
                           <p>
-                            {moment(application.postedBy?.date).format(
+                            {moment(application.date).format(
                               "MMMM Do YYYY"
                             )}
                           </p>

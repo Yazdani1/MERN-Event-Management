@@ -18,6 +18,8 @@ import { ToastContainer, toast } from "react-toastify";
 const Detailsevents = () => {
   const { id } = useParams();
 
+  const history = useHistory();
+
   const [detailsevents, setDetailsevents] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -132,8 +134,9 @@ const Detailsevents = () => {
               }
               enddate={detailsevents && detailsevents?.singleevents?.enddate}
               location={detailsevents && detailsevents?.singleevents?.location}
-              joinedeventnumbers={detailsevents && detailsevents?.singleevents?.application.length}
-
+              joinedeventnumbers={
+                detailsevents && detailsevents?.singleevents?.application.length
+              }
               maxmembers={
                 detailsevents && detailsevents?.singleevents?.maxmembers
               }
@@ -161,7 +164,6 @@ const Detailsevents = () => {
               detailsevents && detailsevents?.singleevents?.maxmembers
             }
             postid={detailsevents && detailsevents?.singleevents?._id}
-
           />
 
           <div className="col-lg-4 col-md-12 col-sm-12 col-xl-4">
@@ -226,12 +228,16 @@ const Detailsevents = () => {
                 <div className="main_container-button">
                   <span
                     className="view-allusers-button"
-                    onClick={(e) =>
-                      joinevents(
-                        e,
-                        detailsevents && detailsevents?.singleevents?._id
-                      )
-                    }
+                    onClick={(e) => {
+                      if (!localStorage.getItem("tokenLogin")) {
+                        history.push("/signin");
+                      } else {
+                        joinevents(
+                          e,
+                          detailsevents && detailsevents?.singleevents?._id
+                        );
+                      }
+                    }}
                   >
                     Join Event
                   </span>

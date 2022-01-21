@@ -43,7 +43,7 @@ const Totalpostcount = ({ totalpost, totaluser }) => {
               <p>
                 <MdCardMembership size={25} />
               </p>
-              <Link to="/Dashboard">
+              <Link to="/dashboard">
                 <button className="btn btn-primary">Publish Your Post</button>
               </Link>
             </div>

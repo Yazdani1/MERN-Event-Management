@@ -26,7 +26,7 @@ const FirstSection = () => {
                       </Link>
                     </>
                   ) : (
-                    <Link to="/Dashboard">
+                    <Link to="/dashboard">
                       <button className="btn btn-primary">
                         Create Your Events
                       </button>
