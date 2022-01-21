@@ -3,17 +3,12 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import moment from "moment";
 import ReactHtmlParser from "react-html-parser";
-import { FcOk } from "react-icons/fc";
-import { FcApproval } from "react-icons/fc";
 import { SyncOutlined } from "@ant-design/icons";
 import { UserContext } from "../UserContext";
 import Mobileviewdetailsevent from "../HomePage/DetailsEvents/Mobileviewdetailsevent";
 import { Detailseventwebview } from "../HomePage/DetailsEvents/Detailseventwebview";
 import "./eventtickets.css";
 import { MdLocationPin } from "react-icons/md";
-
-
-
 
 const EventTickets = () => {
   const { id } = useParams();
@@ -82,37 +77,47 @@ const EventTickets = () => {
 
         <h6>Download your event tickets:</h6>
 
-        {eventtickets.application.map((tickets) => (
-          <>
-            {tickets.postedBy?._id === state.user._id ? (
-              <>
-                <div className="ticket-design">
-                  <h5>Event name: {eventtickets && eventtickets?.name}</h5>
+        <div
+          className="all-tickets"
+          style={{ maxHeight: "600px", overflow: "scroll" }}
+        >
+          {eventtickets.application.map((tickets) => (
+            <>
+              {tickets.postedBy?._id === state.user._id ? (
+                <>
+                  <div className="ticket-design">
+                    <h5>Event name: {eventtickets && eventtickets?.name}</h5>
 
-                  <h5>
-                    Event date:
-                    {moment(eventtickets && eventtickets?.startdate).format(
-                      "lll"
-                    )}{" "}
-                    -{" "}
-                    {moment(eventtickets && eventtickets?.enddate).format(
-                      "lll"
-                    )}{" "}
-                  </h5>
+                    <h5>
+                      Event date:
+                      {moment(eventtickets && eventtickets?.startdate).format(
+                        "lll"
+                      )}{" "}
+                      -{" "}
+                      {moment(eventtickets && eventtickets?.enddate).format(
+                        "lll"
+                      )}{" "}
+                    </h5>
 
-                  <div className="event-user-info">
-                    <p>Name:{tickets.name}</p>
-                    <p>Location:<MdLocationPin/> {eventtickets && eventtickets?.location}</p>
-                    <p>E-mail: {tickets.email}</p>
-                    <p>{}</p>
+                    <div className="event-user-info">
+                      <p>Name:{tickets.name}</p>
+                      <p>
+                        Location:
+                        <MdLocationPin />{" "}
+                        {eventtickets && eventtickets?.location}
+                      </p>
+                      <p>{tickets?.postedBy?.name}</p>
+                      <p>E-mail: {tickets.email}</p>
+                      <p>{}</p>
+                    </div>
                   </div>
-                </div>
 
-                <span className="view-allusers-button">Download Ticket</span>
-              </>
-            ) : null}
-          </>
-        ))}
+                  <span className="view-allusers-button">Download Ticket</span>
+                </>
+              ) : null}
+            </>
+          ))}
+        </div>
       </div>
     </React.Fragment>
   );

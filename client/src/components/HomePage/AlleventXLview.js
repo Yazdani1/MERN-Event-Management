@@ -21,7 +21,7 @@ const AlleventXLview = ({
   location,
   maxmembers,
   postid,
-  joinedeventnumbers
+  joinedeventnumbers,
 }) => {
   return (
     <React.Fragment>
@@ -46,6 +46,9 @@ const AlleventXLview = ({
                 <p className="profile-name-size">{username}</p>
                 <p>{moment(date).format("MMMM Do YYYY")}</p>
               </div>
+              {joinedeventnumbers >= 2 ? (
+                <p className="trending">Trending</p>
+              ) : null}
             </div>
           </Link>
 
