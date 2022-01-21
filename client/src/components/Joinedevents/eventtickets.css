@@ -1,0 +1,18 @@
+.ticket-design{
+    height: auto;
+    width: 100%;
+    background-color: rgb(226, 64, 43);
+    color: white;
+    margin-top: 15px;
+    padding: 30px;
+}
+.ticket-design h5{
+    text-align: center;
+    justify-content: center;
+    line-height: 40px;
+
+}
+.event-user-info{
+    display: flex;
+    justify-content: space-evenly;
+}

@@ -80,7 +80,7 @@ exports.joinedeventList = (req, res) => {
   const { postID } = req.body;
 
   User.findByIdAndUpdate(req.user._id, {
-    $push: { joinedevents: postID },
+    $addToSet: { joinedevents: postID },
   })
   .exec((err, resultjoinedevents) => {
     if (err) {

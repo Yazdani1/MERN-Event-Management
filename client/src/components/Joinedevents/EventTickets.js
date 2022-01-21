@@ -9,6 +9,7 @@ import { SyncOutlined } from "@ant-design/icons";
 import { UserContext } from "../UserContext";
 import Mobileviewdetailsevent from "../HomePage/DetailsEvents/Mobileviewdetailsevent";
 import { Detailseventwebview } from "../HomePage/DetailsEvents/Detailseventwebview";
+import "./eventtickets.css";
 
 const EventTickets = () => {
   const { id } = useParams();
@@ -74,9 +75,34 @@ const EventTickets = () => {
           maxmembers={eventtickets && eventtickets?.maxmembers}
           postid={eventtickets && eventtickets?._id}
         />
-         <p className="total-application">
-          Tickets: {eventtickets.application?.length}
-        </p>
+
+        <h6>Download your event tickets:</h6>
+
+        {eventtickets.application.map((tickets) => (
+          <>
+            {tickets.postedBy?._id === state.user._id ? (
+              <div className="ticket-design">
+                <h5>Event name: {eventtickets && eventtickets?.name}</h5>
+
+                <h5>
+                  Event date:
+                  {moment(eventtickets && eventtickets?.startdate).format(
+                    "lll"
+                  )}{" "}
+                  -{" "}
+                  {moment(eventtickets && eventtickets?.enddate).format("lll")}{" "}
+                </h5>
+
+                <div className="event-user-info">
+                  <p>Name:{tickets.name}</p>
+                  <p>Location: {eventtickets && eventtickets?.location}</p>
+                  <p>E-mail: {tickets.email}</p>
+                  <p>{}</p>
+                </div>
+              </div>
+            ) : null}
+          </>
+        ))}
       </div>
     </React.Fragment>
   );
