@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import moment from "moment";
 import ReactHtmlParser from "react-html-parser";
@@ -8,6 +8,9 @@ import { SyncOutlined } from "@ant-design/icons";
 import { Spin, Space } from "antd";
 import { MdLocationPin } from "react-icons/md";
 import "./Allevents.css";
+import { AiOutlineLike } from "react-icons/ai";
+import { AiFillLike } from "react-icons/ai";
+import { UserContext } from "../UserContext";
 
 const AlleventXLview = ({
   name,
@@ -22,7 +25,14 @@ const AlleventXLview = ({
   maxmembers,
   postid,
   joinedeventnumbers,
+
 }) => {
+
+
+  const [state, setState] = useContext(UserContext);
+  const history = useHistory();
+
+
   return (
     <React.Fragment>
       <div className="large-screen-allevent-view">
@@ -73,6 +83,7 @@ const AlleventXLview = ({
             </div>
             <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
               <div className="event-seats-and-participate">
+
                 <p>Max seats: {maxmembers}</p>
                 <div className="going-interested">
                   <p>

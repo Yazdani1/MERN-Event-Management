@@ -83,3 +83,43 @@ export const eventorganizerProfile = (query) => {
       console.log(err);
     });
 };
+
+//event like features
+
+export const addliketoEvent = (postId) => {
+  return fetch("/api/like", {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({ postId }),
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+//event unlike features
+
+export const unliketoEvent = (postId) => {
+  return fetch("/api/unlike", {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({ postId }),
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

@@ -178,7 +178,7 @@ exports.likeEvents = () => {
       new: true,
     }
   )
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name email photo")
     .exec((err, result) => {
       if (err) {
         return res.status(422).json({ error: err });
@@ -200,7 +200,7 @@ exports.unlikeEvents = () => {
       new: true,
     }
   )
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name email photo")
     .exec((err, result) => {
       if (err) {
         return res.status(422).json({ error: err });

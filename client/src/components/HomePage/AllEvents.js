@@ -4,7 +4,12 @@ import moment from "moment";
 import ReactHtmlParser from "react-html-parser";
 import { FcOk } from "react-icons/fc";
 import { FcApproval } from "react-icons/fc";
-import { getallEvents, searchallEvents } from "./APIAllevents";
+import {
+  getallEvents,
+  searchallEvents,
+  addliketoEvent,
+  unliketoEvent,
+} from "./APIAllevents";
 import { SyncOutlined } from "@ant-design/icons";
 import { Spin, Space } from "antd";
 import Pagination from "../Dashboard/Event/Pagination";
@@ -13,12 +18,17 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { MdLocationPin } from "react-icons/md";
 import Alleventmobileview from "./Alleventmobileview";
 import AlleventXLview from "./AlleventXLview";
+import { UserContext } from "../UserContext";
+import { AiOutlineLike } from "react-icons/ai";
+import { AiFillLike } from "react-icons/ai";
 
 const AllEvents = () => {
   const [allevents, setAllevents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [search, setSearch] = useState("");
+  const [state, setState] = useContext(UserContext);
+  const history = useHistory();
 
   //pagination
 
@@ -55,6 +65,84 @@ const AllEvents = () => {
       });
     setSearch("");
   };
+
+  //like events
+
+  // const addLike = (postId) => {
+  //   fetch("/api/like", {
+  //     method: "put",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${state && state.token}`,
+  //     },
+  //     body: JSON.stringify({
+  //       postId: postId,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       console.log(result);
+  //       const newItemData = allevents.map((item) => {
+  //         if (item._id == result._id) {
+  //           return result;
+  //         } else {
+  //           return item;
+  //         }
+  //       });
+  //       setAllevents(newItemData);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+
+  // };
+
+  // const unLikeevent = (postId) => {
+  //   fetch("/api/unlike", {
+  //     method: "put",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${state && state.token}`,
+  //     },
+  //     body: JSON.stringify({
+  //       postId: postId,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       console.log(result);
+  //       const newItemData = allevents.map((item) => {
+  //         if (item._id == result._id) {
+  //           return result;
+  //         } else {
+  //           return item;
+  //         }
+  //       });
+  //       setAllevents(newItemData);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
+  //unlike events
+  // const unLikeevent = (postId) => {
+  //   unliketoEvent(postId)
+  //     .then((result) => {
+  //       const newItemData = allevents.map((item) => {
+  //         if (item._id === result._id) {
+  //           return result;
+  //         } else {
+  //           return item;
+  //         }
+  //       });
+
+  //       setAllevents(newItemData);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   useEffect(() => {
     loadallEvents();
@@ -101,6 +189,100 @@ const AllEvents = () => {
         </div>
       </div>
 
+      {/* to test like */}
+
+      {/* {allevents.map((event) => (
+        <div className="container">
+          <h5>New Post</h5>
+          <div className="large-screen-allevent-view">
+            <div className="card all-events">
+              <Link
+                to={"/organizers-public-profile/" + event.postedBy._id}
+                style={{ textDecoration: "none" }}
+              >
+                <div className="profile-name-date">
+                  {event.postedBy.photo ? (
+                    <div className="profile-name-avatar-image">
+                      <img src={event.postedBy.photo} />
+                    </div>
+                  ) : (
+                    <div className="profile-name-avatar">
+                      <p>
+                        {event.postedBy.name?.substring(0, 2).toUpperCase()}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="profile-name-post-date">
+                    <p className="profile-name-size">{event.name}</p>
+                    <p>{moment(event.date).format("MMMM Do YYYY")}</p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to={"/event-details-page/" + event._id}
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <h5>{event.name}</h5>
+                <p>{ReactHtmlParser(event.des?.substring(0, 350))}</p>
+              </Link>
+
+              <div className="row">
+                <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
+                  <div className="events-date-and-place">
+                    <p>
+                      Start date:{" "}
+                      {moment(event.startdate).format("MMMM Do YYYY")}
+                    </p>
+                   <p>-{moment(enddate).format("MMMM Do YYYY")}.</p>
+                    <p className="event-location">
+                      Location: <MdLocationPin style={{ color: "red" }} />{" "}
+                      {event.location}.
+                    </p>
+                  </div>
+                </div>
+                <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
+                  <div className="event-seats-and-participate">
+                    <div className="like-icons">
+                      {event.likes?.includes(state.user._id) ? (
+                        <p onClick={() => addLike(event._id)}>
+                          <AiFillLike size={20} />
+                        </p>
+                      ) : (
+                        <p
+                          onClick={() => {
+                            if (!localStorage.getItem("tokenLogin")) {
+                              history.push("/signin");
+                            } else {
+                              unLikeevent(event._id);
+                            }
+                          }}
+                        >
+                          <AiOutlineLike size={20} />
+                        </p>
+                      )}
+                    </div>
+
+                    <p>Max seats: {event.maxmembers}</p>
+                    <div className="going-interested">
+                      <p>
+                        {" "}
+                        Going <FcOk /> {event.joinedeventnumbers}
+                      </p>
+                      <p>
+                        {" "}
+                        Interested <FcApproval /> 50
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}  */}
+
       <div className="container">
         <div className="row">
           {allevents.length ? (
@@ -108,7 +290,6 @@ const AllEvents = () => {
               //for large to medium screen
 
               <>
-               
                 {/* for mobiel escreen */}
                 <Alleventmobileview
                   name={event.name}
@@ -122,7 +303,10 @@ const AllEvents = () => {
                   enddate={event.enddate}
                   location={event.location}
                   maxmembers={event.maxmembers}
+                  includelikes={event.likes}
                   joinedeventnumbers={event.application.length}
+                  // addlike={addLike(event._id)}
+                  // unlike={unLikeevent(event._id)}
                 />
 
                 {/* for extra large screen */}
@@ -140,7 +324,6 @@ const AllEvents = () => {
                   location={event.location}
                   maxmembers={event.maxmembers}
                   joinedeventnumbers={event.application.length}
-
                 />
               </>
             ))
