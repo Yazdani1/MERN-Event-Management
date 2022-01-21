@@ -81,6 +81,22 @@ exports.joinedeventList = (req, res) => {
 
   User.findByIdAndUpdate(req.user._id, {
     $push: { joinedevents: postID },
+  }).exec((err, resultjoinedevents) => {
+    if (err) {
+      return res.status(400).json({ error: err });
+    } else {
+      res.json(resultjoinedevents);
+    }
+  });
+};
+
+//to removed joined event list from the user account
+
+exports.removejoinedeventList = (req, res) => {
+  const { postID } = req.body;
+
+  User.findByIdAndUpdate(req.user._id, {
+    $pull: { joinedevents: postID },
   }).exec((err, result) => {
     if (err) {
       return res.status(400).json({ error: err });

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import "./detailsevents.css";
-import { getdetailsEvents, joinevent } from "./APIDetails";
+import { getdetailsEvents, joinevent, joinedeventList } from "./APIDetails";
 import { Link, useHistory, useParams } from "react-router-dom";
 import moment from "moment";
 import ReactHtmlParser from "react-html-parser";
@@ -14,9 +14,11 @@ import { Detailseventwebview } from "./Detailseventwebview";
 import Moreevents from "./Moreevents";
 import Footer from "../../Footer/Footer";
 import { ToastContainer, toast } from "react-toastify";
+import {UserContext} from "../../UserContext";
 
 const Detailsevents = () => {
   const { id } = useParams();
+  const [state, setState] = useContext(UserContext);
 
   const history = useHistory();
 
@@ -85,6 +87,32 @@ const Detailsevents = () => {
       .then((detailsevent) => {
         setDetailsevents(detailsevent);
         setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const savejoinedEvent = (e, postID) => {
+    e.preventDefault();
+    joinedeventList(postID)
+      .then((result) => {
+        if (result) {
+          toast.success("event saved", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          console.log("event has saved");
+
+           //update user information
+           setState({
+            user: result.resultjoinedevents,
+            // token: result.token
+          });
+
+          //save user info in local storage
+          window.localStorage.setItem("tokenLogin", JSON.stringify(result));
+
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -233,6 +261,10 @@ const Detailsevents = () => {
                         history.push("/signin");
                       } else {
                         joinevents(
+                          e,
+                          detailsevents && detailsevents?.singleevents?._id
+                        );
+                        savejoinedEvent(
                           e,
                           detailsevents && detailsevents?.singleevents?._id
                         );
