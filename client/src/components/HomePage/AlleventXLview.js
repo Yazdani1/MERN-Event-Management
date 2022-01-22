@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import moment from "moment";
 import ReactHtmlParser from "react-html-parser";
@@ -25,13 +25,13 @@ const AlleventXLview = ({
   maxmembers,
   postid,
   joinedeventnumbers,
-
+  totallikes,
+  alreadylikedpost,
+  addlike,
+  unlike,
 }) => {
-
-
   const [state, setState] = useContext(UserContext);
   const history = useHistory();
-
 
   return (
     <React.Fragment>
@@ -83,8 +83,36 @@ const AlleventXLview = ({
             </div>
             <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
               <div className="event-seats-and-participate">
+                <div className="going-interested">
+                  {alreadylikedpost.includes(state.user._id) ? (
+                    <p
+                      onClick={() => {
+                        unlike(postid);
+                      }}
+                    >
+                                               <AiFillLike size={20} />
 
-                <p>Max seats: {maxmembers}</p>
+                    </p>
+                  ) : (
+                    <p
+                      onClick={() => {
+                        addlike(postid);
+                      }}
+                    >
+                                              <AiOutlineLike size={20} />
+
+                    </p>
+                  )}
+                </div>
+
+                <div className="going-interested">
+                  <p>{totallikes} Likes </p>
+                </div>
+
+                <div className="going-interested">
+                  <p>Max seats: {maxmembers}</p>
+                </div>
+
                 <div className="going-interested">
                   <p>
                     {" "}

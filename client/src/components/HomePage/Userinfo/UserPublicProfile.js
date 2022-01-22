@@ -298,6 +298,12 @@ const UserPublicProfile = () => {
                 maxmembers={event.maxmembers}
                 joinedeventnumbers={event.application.length}
 
+                totallikes={event.likes?.length}
+                alreadylikedpost={event.likes}
+
+                // addlike={addLike}
+                // unlike={unLikeevent}
+
               />
             </>
           ))}

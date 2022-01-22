@@ -190,7 +190,7 @@ const AllEvents = () => {
 
       {/* to test like */}
 
-      {allevents.map((event) => (
+      {/* {allevents.map((event) => (
         <div className="container">
           <h5>New Post</h5>
           <div className="large-screen-allevent-view">
@@ -282,7 +282,7 @@ const AllEvents = () => {
             </div>
           </div>
         </div>
-      ))}
+      ))} */}
 
       <div className="container">
         <div className="row">
@@ -292,7 +292,7 @@ const AllEvents = () => {
 
               <>
                 {/* for mobiel escreen */}
-                {/* <Alleventmobileview
+                <Alleventmobileview
                   name={event.name}
                   des={event.des}
                   id={event.postedBy?._id}
@@ -307,10 +307,10 @@ const AllEvents = () => {
                   includelikes={event.likes}
                   joinedeventnumbers={event.application.length}
              
-                /> */}
+                />
 
                 {/* for extra large screen */}
-                {/* 
+                
                 <AlleventXLview
                   name={event.name}
                   des={event.des}
@@ -324,7 +324,11 @@ const AllEvents = () => {
                   location={event.location}
                   maxmembers={event.maxmembers}
                   joinedeventnumbers={event.application.length}
-                /> */}
+                  totallikes={event.likes.length}
+                  alreadylikedpost={event.likes}
+                  addlike={addLike}
+                  unlike={unLikeevent}
+                />
               </>
             ))
           ) : (
