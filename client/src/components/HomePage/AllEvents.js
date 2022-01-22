@@ -39,7 +39,7 @@ const AllEvents = () => {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allevents?.slice(indexOfFirstPost, indexOfLastPost);
-  const howManyPages = Math.ceil(allevents.length / postsPerPage);
+  const howManyPages = Math.ceil(allevents?.length / postsPerPage);
 
   const loadallEvents = () => {
     getallEvents()
@@ -306,11 +306,10 @@ const AllEvents = () => {
                   maxmembers={event.maxmembers}
                   includelikes={event.likes}
                   joinedeventnumbers={event.application.length}
-             
                 />
 
                 {/* for extra large screen */}
-                
+
                 <AlleventXLview
                   name={event.name}
                   des={event.des}

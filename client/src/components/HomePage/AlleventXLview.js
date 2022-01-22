@@ -84,14 +84,15 @@ const AlleventXLview = ({
             <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
               <div className="event-seats-and-participate">
                 <div className="going-interested">
-                  {alreadylikedpost.includes(state.user._id) ? (
+                  {alreadylikedpost.includes(
+                    state && state.user && state.user._id
+                  ) ? (
                     <p
                       onClick={() => {
                         unlike(postid);
                       }}
                     >
-                                               <AiFillLike size={20} />
-
+                      <AiFillLike size={20} />
                     </p>
                   ) : (
                     <p
@@ -99,8 +100,7 @@ const AlleventXLview = ({
                         addlike(postid);
                       }}
                     >
-                                              <AiOutlineLike size={20} />
-
+                      <AiOutlineLike size={20} />
                     </p>
                   )}
                 </div>
