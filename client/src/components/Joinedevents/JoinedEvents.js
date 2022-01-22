@@ -25,6 +25,9 @@ const JoinedEvents = () => {
   const [userinfo, setUserinfo] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  //to the post have joined
+
+
 
   const loadlogedinuserInfo = () => {
     fetch("/api/logedinuser-allinfo", {
@@ -62,7 +65,6 @@ const JoinedEvents = () => {
         console.log(err);
       });
   };
-
 
   useEffect(() => {
     loadlogedinuserInfo();
@@ -135,7 +137,8 @@ const JoinedEvents = () => {
           </div>
         </div>
 
-   
+        <h5>Joined Events:</h5>
+
 
         <div className="container-fluid main_containers">
           {/* table start */}
@@ -181,8 +184,7 @@ const JoinedEvents = () => {
                         <td>
                           <Link to={"/event-tickets/" + item._id}>
                             <button className="btn btn-primary">
-                              {item.application?.length}{" "}
-                              Tickets
+                              {item.application?.length} Tickets
                             </button>
                           </Link>
                         </td>

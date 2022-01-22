@@ -7,6 +7,7 @@ const {
   joineventApplication,
   joinedeventList,
   removejoinedeventList,
+  queryJoinedevent,
 } = require("../controller/joinevents");
 
 //to join events api end point
@@ -17,5 +18,6 @@ router.get("/join-event-application/:id", requireLogin, joineventApplication);
 //the event user have joined..
 router.post("/joined-events", requireLogin, joinedeventList);
 router.put("/remove-joined-events", requireLogin, removejoinedeventList);
+
 
 module.exports = router;

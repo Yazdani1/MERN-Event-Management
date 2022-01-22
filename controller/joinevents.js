@@ -81,8 +81,7 @@ exports.joinedeventList = (req, res) => {
 
   User.findByIdAndUpdate(req.user._id, {
     $addToSet: { joinedevents: postID },
-  })
-  .exec((err, resultjoinedevents) => {
+  }).exec((err, resultjoinedevents) => {
     if (err) {
       return res.status(400).json({ error: err });
     } else {
@@ -108,8 +107,5 @@ exports.removejoinedeventList = (req, res) => {
 };
 
 //to get user all events.
-
-
-
 
 

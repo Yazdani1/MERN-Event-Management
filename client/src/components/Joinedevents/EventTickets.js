@@ -9,6 +9,16 @@ import Mobileviewdetailsevent from "../HomePage/DetailsEvents/Mobileviewdetailse
 import { Detailseventwebview } from "../HomePage/DetailsEvents/Detailseventwebview";
 import "./eventtickets.css";
 import { MdLocationPin } from "react-icons/md";
+import jsPDF from "jspdf";
+// import {
+//   Document,
+//   Page,
+//   Text,
+//   View,
+//   StyleSheet,
+//   PDFDownloadLink,
+//   PDFViewer,
+// } from "@react-pdf/renderer";
 
 const EventTickets = () => {
   const { id } = useParams();
@@ -33,6 +43,37 @@ const EventTickets = () => {
   useEffect(() => {
     loadjoinedEvents();
   }, []);
+
+  const showPdfdownloadlink = (
+    eventname,
+    name,
+    email,
+    location,
+    startdate,
+    enddate
+  ) => {
+    const doc = new jsPDF();
+
+    doc.text(eventname, 10, 10);
+    doc.text(name, 10, 20);
+    doc.text(email, 10, 30);
+    doc.text(location, 10, 40);
+    doc.text(startdate, 10, 50);
+    doc.text(enddate, 10, 60);
+
+    doc.addPage();
+    doc.text("Second Page", 10, 10);
+    doc.save("event-tickets.pdf");
+  };
+
+  // const generatePdf = () => {
+  //   const doc = new jsPDF("p", "pt", "a4");
+  //   doc.html(document.querySelector("#ticket-design"), {
+  //     callback: function (pdf) {
+  //       pdf.save("event-ticket.pdf");
+  //     },
+  //   });
+  // };
 
   if (loading) {
     return (
@@ -85,6 +126,7 @@ const EventTickets = () => {
             <>
               {tickets.postedBy?._id === state.user._id ? (
                 <>
+                  
                   <div className="ticket-design">
                     <h5>Event name: {eventtickets && eventtickets?.name}</h5>
 
@@ -112,7 +154,22 @@ const EventTickets = () => {
                     </div>
                   </div>
 
-                  <span className="view-allusers-button">Download Ticket</span>
+                  <span
+                    className="view-allusers-button"
+                    // onClick={generatePdf}
+                    onClick={() =>
+                      showPdfdownloadlink(
+                        eventtickets && eventtickets?.name,
+                        tickets.name,
+                        tickets.email,
+                        eventtickets && eventtickets?.location,
+                        eventtickets && eventtickets?.startdate,
+                        eventtickets && eventtickets?.enddate
+                      )
+                    }
+                  >
+                    Download Ticket
+                  </span>
                 </>
               ) : null}
             </>

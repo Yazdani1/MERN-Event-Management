@@ -54,6 +54,30 @@ const Detailsevents = () => {
     setMessage(e.target.value);
   };
 
+  const savejoinedEvent = (e, postID) => {
+    e.preventDefault();
+    joinedeventList(postID)
+      .then((result) => {
+        if (result) {
+          toast.success("event saved", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          console.log("event has saved");
+
+          //get user state from local storage
+
+          // let auth = JSON.parse(window.localStorage.getItem("tokenLogin"));
+          // auth.user = result;
+          // window.localStorage.setItem("tokenLogin", JSON.stringify(auth));
+
+          // setState({ ...state, user: result });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const joinevents = (e, eventId) => {
     e.preventDefault();
     setError("");
@@ -96,30 +120,6 @@ const Detailsevents = () => {
   useEffect(() => {
     loadDetailsevents();
   }, [detailsevents]);
-
-  const savejoinedEvent = (e, postID) => {
-    e.preventDefault();
-    joinedeventList(postID)
-      .then((result) => {
-        if (result) {
-          toast.success("event saved", {
-            position: toast.POSITION.TOP_RIGHT,
-          });
-          console.log("event has saved");
-
-          //get user state from local storage
-
-          // let auth = JSON.parse(window.localStorage.getItem("tokenLogin"));
-          // auth.user = result;
-          // window.localStorage.setItem("tokenLogin", JSON.stringify(auth));
-
-          // setState({ ...state, user: result });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   const showError = () => (
     <div
@@ -252,8 +252,9 @@ const Detailsevents = () => {
                   />
                 </div>
                 <div className="main_container-button">
-                  <span
-                    className="view-allusers-button"
+                  <button
+                    className="btn btn-primary join-event-button"
+                    disabled={!name || !email || !participants}
                     onClick={(e) => {
                       if (!localStorage.getItem("tokenLogin")) {
                         history.push("/signin");
@@ -270,7 +271,7 @@ const Detailsevents = () => {
                     }}
                   >
                     Join Event
-                  </span>
+                  </button>
                 </div>
               </form>
             </div>
