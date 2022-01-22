@@ -68,62 +68,61 @@ const AllEvents = () => {
 
   //like events
 
-  // const addLike = (postId) => {
-  //   fetch("/api/like", {
-  //     method: "put",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${state && state.token}`,
-  //     },
-  //     body: JSON.stringify({
-  //       postId: postId,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((result) => {
-  //       console.log(result);
-  //       const newItemData = allevents.map((item) => {
-  //         if (item._id == result._id) {
-  //           return result;
-  //         } else {
-  //           return item;
-  //         }
-  //       });
-  //       setAllevents(newItemData);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
+  const addLike = (postId) => {
+    fetch("/api/like", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        postId: postId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log("clicked like" + result);
+        const newItemData = allevents.map((item) => {
+          if (item._id == result._id) {
+            return result;
+          } else {
+            return item;
+          }
+        });
+        setAllevents(newItemData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-  // };
-
-  // const unLikeevent = (postId) => {
-  //   fetch("/api/unlike", {
-  //     method: "put",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${state && state.token}`,
-  //     },
-  //     body: JSON.stringify({
-  //       postId: postId,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((result) => {
-  //       console.log(result);
-  //       const newItemData = allevents.map((item) => {
-  //         if (item._id == result._id) {
-  //           return result;
-  //         } else {
-  //           return item;
-  //         }
-  //       });
-  //       setAllevents(newItemData);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  const unLikeevent = (postId) => {
+    fetch("/api/unlike", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        postId: postId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        const newItemData = allevents.map((item) => {
+          if (item._id == result._id) {
+            return result;
+          } else {
+            return item;
+          }
+        });
+        setAllevents(newItemData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   //unlike events
   // const unLikeevent = (postId) => {
@@ -191,7 +190,7 @@ const AllEvents = () => {
 
       {/* to test like */}
 
-      {/* {allevents.map((event) => (
+      {allevents.map((event) => (
         <div className="container">
           <h5>New Post</h5>
           <div className="large-screen-allevent-view">
@@ -235,7 +234,7 @@ const AllEvents = () => {
                       Start date:{" "}
                       {moment(event.startdate).format("MMMM Do YYYY")}
                     </p>
-                   <p>-{moment(enddate).format("MMMM Do YYYY")}.</p>
+                    <p>-{moment(event.enddate).format("MMMM Do YYYY")}.</p>
                     <p className="event-location">
                       Location: <MdLocationPin style={{ color: "red" }} />{" "}
                       {event.location}.
@@ -244,25 +243,27 @@ const AllEvents = () => {
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-6 col-xl-6">
                   <div className="event-seats-and-participate">
-                    <div className="like-icons">
-                      {event.likes?.includes(state.user._id) ? (
-                        <p onClick={() => addLike(event._id)}>
-                          <AiFillLike size={20} />
-                        </p>
-                      ) : (
-                        <p
-                          onClick={() => {
-                            if (!localStorage.getItem("tokenLogin")) {
-                              history.push("/signin");
-                            } else {
-                              unLikeevent(event._id);
-                            }
-                          }}
-                        >
-                          <AiOutlineLike size={20} />
-                        </p>
-                      )}
-                    </div>
+                    <h5>{event.likes?.length}</h5>
+
+                    {event.likes?.includes(state.user._id) ? (
+                      <p
+                        onClick={() => {
+                          unLikeevent(event._id);
+                        }}
+                      >
+                         <AiFillLike size={20} />
+                      </p>
+                    ) : (
+                      <p
+                        onClick={() => {
+                          addLike(event._id);
+                        }}
+                      >
+                        <AiOutlineLike size={20} />
+                      </p>
+                    )}
+
+               
 
                     <p>Max seats: {event.maxmembers}</p>
                     <div className="going-interested">
@@ -281,7 +282,7 @@ const AllEvents = () => {
             </div>
           </div>
         </div>
-      ))}  */}
+      ))}
 
       <div className="container">
         <div className="row">
@@ -291,7 +292,7 @@ const AllEvents = () => {
 
               <>
                 {/* for mobiel escreen */}
-                <Alleventmobileview
+                {/* <Alleventmobileview
                   name={event.name}
                   des={event.des}
                   id={event.postedBy?._id}
@@ -305,12 +306,11 @@ const AllEvents = () => {
                   maxmembers={event.maxmembers}
                   includelikes={event.likes}
                   joinedeventnumbers={event.application.length}
-                  // addlike={addLike(event._id)}
-                  // unlike={unLikeevent(event._id)}
-                />
+             
+                /> */}
 
                 {/* for extra large screen */}
-
+                {/* 
                 <AlleventXLview
                   name={event.name}
                   des={event.des}
@@ -324,7 +324,7 @@ const AllEvents = () => {
                   location={event.location}
                   maxmembers={event.maxmembers}
                   joinedeventnumbers={event.application.length}
-                />
+                /> */}
               </>
             ))
           ) : (

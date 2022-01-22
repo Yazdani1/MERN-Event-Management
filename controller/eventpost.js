@@ -168,7 +168,7 @@ exports.eventDetails = (req, res) => {
 
 //like events
 
-exports.likeEvents = () => {
+exports.likeEvents = (req,res) => {
   Eventpost.findByIdAndUpdate(
     req.body.postId,
     {
@@ -190,7 +190,7 @@ exports.likeEvents = () => {
 
 //unlike events
 
-exports.unlikeEvents = () => {
+exports.unlikeEvents = (req,res) => {
   Eventpost.findByIdAndUpdate(
     req.body.postId,
     {
