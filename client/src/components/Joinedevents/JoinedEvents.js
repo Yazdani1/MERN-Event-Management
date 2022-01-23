@@ -13,9 +13,12 @@ import { HiHand } from "react-icons/hi";
 import { FaUserGraduate } from "react-icons/fa";
 import ReactHtmlParser from "react-html-parser";
 import { EyeOutlined } from "@ant-design/icons";
-import { FcComboChart, FcFilledFilter } from "react-icons/fc";
+import { FcComboChart, FcFilledFilter,FcButtingIn } from "react-icons/fc";
 import { removejoinedeventList } from "../HomePage/DetailsEvents/APIDetails";
 import { UserInfoContext } from "../UserInfoContext";
+
+
+
 
 const JoinedEvents = () => {
   //to add collapse option
@@ -96,7 +99,7 @@ const JoinedEvents = () => {
             <div className="card dashboard-items-info">
               <div className="dashboard-items_design">
                 <MdCardMembership size={35} />
-                <p>Wishlist Event</p>
+                <p>Wishlist Events</p>
                 <p>{userinfo.wishlist?.length}</p>
                 {/* <p>
                   {moment(state && state.user && state.user.createdAt).format(
@@ -113,7 +116,12 @@ const JoinedEvents = () => {
                 <FaUserGraduate size={35} />
                 <p>Member Type</p>
 
-                {/* <p> {mypost.length >= 5 ? "Pro Account" : "Starter Account"}</p> */}
+                <p>
+                  {" "}
+                  {userinfo.joinedevents?.length >= 2
+                    ? "Pro Account"
+                    : "Starter Account"}
+                </p>
               </div>
             </div>
           </div>
@@ -121,13 +129,15 @@ const JoinedEvents = () => {
           <div className="col-lg-6 col-md-6 col-sm-12 col-xl-3">
             <div className="card dashboard-items-info">
               <div className="dashboard-items_design">
-                <AiFillMessage size={35} />
+                <FcButtingIn size={35} />
+                <p>Member Since</p>
 
                 <div className="profile-message">
-                  {/* <h5>{user && user.message?.length}</h5> */}
-                  <Link to="/message">
-                    <button className="btn btn-primary">View Messagees</button>
-                  </Link>
+                  <p>
+                    {moment(state && state.user && state.user.createdAt).format(
+                      "MMMM Do YYYY"
+                    )}
+                  </p>
                 </div>
               </div>
             </div>
@@ -178,7 +188,7 @@ const JoinedEvents = () => {
                         <td>
                           <Link to={"/event-tickets/" + item._id}>
                             <button className="btn btn-primary">
-                              {item.application?.length} Tickets
+                              View Tickets
                             </button>
                           </Link>
                         </td>

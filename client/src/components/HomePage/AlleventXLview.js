@@ -104,7 +104,11 @@ const AlleventXLview = ({
                   ) : (
                     <p
                       onClick={() => {
-                        addlike(postid);
+                        if (!localStorage.getItem("tokenLogin")) {
+                          history.push("/signin");
+                        } else {
+                          addlike(postid);
+                        }
                       }}
                     >
                       <AiOutlineLike size={20} />
@@ -129,7 +133,11 @@ const AlleventXLview = ({
                 <div className="going-interested">
                   <p
                     onClick={() => {
-                      saveWishlist(postid);
+                      if (!localStorage.getItem("tokenLogin")) {
+                        history.push("/signin");
+                      } else {
+                        saveWishlist(postid);
+                      }
                     }}
                   >
                     Save <BsFillBookmarkStarFill />

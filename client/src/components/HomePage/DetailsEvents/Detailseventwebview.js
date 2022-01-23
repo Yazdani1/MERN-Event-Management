@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./detailsevents.css";
 import { getdetailsEvents } from "./APIDetails";
 import { Link, useHistory, useParams } from "react-router-dom";
@@ -35,6 +35,7 @@ export const Detailseventwebview = ({
   saveWishlist,
 }) => {
   const [state, setState] = useContext(UserContext);
+  const history = useHistory();
 
   return (
     <React.Fragment>
@@ -88,10 +89,6 @@ export const Detailseventwebview = ({
                     {" "}
                     Going <FcOk /> {joinedeventnumbers}
                   </p>
-                  <p>
-                    {" "}
-                    Interested <FcApproval /> 50
-                  </p>
                 </div>
 
                 <div className="going-interested">
@@ -108,7 +105,11 @@ export const Detailseventwebview = ({
                   ) : (
                     <p
                       onClick={() => {
-                        addlike(postid);
+                        if (!localStorage.getItem("tokenLogin")) {
+                          history.push("/signin");
+                        } else {
+                          addlike(postid);
+                        }
                       }}
                     >
                       <AiOutlineLike size={20} />
@@ -121,13 +122,16 @@ export const Detailseventwebview = ({
                 <div className="going-interested">
                   <p
                     onClick={() => {
-                      saveWishlist(postid);
+                      if (!localStorage.getItem("tokenLogin")) {
+                        history.push("/signin");
+                      } else {
+                        saveWishlist(postid);
+                      }
                     }}
                   >
                     Save <BsFillBookmarkStarFill />
                   </p>
                 </div>
-
               </div>
             </div>
           </div>

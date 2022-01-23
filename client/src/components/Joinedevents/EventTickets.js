@@ -90,7 +90,7 @@ const EventTickets = () => {
       <div className="container">
         <Detailseventwebview
           name={eventtickets && eventtickets?.name}
-          des={eventtickets && eventtickets?.des}
+          // des={eventtickets && eventtickets?.des}
           id={eventtickets && eventtickets?.postedBy?._id}
           photo={eventtickets && eventtickets?.postedBy?.photo}
           username={eventtickets && eventtickets?.postedBy?.name}
@@ -100,11 +100,12 @@ const EventTickets = () => {
           location={eventtickets && eventtickets?.location}
           maxmembers={eventtickets && eventtickets?.maxmembers}
           postid={eventtickets && eventtickets?._id}
+          joinedeventnumbers={eventtickets && eventtickets?.application?.length}
         />
 
         <Mobileviewdetailsevent
           name={eventtickets && eventtickets?.name}
-          des={eventtickets && eventtickets?.des}
+          // des={eventtickets && eventtickets?.des}
           id={eventtickets && eventtickets?.postedBy?._id}
           photo={eventtickets && eventtickets?.postedBy?.photo}
           username={eventtickets && eventtickets?.postedBy?.name}

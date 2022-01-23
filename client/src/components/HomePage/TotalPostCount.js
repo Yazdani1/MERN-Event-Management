@@ -13,7 +13,7 @@ const Totalpostcount = ({ totalpost, totaluser }) => {
         <div className="col-lg-4 col-md-12 col-sm-12">
           <div className="card home-post-count">
             <div className="profile-items_design">
-              <p>Total Posts</p>
+              <p>Total Published Events</p>
               <h4>
                 <BsGraphUp size={25} />
               </h4>
@@ -25,7 +25,7 @@ const Totalpostcount = ({ totalpost, totaluser }) => {
         <div className="col-lg-4 col-md-12 col-sm-12">
           <div className="card home-post-count">
             <div className="profile-items_design">
-              <p>Total Users</p>
+              <p>Joined Members</p>
 
               <p>
                 <FaUserSecret size={25} />
