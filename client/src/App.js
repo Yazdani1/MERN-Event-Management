@@ -20,6 +20,7 @@ import EventTickets from "./components/Joinedevents/EventTickets";
 import { UserInfoProvider } from "./components/UserInfoContext";
 import Message from "./components/Dashboard/Event/Message";
 import Wishlist from "./components/Joinedevents/Event Wishlist/Wishlist";
+import PagenotFound from "./components/PagenotFound";
 
 const App = () => {
   return (
@@ -92,6 +93,10 @@ const App = () => {
             </Route>
 
             {/* Protected route end for joined  event side */}
+
+            {/* page not found  */}
+
+            <Route path="*" exact component={PagenotFound} />
           </Switch>
         </BrowserRouter>
       </UserProvider>

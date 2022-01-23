@@ -24,6 +24,8 @@ import { MdLocationPin } from "react-icons/md";
 import AlleventXLview from "../AlleventXLview";
 import Alleventmobileview from "../Alleventmobileview";
 import { sendMessage } from "./APIuserpublicprofile";
+import { FcComboChart, FcFilledFilter } from "react-icons/fc";
+
 import { addeventtoWishlist } from "../../Joinedevents/Event Wishlist/APIwishlist";
 import {
   getallEvents,
@@ -395,7 +397,22 @@ const UserPublicProfile = () => {
         </div>
       ) : null} */}
 
+      {/* <h5 className="card noposts-design">
+            <FcComboChart size={200} />
+            No data to show!
+          </h5> */}
+
       <div className="container all-events-container">
+        <h5>
+          {myevents?.postsData?.length === 0 ? (
+            <h5 className="card noposts-design">
+              <FcComboChart size={200} />
+              This user did not publish any events yet!
+            </h5>
+          ) : (
+            "All Events"
+          )}
+        </h5>
         <div className="row">
           {myevents?.postsData?.map((event, index) => (
             <>
