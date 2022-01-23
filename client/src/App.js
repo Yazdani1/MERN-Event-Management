@@ -17,74 +17,75 @@ import JoinedEvents from "./components/Joinedevents/JoinedEvents";
 import Detailsevents from "./components/HomePage/DetailsEvents/Detailsevents";
 import Eventapplication from "./components/Dashboard/Eventapplication/Eventapplication";
 import EventTickets from "./components/Joinedevents/EventTickets";
+import { UserInfoProvider } from "./components/UserInfoContext";
 
 const App = () => {
   return (
-    <UserProvider>
-      <BrowserRouter>
-        <Switch>
-          {/* route for client side */}
-          <Route path="/" exact>
-            <ProtectedRoute FrontProtected={Home} />
-          </Route>
+    <UserInfoProvider>
+      <UserProvider>
+        <BrowserRouter>
+          <Switch>
+            {/* route for client side */}
+            <Route path="/" exact>
+              <ProtectedRoute FrontProtected={Home} />
+            </Route>
 
-          <Route path="/signup">
-            <ProtectedRoute FrontProtected={Signup} />
-          </Route>
+            <Route path="/signup">
+              <ProtectedRoute FrontProtected={Signup} />
+            </Route>
 
-          <Route path="/signin">
-            <ProtectedRoute FrontProtected={SignIn} />
-          </Route>
+            <Route path="/signin">
+              <ProtectedRoute FrontProtected={SignIn} />
+            </Route>
 
-          <Route exact path="/reset">
-            <ProtectedRoute FrontProtected={ResetPassword} />
-          </Route>
+            <Route exact path="/reset">
+              <ProtectedRoute FrontProtected={ResetPassword} />
+            </Route>
 
-          <Route exact path="/reset/:token">
-            <ProtectedRoute FrontProtected={NewPassword} />
-          </Route>
+            <Route exact path="/reset/:token">
+              <ProtectedRoute FrontProtected={NewPassword} />
+            </Route>
 
-          <Route exact path="/event-organizers">
-            <ProtectedRoute FrontProtected={Eventorganizersprofile} />
-          </Route>
-          <Route exact path="/organizers-public-profile/:id">
-            <ProtectedRoute FrontProtected={UserPublicProfile} />
-          </Route>
+            <Route exact path="/event-organizers">
+              <ProtectedRoute FrontProtected={Eventorganizersprofile} />
+            </Route>
+            <Route exact path="/organizers-public-profile/:id">
+              <ProtectedRoute FrontProtected={UserPublicProfile} />
+            </Route>
 
-          <Route exact path="/event-details-page/:id">
-            <ProtectedRoute FrontProtected={Detailsevents} />
-          </Route>
+            <Route exact path="/event-details-page/:id">
+              <ProtectedRoute FrontProtected={Detailsevents} />
+            </Route>
 
-          {/* Protected route for create event side */}
+            {/* Protected route for create event side */}
 
-          <Route exact path="/dashboard">
-            <DashboardprotectedRoute DashboardProtect={Dashboard} />
-          </Route>
+            <Route exact path="/dashboard">
+              <DashboardprotectedRoute DashboardProtect={Dashboard} />
+            </Route>
 
-          <Route exact path="/create-event">
-            <DashboardprotectedRoute DashboardProtect={CreateEvent} />
-          </Route>
+            <Route exact path="/create-event">
+              <DashboardprotectedRoute DashboardProtect={CreateEvent} />
+            </Route>
 
-          <Route exact path="/event-application/:id">
-            <DashboardprotectedRoute DashboardProtect={Eventapplication} />
-          </Route>
-          {/* Protected end route for create event side */}
+            <Route exact path="/event-application/:id">
+              <DashboardprotectedRoute DashboardProtect={Eventapplication} />
+            </Route>
+            {/* Protected end route for create event side */}
 
-          {/* Protected route for joined  event side */}
-          <Route exact path="/joined-events">
-            <JoinedEventsRoute JoinedevenRouteprotect={JoinedEvents} />
-          </Route>
+            {/* Protected route for joined  event side */}
+            <Route exact path="/joined-events">
+              <JoinedEventsRoute JoinedevenRouteprotect={JoinedEvents} />
+            </Route>
 
-          <Route exact path="/event-tickets/:id">
-            <JoinedEventsRoute JoinedevenRouteprotect={EventTickets} />
-          </Route>
+            <Route exact path="/event-tickets/:id">
+              <JoinedEventsRoute JoinedevenRouteprotect={EventTickets} />
+            </Route>
 
-
-
-          {/* Protected route end for joined  event side */}
-        </Switch>
-      </BrowserRouter>
-    </UserProvider>
+            {/* Protected route end for joined  event side */}
+          </Switch>
+        </BrowserRouter>
+      </UserProvider>
+    </UserInfoProvider>
   );
 };
 

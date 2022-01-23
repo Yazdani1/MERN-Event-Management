@@ -171,7 +171,6 @@ const JoinedEvents = () => {
                         <td>{item.location}</td>
                         <td>{item.eventtypes}</td>
                         <td>{item.maxmembers}</td>
-                        <td>{item.postedBy?.name}</td>
 
                         {/* to get all the joined members for each event post */}
 

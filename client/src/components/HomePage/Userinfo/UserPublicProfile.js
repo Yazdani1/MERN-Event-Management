@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-
 import moment from "moment";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { GoCalendar } from "react-icons/go";
@@ -31,6 +30,8 @@ const UserPublicProfile = () => {
 
   const { id } = useParams();
   const history = useHistory();
+
+
 
   //to send message
 
@@ -173,7 +174,7 @@ const UserPublicProfile = () => {
                               for="exampleInputEmail1"
                               className="form-label"
                             >
-                             Name
+                              Name
                             </label>
                             <input
                               type="text"
@@ -190,7 +191,7 @@ const UserPublicProfile = () => {
                               for="exampleInputEmail1"
                               className="form-label"
                             >
-                               E-mail
+                              E-mail
                             </label>
                             <input
                               type="text"
@@ -199,7 +200,6 @@ const UserPublicProfile = () => {
                               className="form-control"
                               maxLength="100"
                               placeholder="Your E-mail.."
-
                             />
                           </div>
 
@@ -218,7 +218,6 @@ const UserPublicProfile = () => {
                               rows={3}
                               maxLength="100"
                               placeholder="Your message.."
-
                             />
                           </div>
                           <div className="main_container-button">
@@ -281,7 +280,6 @@ const UserPublicProfile = () => {
                 location={event.location}
                 maxmembers={event.maxmembers}
                 joinedeventnumbers={event.application.length}
-
               />
 
               <AlleventXLview
@@ -297,13 +295,11 @@ const UserPublicProfile = () => {
                 location={event.location}
                 maxmembers={event.maxmembers}
                 joinedeventnumbers={event.application.length}
-
                 totallikes={event.likes?.length}
                 alreadylikedpost={event.likes}
 
                 // addlike={addLike}
                 // unlike={unLikeevent}
-
               />
             </>
           ))}
