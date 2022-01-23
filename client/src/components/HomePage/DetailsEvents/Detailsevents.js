@@ -24,8 +24,6 @@ import {
   unliketoEvent,
 } from "../APIAllevents";
 
-
-
 const Detailsevents = () => {
   const { id } = useParams();
   const [state, setState] = useContext(UserContext);
@@ -69,9 +67,6 @@ const Detailsevents = () => {
     joinedeventList(postID)
       .then((result) => {
         if (result) {
-          toast.success("event saved", {
-            position: toast.POSITION.TOP_RIGHT,
-          });
           console.log("event has saved");
 
           //get user state from local storage
@@ -127,46 +122,45 @@ const Detailsevents = () => {
       });
   };
 
+  //like events
 
-    //like events
+  const addliketoEvents = (postId) => {
+    addliketoEvent(postId)
+      .then((result) => {
+        const newItemData = detailsevents?.singleevents?.map((item) => {
+          if (item._id === result._id) {
+            return result;
+          } else {
+            return item;
+          }
+        });
 
-    const addliketoEvents = (postId) => {
-      addliketoEvent(postId)
-        .then((result) => {
-          const newItemData = detailsevents?.singleevents?.map((item) => {
-            if (item._id === result._id) {
-              return result;
-            } else {
-              return item;
-            }
-          });
-  
-          setDetailsevents(newItemData);
-        })
-        .catch((err) => {
-          console.log(err);
+        setDetailsevents(newItemData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // unlike events
+  const unLikeevent = (postId) => {
+    unliketoEvent(postId)
+      .then((result) => {
+        const newItemData = detailsevents?.singleevents?.map((item) => {
+          if (item._id === result._id) {
+            return result;
+          } else {
+            return item;
+          }
         });
-    };
-  
-    // unlike events
-    const unLikeevent = (postId) => {
-      unliketoEvent(postId)
-        .then((result) => {
-          const newItemData = detailsevents?.singleevents?.map((item) => {
-            if (item._id === result._id) {
-              return result;
-            } else {
-              return item;
-            }
-          });
-  
-          setDetailsevents(newItemData);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-  
+
+        setDetailsevents(newItemData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   //save events to wishlist
 
   const saveEventWishlist = (postID) => {
@@ -182,10 +176,6 @@ const Detailsevents = () => {
         console.log(err);
       });
   };
-
-
-
-
 
   useEffect(() => {
     loadDetailsevents();
@@ -237,16 +227,15 @@ const Detailsevents = () => {
                 detailsevents && detailsevents?.singleevents?.maxmembers
               }
               postid={detailsevents && detailsevents?.singleevents?._id}
-
-
-              totallikes={detailsevents && detailsevents?.singleevents?.likes?.length}
-              alreadylikedpost={detailsevents && detailsevents?.singleevents?.likes}
+              totallikes={
+                detailsevents && detailsevents?.singleevents?.likes?.length
+              }
+              alreadylikedpost={
+                detailsevents && detailsevents?.singleevents?.likes
+              }
               addlike={addliketoEvents}
               unlike={unLikeevent}
               saveWishlist={saveEventWishlist}
-  
-
-
             />
           </div>
 

@@ -60,6 +60,9 @@ export const Detailseventwebview = ({
                 <p className="profile-name-size">{username}</p>
                 <p>{moment(date).format("MMMM Do YYYY")}</p>
               </div>
+              {joinedeventnumbers >= 2 ? (
+                <p className="trending">Trending</p>
+              ) : null}
             </div>
           </Link>
 
