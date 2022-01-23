@@ -23,6 +23,7 @@ import { FcButtingIn } from "react-icons/fc";
 import { MdLocationPin } from "react-icons/md";
 import AlleventXLview from "../AlleventXLview";
 import Alleventmobileview from "../Alleventmobileview";
+import APIuserpublicprofile from "./APIuserpublicprofile";
 
 const UserPublicProfile = () => {
   const [myevents, setMyevents] = useState([]);
@@ -31,7 +32,27 @@ const UserPublicProfile = () => {
   const { id } = useParams();
   const history = useHistory();
 
+  //To send message
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const nameonChange = (e) => {
+    setError("");
+    setName(e.target.value);
+  };
+  const emailonChange = (e) => {
+    setError("");
+    setEmail(e.target.value);
+  };
+  const messageonChange = (e) => {
+    setError("");
+    setMessage(e.target.value);
+  };
 
   //to send message
 
@@ -178,11 +199,10 @@ const UserPublicProfile = () => {
                             </label>
                             <input
                               type="text"
-                              // value={name}
-                              // onChange={(e) => setName(e.target.value)}
+                              value={name}
+                              onChange={nameonChange}
                               className="form-control"
                               maxLength="100"
-                              placeholder="Your name.."
                             />
                           </div>
 
@@ -195,11 +215,10 @@ const UserPublicProfile = () => {
                             </label>
                             <input
                               type="text"
-                              // value={name}
-                              // onChange={(e) => setName(e.target.value)}
+                              value={email}
+                              onChange={emailonChange}
                               className="form-control"
                               maxLength="100"
-                              placeholder="Your E-mail.."
                             />
                           </div>
 
@@ -212,12 +231,11 @@ const UserPublicProfile = () => {
                             </label>
                             <textarea
                               type="number"
-                              // value={maxmembers}
-                              // onChange={(e) => setMaxmembers(e.target.value)}
+                              value={message}
+                              onChange={messageonChange}
                               className="form-control"
                               rows={3}
                               maxLength="100"
-                              placeholder="Your message.."
                             />
                           </div>
                           <div className="main_container-button">

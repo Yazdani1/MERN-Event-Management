@@ -14,7 +14,8 @@ const {
   getallEventorganizers,
   userspublicProfile,
   serachEventorganizers,
-  logedinuserInfo
+  logedinuserInfo,
+  sendMessage,
 } = require("../controller/userinfo");
 
 //Userauth
@@ -34,5 +35,9 @@ router.post("/search-eventorganizers", serachEventorganizers);
 //loged in user information
 
 router.get("/logedinuser-allinfo", requireLogin, logedinuserInfo);
+
+//send message to user
+
+router.post("/send-message", requireLogin, sendMessage);
 
 module.exports = router;

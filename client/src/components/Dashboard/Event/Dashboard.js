@@ -153,9 +153,9 @@ const Dashboard = () => {
                     <th scope="row">{index + 1}</th>
 
                     <td>{item.name.substring(0, 30)}</td>
-                    <td>{ReactHtmlParser(item.des?.substring(0, 80))}</td>
+                    <td>{ReactHtmlParser(item.des?.substring(0, 50))}</td>
 
-                    <td> {moment(item.date).format("lll")}</td>
+                    <td> {moment(item.date).format("MMMM Do YYYY")}</td>
                     <td>{item.location}</td>
                     <td>{item.eventtypes}</td>
                     <td>{item.maxmembers}</td>

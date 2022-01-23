@@ -91,3 +91,44 @@ exports.logedinuserInfo = (req, res) => {
       console.log(err);
     });
 };
+
+//send message to user
+
+exports.sendMessage = (req, res) => {
+  const { name, email, textmessage } = req.body;
+
+  const sendmessage = {
+    name,
+    email,
+    textmessage,
+    postedBy: req.user._id,
+  };
+
+  if (!name) {
+    return res.status(400).json({ error: "Name is required.." });
+  }
+  if (!email) {
+    return res.status(400).json({ error: "E-mail is required.." });
+  }
+  if (!textmessage) {
+    return res.status(400).json({ error: "Write your  message.." });
+  }
+
+  User.findByIdAndUpdate(
+    req.body.userID,
+    {
+      $push: { message: sendmessage },
+    },
+    {
+      new: true,
+    }
+  )
+    .populate("message.postedBy", "_id name email photo")
+    .exec((err, result) => {
+      if (err) {
+        return res.status(422).json({ error: err });
+      } else {
+        return res.json(result);
+      }
+    });
+};

@@ -36,7 +36,9 @@ const userSchema = mongoose.Schema(
 
     message: [
       {
-        text: String,
+        name: String,
+        email: String,
+        textmessage: String,
         postedBy: { type: ObjectId, ref: "User" },
         date: {
           type: Date,
