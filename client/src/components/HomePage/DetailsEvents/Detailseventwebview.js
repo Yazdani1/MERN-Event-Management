@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import "./detailsevents.css";
 import { getdetailsEvents } from "./APIDetails";
 import { Link, useHistory, useParams } from "react-router-dom";
@@ -9,6 +9,10 @@ import { FcApproval } from "react-icons/fc";
 import { SyncOutlined } from "@ant-design/icons";
 import { Spin, Space } from "antd";
 import { MdLocationPin } from "react-icons/md";
+import { AiOutlineLike } from "react-icons/ai";
+import { AiFillLike } from "react-icons/ai";
+import { UserContext } from "../../UserContext";
+import { BsFillBookmarkStarFill } from "react-icons/bs";
 
 export const Detailseventwebview = ({
   name,
@@ -23,7 +27,15 @@ export const Detailseventwebview = ({
   maxmembers,
   joinedeventnumbers,
   postid,
+
+  totallikes,
+  alreadylikedpost,
+  addlike,
+  unlike,
+  saveWishlist,
 }) => {
+  const [state, setState] = useContext(UserContext);
+
   return (
     <React.Fragment>
       <div className="details-webview">
@@ -52,7 +64,7 @@ export const Detailseventwebview = ({
 
           <Link
             to={"/event-details-page/" + postid}
-            style={{ textDecoration: "none",color:"black" }}
+            style={{ textDecoration: "none", color: "black" }}
           >
             <h5>{name}</h5>
             <p>{ReactHtmlParser(des)}</p>
@@ -81,6 +93,41 @@ export const Detailseventwebview = ({
                     Interested <FcApproval /> 50
                   </p>
                 </div>
+
+                <div className="going-interested">
+                  {alreadylikedpost?.includes(
+                    state && state.user && state.user._id
+                  ) ? (
+                    <p
+                      onClick={() => {
+                        unlike(postid);
+                      }}
+                    >
+                      <AiFillLike size={20} />
+                    </p>
+                  ) : (
+                    <p
+                      onClick={() => {
+                        addlike(postid);
+                      }}
+                    >
+                      <AiOutlineLike size={20} />
+                    </p>
+                  )}
+                </div>
+                <div className="going-interested">
+                  <p>{totallikes} Likes </p>
+                </div>
+                <div className="going-interested">
+                  <p
+                    onClick={() => {
+                      saveWishlist(postid);
+                    }}
+                  >
+                    Save <BsFillBookmarkStarFill />
+                  </p>
+                </div>
+
               </div>
             </div>
           </div>

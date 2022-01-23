@@ -15,6 +15,16 @@ import Moreevents from "./Moreevents";
 import Footer from "../../Footer/Footer";
 import { ToastContainer, toast } from "react-toastify";
 import { UserContext } from "../../UserContext";
+import { addeventtoWishlist } from "../../Joinedevents/Event Wishlist/APIwishlist";
+
+import {
+  getallEvents,
+  searchallEvents,
+  addliketoEvent,
+  unliketoEvent,
+} from "../APIAllevents";
+
+
 
 const Detailsevents = () => {
   const { id } = useParams();
@@ -117,6 +127,66 @@ const Detailsevents = () => {
       });
   };
 
+
+    //like events
+
+    const addliketoEvents = (postId) => {
+      addliketoEvent(postId)
+        .then((result) => {
+          const newItemData = detailsevents?.singleevents?.map((item) => {
+            if (item._id === result._id) {
+              return result;
+            } else {
+              return item;
+            }
+          });
+  
+          setDetailsevents(newItemData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+  
+    // unlike events
+    const unLikeevent = (postId) => {
+      unliketoEvent(postId)
+        .then((result) => {
+          const newItemData = detailsevents?.singleevents?.map((item) => {
+            if (item._id === result._id) {
+              return result;
+            } else {
+              return item;
+            }
+          });
+  
+          setDetailsevents(newItemData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+  
+  //save events to wishlist
+
+  const saveEventWishlist = (postID) => {
+    addeventtoWishlist(postID)
+      .then((result) => {
+        if (result) {
+          toast.success("This event has saved to your profile", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
+
+
+
   useEffect(() => {
     loadDetailsevents();
   }, [detailsevents]);
@@ -167,6 +237,16 @@ const Detailsevents = () => {
                 detailsevents && detailsevents?.singleevents?.maxmembers
               }
               postid={detailsevents && detailsevents?.singleevents?._id}
+
+
+              totallikes={detailsevents && detailsevents?.singleevents?.likes?.length}
+              alreadylikedpost={detailsevents && detailsevents?.singleevents?.likes}
+              addlike={addliketoEvents}
+              unlike={unLikeevent}
+              saveWishlist={saveEventWishlist}
+  
+
+
             />
           </div>
 

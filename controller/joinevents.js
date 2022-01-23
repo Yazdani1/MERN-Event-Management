@@ -81,13 +81,18 @@ exports.joinedeventList = (req, res) => {
 
   User.findByIdAndUpdate(req.user._id, {
     $addToSet: { joinedevents: postID },
-  }).exec((err, resultjoinedevents) => {
-    if (err) {
-      return res.status(400).json({ error: err });
-    } else {
-      res.json(resultjoinedevents);
-    }
-  });
+  })
+    .populate(
+      "joinedevents",
+      "name des location eventtypes startdate enddate date maxmembers application"
+    )
+    .exec((err, resultjoinedevents) => {
+      if (err) {
+        return res.status(400).json({ error: err });
+      } else {
+        res.json(resultjoinedevents);
+      }
+    });
 };
 
 //to removed joined event list from the user account
@@ -107,5 +112,3 @@ exports.removejoinedeventList = (req, res) => {
 };
 
 //to get user all events.
-
-

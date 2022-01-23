@@ -24,6 +24,13 @@ import { MdLocationPin } from "react-icons/md";
 import AlleventXLview from "../AlleventXLview";
 import Alleventmobileview from "../Alleventmobileview";
 import { sendMessage } from "./APIuserpublicprofile";
+import { addeventtoWishlist } from "../../Joinedevents/Event Wishlist/APIwishlist";
+import {
+  getallEvents,
+  searchallEvents,
+  addliketoEvent,
+  unliketoEvent,
+} from "../APIAllevents";
 
 const UserPublicProfile = () => {
   const [myevents, setMyevents] = useState([]);
@@ -90,6 +97,62 @@ const UserPublicProfile = () => {
         console.log(err);
       });
   };
+
+  //save events to wishlist
+
+  const saveEventWishlist = (postID) => {
+    addeventtoWishlist(postID)
+      .then((result) => {
+        if (result) {
+          toast.success("This event has saved to your profile", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //like events
+  // const addliketoEvents = (postId) => {
+  //   addliketoEvent(postId)
+  //     .then((result) => {
+  //       const newItemData = myevents.postsData?.map((item) => {
+  //         if (item._id === result._id) {
+  //           return result;
+  //         } else {
+  //           return item;
+
+  //         }
+  //       });
+  //       getMypost();
+  //       setMyevents(newItemData);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
+  // unlike events
+  // const unLikeevent = (postId) => {
+  //   unliketoEvent(postId)
+  //     .then((result) => {
+  //       const newItemData = myevents.postsData?.map((item) => {
+  //         if (item._id === result._id) {
+  //           return result;
+  //         } else {
+  //           return item;
+
+  //         }
+  //       });
+  //       getMypost();
+  //       setMyevents(newItemData);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   useEffect(() => {
     getMypost();
@@ -366,8 +429,8 @@ const UserPublicProfile = () => {
                 joinedeventnumbers={event.application.length}
                 totallikes={event.likes?.length}
                 alreadylikedpost={event.likes}
-
-                // addlike={addLike}
+                saveWishlist={saveEventWishlist}
+                // addlike={addliketoEvents}
                 // unlike={unLikeevent}
               />
             </>

@@ -65,7 +65,7 @@ const JoinedEvents = () => {
   };
 
   useEffect(() => {
-    setLoading(false)
+    setLoading(false);
   }, []);
 
   if (loading) {
