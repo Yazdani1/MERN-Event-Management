@@ -107,13 +107,13 @@ const MyeventsNavMobile = () => {
           </NavLink>
 
           <NavLink
-            to="/favourite"
+            to="/event-wishlist"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
           >
             <div className="sidebar-mobile-nav">
               <li onClick={() => setMobilesidebar(!mobilesidebar)}>
-                <BsHeartFill size={15} /> Favourite
+                <BsHeartFill size={15} /> Wishlist
               </li>
             </div>
           </NavLink>

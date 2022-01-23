@@ -99,7 +99,7 @@ const MyeventsNavweb = (props) => {
           </NavLink>
 
           <NavLink
-            to="/favourite"
+            to="/event-wishlist"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
           >
@@ -109,7 +109,7 @@ const MyeventsNavweb = (props) => {
                   <BsHeartFill size={20} />
                 </span>
 
-                <p>Favourite</p>
+                <p>Wishlist</p>
               </div>
             </div>
           </NavLink>
@@ -217,7 +217,7 @@ const MyeventsNavweb = (props) => {
           </NavLink>
 
           <NavLink
-            to="/favourite"
+            to="/event-wishlist"
             style={{ textDecoration: "none" }}
             className={({ isActive }) =>
               isActive ? "largenavactive" : "inactive"
@@ -225,7 +225,7 @@ const MyeventsNavweb = (props) => {
           >
             <div className="sidebar-large-navdesign">
               <p>
-                <BsHeartFill size={15} /> Favourite
+                <BsHeartFill size={15} /> Wishlist
               </p>
             </div>
           </NavLink>

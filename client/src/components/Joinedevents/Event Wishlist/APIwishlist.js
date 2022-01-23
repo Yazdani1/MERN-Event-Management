@@ -6,7 +6,7 @@ export const addeventtoWishlist = (postID) => {
       Accept: "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    body: JSON.stringify(postID),
+    body: JSON.stringify({postID}),
   })
     .then((res) => {
       return res.json();
@@ -24,7 +24,7 @@ export const removeeventfromWishlist = (postID) => {
       Accept: "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    body: JSON.stringify(postID),
+    body: JSON.stringify({postID}),
   })
     .then((res) => {
       return res.json();

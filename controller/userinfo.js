@@ -75,7 +75,7 @@ exports.serachEventorganizers = (req, res) => {
     });
 };
 
-//loged in user info
+//loged in user info for context api
 
 exports.logedinuserInfo = (req, res) => {
   User.findOne({ _id: req.user._id })
@@ -83,9 +83,11 @@ exports.logedinuserInfo = (req, res) => {
       "joinedevents",
       "name des location eventtypes startdate enddate date maxmembers application"
     )
-
     .populate("message.postedBy", "name email _id photo")
-
+    .populate(
+      "wishlist",
+      "name des location eventtypes startdate enddate likes date maxmembers application "
+    )
     .then((userData) => {
       res.json(userData);
     })

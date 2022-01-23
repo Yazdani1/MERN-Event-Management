@@ -19,6 +19,7 @@ import Eventapplication from "./components/Dashboard/Eventapplication/Eventappli
 import EventTickets from "./components/Joinedevents/EventTickets";
 import { UserInfoProvider } from "./components/UserInfoContext";
 import Message from "./components/Dashboard/Event/Message";
+import Wishlist from "./components/Joinedevents/Event Wishlist/Wishlist";
 
 const App = () => {
   return (
@@ -68,7 +69,6 @@ const App = () => {
               <DashboardprotectedRoute DashboardProtect={CreateEvent} />
             </Route>
 
-            
             <Route exact path="/message">
               <DashboardprotectedRoute DashboardProtect={Message} />
             </Route>
@@ -81,6 +81,10 @@ const App = () => {
             {/* Protected route for joined  event side */}
             <Route exact path="/joined-events">
               <JoinedEventsRoute JoinedevenRouteprotect={JoinedEvents} />
+            </Route>
+
+            <Route exact path="/event-wishlist">
+              <JoinedEventsRoute JoinedevenRouteprotect={Wishlist} />
             </Route>
 
             <Route exact path="/event-tickets/:id">
