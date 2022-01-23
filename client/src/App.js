@@ -18,6 +18,7 @@ import Detailsevents from "./components/HomePage/DetailsEvents/Detailsevents";
 import Eventapplication from "./components/Dashboard/Eventapplication/Eventapplication";
 import EventTickets from "./components/Joinedevents/EventTickets";
 import { UserInfoProvider } from "./components/UserInfoContext";
+import Message from "./components/Dashboard/Event/Message";
 
 const App = () => {
   return (
@@ -65,6 +66,11 @@ const App = () => {
 
             <Route exact path="/create-event">
               <DashboardprotectedRoute DashboardProtect={CreateEvent} />
+            </Route>
+
+            
+            <Route exact path="/message">
+              <DashboardprotectedRoute DashboardProtect={Message} />
             </Route>
 
             <Route exact path="/event-application/:id">

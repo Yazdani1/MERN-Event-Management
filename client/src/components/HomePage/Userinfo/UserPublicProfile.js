@@ -23,7 +23,7 @@ import { FcButtingIn } from "react-icons/fc";
 import { MdLocationPin } from "react-icons/md";
 import AlleventXLview from "../AlleventXLview";
 import Alleventmobileview from "../Alleventmobileview";
-import APIuserpublicprofile from "./APIuserpublicprofile";
+import { sendMessage } from "./APIuserpublicprofile";
 
 const UserPublicProfile = () => {
   const [myevents, setMyevents] = useState([]);
@@ -68,6 +68,29 @@ const UserPublicProfile = () => {
       });
   };
 
+  //send message
+
+  const sendmessagetoUser = (e, userID) => {
+    e.preventDefault();
+    setError("");
+    setSuccess(false);
+    sendMessage({ name, email, textmessage: message, userID })
+      .then((result) => {
+        if (result.error) {
+          setError(result.error);
+        } else {
+          setSuccess(true);
+          setError("");
+          setName("");
+          setEmail("");
+          setMessage("");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     getMypost();
   }, []);
@@ -81,6 +104,26 @@ const UserPublicProfile = () => {
       </div>
     );
   }
+
+  const showSuccess = () => (
+    <div
+      className="alert alert-success"
+      style={{ display: success ? "" : "none" }}
+    >
+      Your Message has sent successfully..
+    </div>
+  );
+
+  const errorMessage = () => {
+    return (
+      <div
+        className="alert alert-danger"
+        style={{ display: error ? "" : "none" }}
+      >
+        {error}
+      </div>
+    );
+  };
 
   return (
     <>
@@ -188,6 +231,9 @@ const UserPublicProfile = () => {
                           Close
                         </button>
                       </div>
+                      {errorMessage()}
+                      {showSuccess()}
+
                       <div className="modal-body">
                         <form>
                           <div className="event-form">
@@ -238,7 +284,12 @@ const UserPublicProfile = () => {
                               maxLength="100"
                             />
                           </div>
-                          <div className="main_container-button">
+                          <div
+                            className="main_container-button"
+                            onClick={(e) =>
+                              sendmessagetoUser(e, myevents?.userInfo?._id)
+                            }
+                          >
                             <span className="view-allusers-button">
                               Send Message
                             </span>
