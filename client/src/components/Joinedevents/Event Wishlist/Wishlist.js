@@ -8,9 +8,23 @@ import { FcOk } from "react-icons/fc";
 import { MdLocationPin, MdDelete } from "react-icons/md";
 import { removeeventfromWishlist } from "../Event Wishlist/APIwishlist";
 import { ToastContainer, toast } from "react-toastify";
+import Pagination from "../../Dashboard/Event/Pagination";
 
 const Wishlist = () => {
   const [userinfo, setUserinfo] = useContext(UserInfoContext);
+
+  //pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(4);
+
+  //Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = userinfo?.wishlist?.slice(
+    indexOfFirstPost,
+    indexOfLastPost
+  );
+  const howManyPages = Math.ceil(userinfo?.wishlist?.length / postsPerPage);
 
   const removeEventwishlist = (postID) => {
     removeeventfromWishlist(postID)
@@ -34,7 +48,7 @@ const Wishlist = () => {
         <p className="total-application">
           Wishlist Events: {userinfo.wishlist?.length}
         </p>
-        {userinfo.wishlist?.map((eventwish) => (
+        {currentPosts?.map((eventwish) => (
           <>
             <div className="card all-events">
               <Link
@@ -91,6 +105,12 @@ const Wishlist = () => {
             </div>
           </>
         ))}
+
+        <div className="card pagination-dashboard">
+          {userinfo?.wishlist?.length > 1 ? (
+            <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
+          ) : null}
+        </div>
       </div>
 
       {/* <div className="container">
