@@ -11,6 +11,7 @@ import "./Allevents.css";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
 import { UserContext } from "../UserContext";
+import { BsFillBookmarkStarFill } from "react-icons/bs";
 
 const AlleventXLview = ({
   name,
@@ -29,6 +30,7 @@ const AlleventXLview = ({
   alreadylikedpost,
   addlike,
   unlike,
+  saveWishlist,
 }) => {
   const [state, setState] = useContext(UserContext);
   const history = useHistory();
@@ -115,12 +117,14 @@ const AlleventXLview = ({
 
                 <div className="going-interested">
                   <p>
-                    {" "}
                     Going <FcOk /> {joinedeventnumbers}
                   </p>
-                  <p>
-                    {" "}
-                    Interested <FcApproval /> 50
+                  <p
+                    onClick={() => {
+                      saveWishlist(postid);
+                    }}
+                  >
+                    Save <BsFillBookmarkStarFill />
                   </p>
                 </div>
               </div>

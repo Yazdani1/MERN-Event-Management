@@ -134,3 +134,35 @@ exports.sendMessage = (req, res) => {
       }
     });
 };
+
+//add to wishlist event api
+
+exports.addtoWishlist = (req, res) => {
+  const { postID } = req.body;
+
+  User.findByIdAndUpdate(req.user._id, {
+    $addToSet: { wishlist: postID },
+  }).exec((err, result) => {
+    if (err) {
+      return res.status(400).json({ error: err });
+    } else {
+      res.json(result);
+    }
+  });
+};
+
+//remove event from wishlist api end point
+
+exports.removeeventWishlist = (req, res) => {
+  const { postID } = req.body;
+
+  User.findByIdAndUpdate(req.user._id, {
+    $pull: { wishlist: postID },
+  }).exec((err, result) => {
+    if (err) {
+      return res.status(400).json({ error: err });
+    } else {
+      res.json(result);
+    }
+  });
+};

@@ -16,6 +16,8 @@ const {
   serachEventorganizers,
   logedinuserInfo,
   sendMessage,
+  addtoWishlist,
+  removeeventWishlist,
 } = require("../controller/userinfo");
 
 //Userauth
@@ -37,7 +39,11 @@ router.post("/search-eventorganizers", serachEventorganizers);
 router.get("/logedinuser-allinfo", requireLogin, logedinuserInfo);
 
 //send message to user
-
 router.post("/send-message", requireLogin, sendMessage);
+
+//event wishlist
+
+router.put("/event-wishlist", requireLogin, addtoWishlist);
+router.put("/remove-event-wishlist", requireLogin, removeeventWishlist);
 
 module.exports = router;

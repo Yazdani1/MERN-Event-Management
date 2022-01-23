@@ -4,6 +4,7 @@ import moment from "moment";
 import ReactHtmlParser from "react-html-parser";
 import { FcOk } from "react-icons/fc";
 import { FcApproval } from "react-icons/fc";
+import { ToastContainer, toast } from "react-toastify";
 import {
   getallEvents,
   searchallEvents,
@@ -21,6 +22,7 @@ import AlleventXLview from "./AlleventXLview";
 import { UserContext } from "../UserContext";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
+import { addeventtoWishlist } from "../Joinedevents/Event Wishlist/APIwishlist";
 
 const AllEvents = () => {
   const [allevents, setAllevents] = useState([]);
@@ -29,7 +31,6 @@ const AllEvents = () => {
   const [search, setSearch] = useState("");
   const [state, setState] = useContext(UserContext);
   const history = useHistory();
-
 
   //pagination
 
@@ -119,6 +120,20 @@ const AllEvents = () => {
           }
         });
         setAllevents(newItemData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const saveEventWishlist = (postID) => {
+    addeventtoWishlist(postID)
+      .then((result) => {
+        if (result) {
+          toast.success("This event has saved to your profile", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -328,6 +343,7 @@ const AllEvents = () => {
                   alreadylikedpost={event.likes}
                   addlike={addLike}
                   unlike={unLikeevent}
+                  saveWishlist={saveEventWishlist}
                 />
               </>
             ))
@@ -341,8 +357,7 @@ const AllEvents = () => {
           ) : null}
         </div>
       </div>
-
-   
+      <ToastContainer autoClose={8000} />
     </React.Fragment>
   );
 };
