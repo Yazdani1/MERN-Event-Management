@@ -86,7 +86,7 @@ exports.logedinuserInfo = (req, res) => {
     .populate("message.postedBy", "name email _id photo")
     .populate(
       "wishlist",
-      "name des location eventtypes startdate enddate likes date maxmembers application "
+      "name  des location eventtypes startdate enddate likes date maxmembers application "
     )
     .then((userData) => {
       res.json(userData);

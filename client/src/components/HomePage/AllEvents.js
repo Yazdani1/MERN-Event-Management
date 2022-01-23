@@ -32,6 +32,8 @@ const AllEvents = () => {
   const [state, setState] = useContext(UserContext);
   const history = useHistory();
 
+  
+
   //pagination
 
   const [currentPage, setCurrentPage] = useState(1);

@@ -12,6 +12,7 @@ import { AiOutlineLike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
 import { UserContext } from "../UserContext";
 import { BsFillBookmarkStarFill } from "react-icons/bs";
+import { UserInfoContext } from "../UserInfoContext";
 
 const AlleventXLview = ({
   name,
@@ -34,6 +35,10 @@ const AlleventXLview = ({
 }) => {
   const [state, setState] = useContext(UserContext);
   const history = useHistory();
+
+  //user info context
+
+  const [userinfo, setUserinfo] = useContext(UserInfoContext);
 
   return (
     <React.Fragment>
@@ -119,6 +124,9 @@ const AlleventXLview = ({
                   <p>
                     Going <FcOk /> {joinedeventnumbers}
                   </p>
+                </div>
+
+                <div className="going-interested">
                   <p
                     onClick={() => {
                       saveWishlist(postid);

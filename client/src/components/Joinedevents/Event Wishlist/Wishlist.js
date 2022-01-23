@@ -5,14 +5,35 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { UserInfoContext } from "../../UserInfoContext";
 import ReactHtmlParser from "react-html-parser";
 import { FcOk } from "react-icons/fc";
-import { MdLocationPin } from "react-icons/md";
+import { MdLocationPin, MdDelete } from "react-icons/md";
+import { removeeventfromWishlist } from "../Event Wishlist/APIwishlist";
+import { ToastContainer, toast } from "react-toastify";
 
 const Wishlist = () => {
   const [userinfo, setUserinfo] = useContext(UserInfoContext);
 
+  const removeEventwishlist = (postID) => {
+    removeeventfromWishlist(postID)
+      .then((result) => {
+        if (result) {
+          toast.success("This event has been removed", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {}, [userinfo, setUserinfo]);
+
   return (
     <React.Fragment>
       <div className="container large-screen-allevent-views">
+        <p className="total-application">
+          Wishlist Events: {userinfo.wishlist?.length}
+        </p>
         {userinfo.wishlist?.map((eventwish) => (
           <>
             <div className="card all-events">
@@ -53,9 +74,20 @@ const Wishlist = () => {
                         Going <FcOk /> {eventwish.application?.length}
                       </p>
                     </div>
+                    <div className="going-interested">
+                      <p onClick={() => removeEventwishlist(eventwish._id)}>
+                        Delete <MdDelete />
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
+              {/* <button
+                className="btn btn-danger"
+                onClick={() => removeEventwishlist(eventwish._id)}
+              >
+                Delete
+              </button> */}
             </div>
           </>
         ))}
@@ -107,6 +139,8 @@ const Wishlist = () => {
        
         </div>
       </div> */}
+
+      <ToastContainer autoClose={8000} />
     </React.Fragment>
   );
 };
