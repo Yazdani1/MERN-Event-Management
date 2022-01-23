@@ -5,6 +5,16 @@ import Alleventmobileview from "../Alleventmobileview";
 import AlleventXLview from "../AlleventXLview";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { SyncOutlined } from "@ant-design/icons";
+import { ToastContainer, toast } from "react-toastify";
+import { addeventtoWishlist } from "../../Joinedevents/Event Wishlist/APIwishlist";
+
+
+import {
+  getallEvents,
+  searchallEvents,
+  addliketoEvent,
+  unliketoEvent,
+} from "../APIAllevents";
 
 const Moreevents = () => {
   const { id } = useParams();
@@ -17,6 +27,61 @@ const Moreevents = () => {
       .then((resultevents) => {
         setMoreevents(resultevents);
         setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //like events
+
+  const addliketoEvents = (postId) => {
+    addliketoEvent(postId)
+      .then((result) => {
+        const newItemData = moreeventsdetails.map((item) => {
+          if (item._id === result._id) {
+            return result;
+          } else {
+            return item;
+          }
+        });
+
+        setMoreevents(newItemData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // unlike events
+  const unLikeevent = (postId) => {
+    unliketoEvent(postId)
+      .then((result) => {
+        const newItemData = moreeventsdetails.map((item) => {
+          if (item._id === result._id) {
+            return result;
+          } else {
+            return item;
+          }
+        });
+
+        setMoreevents(newItemData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //save events to wishlist
+
+  const saveEventWishlist = (postID) => {
+    addeventtoWishlist(postID)
+      .then((result) => {
+        if (result) {
+          toast.success("This event has saved to your profile", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -54,7 +119,6 @@ const Moreevents = () => {
             location={event.location}
             maxmembers={event.maxmembers}
             joinedeventnumbers={event.application.length}
-
           />
 
           <AlleventXLview
@@ -72,13 +136,14 @@ const Moreevents = () => {
             joinedeventnumbers={event.application.length}
             totallikes={event.likes?.length}
             alreadylikedpost={event.likes}
-
-            // addlike={addLike}
-            // unlike={unLikeevent}
+            addlike={addliketoEvents}
+            unlike={unLikeevent}
+            saveWishlist={saveEventWishlist}
 
           />
         </>
       ))}
+      <ToastContainer autoClose={8000} />
     </React.Fragment>
   );
 };

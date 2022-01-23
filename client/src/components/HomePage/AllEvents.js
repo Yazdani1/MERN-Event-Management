@@ -72,61 +72,61 @@ const AllEvents = () => {
 
   //like events
 
-  const addLike = (postId) => {
-    fetch("/api/like", {
-      method: "put",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: JSON.stringify({
-        postId: postId,
-      }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log("clicked like" + result);
-        const newItemData = allevents.map((item) => {
-          if (item._id == result._id) {
-            return result;
-          } else {
-            return item;
-          }
-        });
-        setAllevents(newItemData);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const addLike = (postId) => {
+  //   fetch("/api/like", {
+  //     method: "put",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //     },
+  //     body: JSON.stringify({
+  //       postId: postId,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       console.log("clicked like" + result);
+  //       const newItemData = allevents.map((item) => {
+  //         if (item._id == result._id) {
+  //           return result;
+  //         } else {
+  //           return item;
+  //         }
+  //       });
+  //       setAllevents(newItemData);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  const unLikeevent = (postId) => {
-    fetch("/api/unlike", {
-      method: "put",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: JSON.stringify({
-        postId: postId,
-      }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-        const newItemData = allevents.map((item) => {
-          if (item._id == result._id) {
-            return result;
-          } else {
-            return item;
-          }
-        });
-        setAllevents(newItemData);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const unLikeevent = (postId) => {
+  //   fetch("/api/unlike", {
+  //     method: "put",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //     },
+  //     body: JSON.stringify({
+  //       postId: postId,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       console.log(result);
+  //       const newItemData = allevents.map((item) => {
+  //         if (item._id == result._id) {
+  //           return result;
+  //         } else {
+  //           return item;
+  //         }
+  //       });
+  //       setAllevents(newItemData);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const saveEventWishlist = (postID) => {
     addeventtoWishlist(postID)
@@ -142,24 +142,45 @@ const AllEvents = () => {
       });
   };
 
-  //unlike events
-  // const unLikeevent = (postId) => {
-  //   unliketoEvent(postId)
-  //     .then((result) => {
-  //       const newItemData = allevents.map((item) => {
-  //         if (item._id === result._id) {
-  //           return result;
-  //         } else {
-  //           return item;
-  //         }
-  //       });
+  //like events
 
-  //       setAllevents(newItemData);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  const addliketoEvents = (postId) => {
+    addliketoEvent(postId)
+      .then((result) => {
+        const newItemData = allevents.map((item) => {
+          if (item._id === result._id) {
+            return result;
+          } else {
+            return item;
+          }
+        });
+
+        setAllevents(newItemData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
+  // unlike events
+  const unLikeevent = (postId) => {
+    unliketoEvent(postId)
+      .then((result) => {
+        const newItemData = allevents.map((item) => {
+          if (item._id === result._id) {
+            return result;
+          } else {
+            return item;
+          }
+        });
+
+        setAllevents(newItemData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     loadallEvents();
@@ -343,7 +364,7 @@ const AllEvents = () => {
                   joinedeventnumbers={event.application.length}
                   totallikes={event.likes.length}
                   alreadylikedpost={event.likes}
-                  addlike={addLike}
+                  addlike={addliketoEvents}
                   unlike={unLikeevent}
                   saveWishlist={saveEventWishlist}
                 />
