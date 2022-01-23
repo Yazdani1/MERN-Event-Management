@@ -17,7 +17,6 @@ export const UserInfoProvider = (props) => {
       .then((res) => res.json())
       .then((result) => {
         setUserinfo(result);
-        setLoading(false);
         console.log("User all the details:" + result);
       })
       .catch((err) => {
@@ -27,7 +26,7 @@ export const UserInfoProvider = (props) => {
 
   useEffect(() => {
     loadlogedinuserInfo();
-  }, []);
+  }, [userinfo, setUserinfo]);
 
   return (
     <UserInfoContext.Provider value={[userinfo, setUserinfo]}>

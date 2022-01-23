@@ -15,6 +15,7 @@ import ReactHtmlParser from "react-html-parser";
 import { EyeOutlined } from "@ant-design/icons";
 import { FcComboChart, FcFilledFilter } from "react-icons/fc";
 import { removejoinedeventList } from "../HomePage/DetailsEvents/APIDetails";
+import { UserInfoContext } from "../UserInfoContext";
 
 const JoinedEvents = () => {
   //to add collapse option
@@ -22,32 +23,30 @@ const JoinedEvents = () => {
   const [show, setShow] = useState(false);
 
   const [state, setState] = useContext(UserContext);
-  const [userinfo, setUserinfo] = useState([]);
+  const [userinfo, setUserinfo] = useContext(UserInfoContext);
   const [loading, setLoading] = useState(true);
 
   //to the post have joined
 
-
-
-  const loadlogedinuserInfo = () => {
-    fetch("/api/logedinuser-allinfo", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        setUserinfo(result);
-        setLoading(false);
-        console.log("User all the details:" + result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const loadlogedinuserInfo = () => {
+  //   fetch("/api/logedinuser-allinfo", {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       setUserinfo(result);
+  //       setLoading(false);
+  //       console.log("User all the details:" + result);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const removeeventList = (e, postID) => {
     e.preventDefault();
@@ -58,7 +57,6 @@ const JoinedEvents = () => {
           toast.success("Your event has been removed", {
             position: toast.POSITION.TOP_RIGHT,
           });
-          loadlogedinuserInfo();
         }
       })
       .catch((err) => {
@@ -67,8 +65,7 @@ const JoinedEvents = () => {
   };
 
   useEffect(() => {
-    loadlogedinuserInfo();
-
+    setLoading(false)
   }, []);
 
   if (loading) {
@@ -100,7 +97,7 @@ const JoinedEvents = () => {
               <div className="dashboard-items_design">
                 <MdCardMembership size={35} />
                 <p>Wishlist Event</p>
-                <p>{userinfo.wishlist.length}</p>
+                <p>{userinfo.wishlist?.length}</p>
                 {/* <p>
                   {moment(state && state.user && state.user.createdAt).format(
                     "MMMM Do YYYY"
@@ -139,11 +136,8 @@ const JoinedEvents = () => {
 
         <h5>Joined Events:</h5>
 
-
         <div className="container-fluid main_containers">
-          {/* table start */}
-
-          {userinfo.joinedevents?.length > 0 ? (
+          {userinfo && userinfo.joinedevents?.length > 0 ? (
             <div className="card table-horizontal">
               <table class="table table-bordered table-hover">
                 <thead>
@@ -159,7 +153,8 @@ const JoinedEvents = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {userinfo.joinedevents &&
+                  {userinfo &&
+                    userinfo.joinedevents &&
                     [...userinfo.joinedevents].reverse().map((item, index) => (
                       <tr key={item._id}>
                         <th scope="row">{index + 1}</th>
