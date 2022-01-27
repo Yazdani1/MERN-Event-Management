@@ -29,6 +29,8 @@ router.post("/login", userLogin);
 router.post("/reset-password", passwordReset);
 
 router.post("/new-password", newPassword);
+//end user auth
+
 router.get("/getall-users", getallUsers);
 router.get("/getall-eventorganizers", getallEventorganizers);
 router.get("/eventusers-public-profile/:id", userspublicProfile);

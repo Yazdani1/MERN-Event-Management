@@ -41,6 +41,7 @@ export const Detailseventwebview = ({
     <React.Fragment>
       <div className="details-webview">
         <div className="card single-events">
+          
           <Link
             to={"/organizers-public-profile/" + id}
             style={{ textDecoration: "none" }}
