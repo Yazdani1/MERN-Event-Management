@@ -86,7 +86,7 @@ const NavMobileview = () => {
           </NavLink>
 
           <NavLink
-            to="/Dashboardprofile"
+            to="/profile"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
           >
@@ -97,7 +97,7 @@ const NavMobileview = () => {
             </div>
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/AddExperience"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
@@ -107,9 +107,9 @@ const NavMobileview = () => {
                 <GiSkills size={15} /> Experience
               </li>
             </div>
-          </NavLink>
+          </NavLink> */}
 
-          <NavLink
+          {/* <NavLink
             to="/favourite"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
@@ -119,9 +119,9 @@ const NavMobileview = () => {
                 <BsHeartFill size={15} /> Favourite
               </li>
             </div>
-          </NavLink>
+          </NavLink> */}
 
-          <NavLink
+          {/* <NavLink
             to="/my-comments"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
@@ -131,7 +131,7 @@ const NavMobileview = () => {
                 <MdQuestionAnswer size={15} /> Comments
               </li>
             </div>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
             to="/message"

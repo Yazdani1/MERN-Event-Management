@@ -66,7 +66,7 @@ const Navwebview = (props) => {
           </NavLink>
 
           <NavLink
-            to="/Dashboardprofile"
+            to="/profile"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
           >
@@ -81,7 +81,7 @@ const Navwebview = (props) => {
             </div>
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/AddExperience"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
@@ -95,9 +95,9 @@ const Navwebview = (props) => {
                 <p>Experience</p>
               </div>
             </div>
-          </NavLink>
+          </NavLink> */}
 
-          <NavLink
+          {/* <NavLink
             to="/favourite"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
@@ -111,9 +111,9 @@ const Navwebview = (props) => {
                 <p>Favourite</p>
               </div>
             </div>
-          </NavLink>
+          </NavLink> */}
 
-          <NavLink
+          {/* <NavLink
             to="/my-comments"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
@@ -127,7 +127,7 @@ const Navwebview = (props) => {
                 <p>Comments</p>
               </div>
             </div>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
             to="/message"
@@ -204,7 +204,7 @@ const Navwebview = (props) => {
           </NavLink>
 
           <NavLink
-            to="/Dashboardprofile"
+            to="/profile"
             style={{ textDecoration: "none" }}
             className={({ isActive }) =>
               isActive ? "largenavactive" : "inactive"
@@ -217,7 +217,7 @@ const Navwebview = (props) => {
             </div>
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/AddExperience"
             style={{ textDecoration: "none" }}
             className={({ isActive }) =>
@@ -229,9 +229,9 @@ const Navwebview = (props) => {
                 <GiSkills size={15} /> Experience
               </p>
             </div>
-          </NavLink>
+          </NavLink> */}
 
-          <NavLink
+          {/* <NavLink
             to="/favourite"
             style={{ textDecoration: "none" }}
             className={({ isActive }) =>
@@ -243,9 +243,9 @@ const Navwebview = (props) => {
                 <BsHeartFill size={15} /> Favourite
               </p>
             </div>
-          </NavLink>
+          </NavLink> */}
 
-          <NavLink
+          {/* <NavLink
             to="/my-comments"
             style={{ textDecoration: "none" }}
             className={({ isActive }) =>
@@ -257,7 +257,7 @@ const Navwebview = (props) => {
                 <MdQuestionAnswer size={15} /> My Comments
               </p>
             </div>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
             to="/message"

@@ -21,6 +21,7 @@ import { UserInfoProvider } from "./components/UserInfoContext";
 import Message from "./components/Dashboard/Event/Message";
 import Wishlist from "./components/Joinedevents/Event Wishlist/Wishlist";
 import PagenotFound from "./components/PagenotFound";
+import Profile from "./components/Dashboard/Profile/Profile";
 
 const App = () => {
   return (
@@ -72,6 +73,10 @@ const App = () => {
 
             <Route exact path="/message">
               <DashboardprotectedRoute DashboardProtect={Message} />
+            </Route>
+
+            <Route exact path="/profile">
+              <DashboardprotectedRoute DashboardProtect={Profile} />
             </Route>
 
             <Route exact path="/event-application/:id">

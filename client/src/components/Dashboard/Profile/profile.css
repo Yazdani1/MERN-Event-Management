@@ -1,0 +1,22 @@
+.user-profile-info{
+    margin-top: 20px;
+    padding: 10px;
+}
+
+/* profile items */
+
+.profile-items{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.item-icons svg{
+    margin-right: 30px;
+}
+h6{
+    padding-top: 10px;
+}
