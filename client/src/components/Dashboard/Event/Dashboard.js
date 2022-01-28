@@ -107,7 +107,7 @@ const Dashboard = () => {
               <div className="dashboard-items_design">
                 <FaUserGraduate size={35} />
                 <p>Member Type</p>
-                {/* <p> {mypost.length >= 5 ? "Pro Account" : "Starter Account"}</p> */}
+                <p> {myevents.length >= 5 ? "Pro Account" : "Starter Account"}</p>
               </div>
             </div>
           </div>
@@ -189,14 +189,14 @@ const Dashboard = () => {
                       </Link>
                     </td>
 
-                    <td>
+                    {/* <td>
                       <Link to={"/editpost/" + item._id}>
                         <button className="btn btn-success">
                           <AiTwotoneEdit size={20} />
                           Edit
                         </button>
                       </Link>
-                    </td>
+                    </td> */}
                     <td>
                       <button
                         className="btn btn-danger"
