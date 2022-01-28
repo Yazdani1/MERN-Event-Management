@@ -10,6 +10,9 @@ import { RiAccountPinBoxFill } from "react-icons/ri";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { UserContext } from "../UserContext";
+import { FaPiedPiperSquare } from "react-icons/fa";
+
+
 
 const Navmobileviewfront = () => {
   const [mobilesidebar, setMobilesidebar] = useState(false);
@@ -80,7 +83,7 @@ const Navmobileviewfront = () => {
               <Link to="/joined-events" style={{ textDecoration: "none" }}>
                 <div className="sidebar-mobile-nav">
                   <li onClick={() => setMobilesidebar(!mobilesidebar)}>
-                    <AiFillDashboard size={20} /> My Events
+                    <FaPiedPiperSquare size={20} /> My Events
                   </li>
                 </div>
               </Link>

@@ -264,15 +264,18 @@ const UserPublicProfile = () => {
                 <p>
                   <AiFillMessage size={35} />
                 </p>
-                <button
-                  className="btn btn-success"
-                  data-toggle="modal"
-                  data-target="#exampleModalCenter"
-                >
-                  Send Message <RiSendPlaneFill size={25} />
-                </button>
 
-                
+               
+                  <button
+                    className="btn btn-success"
+                    data-toggle="modal"
+                    data-target="#exampleModalCenter"
+                  >
+                  
+                    Send Message <RiSendPlaneFill size={25} />
+                  </button>
+              
+
                 <div
                   className="modal fade"
                   id="exampleModalCenter"
@@ -353,9 +356,9 @@ const UserPublicProfile = () => {
                           </div>
                           <div
                             className="main_container-button"
-                            onClick={(e) =>
-                              sendmessagetoUser(e, myevents?.userInfo?._id)
-                            }
+                            onClick={(e) => {
+                              sendmessagetoUser(e, myevents?.userInfo?._id);
+                            }}
                           >
                             <span className="view-allusers-button">
                               Send Message
@@ -366,8 +369,6 @@ const UserPublicProfile = () => {
                     </div>
                   </div>
                 </div>
-
-
               </div>
             </div>
           </div>

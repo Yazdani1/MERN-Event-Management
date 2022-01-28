@@ -4,7 +4,7 @@ import { Link, NavLink, useHistory } from "react-router-dom";
 import { AiTwotoneHome } from "react-icons/ai";
 import { AiFillDashboard } from "react-icons/ai";
 import { RiEditFill } from "react-icons/ri";
-import { FaUserNurse } from "react-icons/fa";
+import { FaUserNurse,FaPiedPiperSquare } from "react-icons/fa";
 import { GiSkills } from "react-icons/gi";
 import { BsHeartFill } from "react-icons/bs";
 import { RiLogoutCircleRLine } from "react-icons/ri";
@@ -13,6 +13,8 @@ import { GiRamProfile } from "react-icons/gi";
 import { MdQuestionAnswer } from "react-icons/md";
 import { UserContext } from "../../UserContext";
 import "./MyeventsNavMobile.css";
+
+
 
 const MyeventsNavMobile = () => {
   const [mobilesidebar, setMobilesidebar] = useState(false);
@@ -59,13 +61,13 @@ const MyeventsNavMobile = () => {
       {mobilesidebar ? (
         <div className="mobile-nav">
           <NavLink
-            to="/dashboard"
+            to="/joined-events"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
           >
             <div className="sidebar-mobile-nav">
               <li onClick={() => setMobilesidebar(!mobilesidebar)}>
-                <AiFillDashboard size={20} /> Dashboard
+                <AiFillDashboard size={20} /> Joined Events
               </li>
             </div>
           </NavLink>
@@ -83,7 +85,7 @@ const MyeventsNavMobile = () => {
           </NavLink>
 
           <NavLink
-            to="/Dashboardprofile"
+            to="/profile"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
           >
@@ -94,7 +96,7 @@ const MyeventsNavMobile = () => {
             </div>
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/AddExperience"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
@@ -104,7 +106,7 @@ const MyeventsNavMobile = () => {
                 <GiSkills size={15} /> Experience
               </li>
             </div>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
             to="/event-wishlist"
@@ -118,7 +120,7 @@ const MyeventsNavMobile = () => {
             </div>
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/my-comments"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
@@ -128,7 +130,7 @@ const MyeventsNavMobile = () => {
                 <MdQuestionAnswer size={15} /> Comments
               </li>
             </div>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
             to="/message"

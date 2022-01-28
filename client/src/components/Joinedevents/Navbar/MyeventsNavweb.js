@@ -34,7 +34,7 @@ const MyeventsNavweb = (props) => {
       {props.sidebar ? (
         <div className="sidebar-small-design">
           <NavLink
-            to="/dashboard"
+            to="/joined-events"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
           >
@@ -45,7 +45,7 @@ const MyeventsNavweb = (props) => {
                   <AiFillDashboard size={20} />
                 </span>
 
-                <p>Dashboard</p>
+                <p>JoinedEvents</p>
               </div>
             </div>
           </NavLink>
@@ -67,7 +67,7 @@ const MyeventsNavweb = (props) => {
           </NavLink>
 
           <NavLink
-            to="/Dashboardprofile"
+            to="/profile"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
           >
@@ -82,7 +82,7 @@ const MyeventsNavweb = (props) => {
             </div>
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/AddExperience"
             style={{ textDecoration: "none" }}
             className={({ isActive }) => (isActive ? "active" : "inactive")}
@@ -96,7 +96,7 @@ const MyeventsNavweb = (props) => {
                 <p>Experience</p>
               </div>
             </div>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
             to="/event-wishlist"
@@ -113,7 +113,7 @@ const MyeventsNavweb = (props) => {
               </div>
             </div>
           </NavLink>
-
+{/* 
           <NavLink
             to="/my-comments"
             style={{ textDecoration: "none" }}
@@ -128,7 +128,7 @@ const MyeventsNavweb = (props) => {
                 <p>Comments</p>
               </div>
             </div>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
             to="/message"
@@ -160,7 +160,7 @@ const MyeventsNavweb = (props) => {
       ) : (
         <div className="sidebar-large">
           <NavLink
-            to="/dashboard"
+            to="/joined-events"
             style={{ textDecoration: "none" }}
             className={({ isActive }) =>
               isActive ? "largenavactive" : "inactive"
@@ -168,7 +168,7 @@ const MyeventsNavweb = (props) => {
           >
             <div className="sidebar-large-navdesign">
               <p>
-                <AiFillDashboard size={15} /> Dashboard
+                <AiFillDashboard size={15} /> JoinedEvents
               </p>
             </div>
           </NavLink>
@@ -189,7 +189,7 @@ const MyeventsNavweb = (props) => {
           </NavLink>
 
           <NavLink
-            to="/Dashboardprofile"
+            to="/profile"
             style={{ textDecoration: "none" }}
             className={({ isActive }) =>
               isActive ? "largenavactive" : "inactive"
@@ -202,7 +202,7 @@ const MyeventsNavweb = (props) => {
             </div>
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/AddExperience"
             style={{ textDecoration: "none" }}
             className={({ isActive }) =>
@@ -214,7 +214,7 @@ const MyeventsNavweb = (props) => {
                 <GiSkills size={15} /> Experience
               </p>
             </div>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
             to="/event-wishlist"
@@ -230,7 +230,7 @@ const MyeventsNavweb = (props) => {
             </div>
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/my-comments"
             style={{ textDecoration: "none" }}
             className={({ isActive }) =>
@@ -242,7 +242,7 @@ const MyeventsNavweb = (props) => {
                 <MdQuestionAnswer size={15} /> My Comments
               </p>
             </div>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
             to="/message"
