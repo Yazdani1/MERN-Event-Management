@@ -120,3 +120,16 @@
   color: black;
   border-radius: 20px;
 }
+
+
+/* visit event organizer profile title */
+
+.title-user-profile{
+  margin-top: 20px;
+  background-color: brown;
+  padding: 10px;
+  color: aliceblue;
+  width: fit-content;
+  block-size: fit-content;
+  border-radius: 10px;
+}

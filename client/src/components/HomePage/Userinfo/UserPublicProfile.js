@@ -271,6 +271,8 @@ const UserPublicProfile = () => {
                 >
                   Send Message <RiSendPlaneFill size={25} />
                 </button>
+
+                
                 <div
                   className="modal fade"
                   id="exampleModalCenter"
@@ -364,6 +366,8 @@ const UserPublicProfile = () => {
                     </div>
                   </div>
                 </div>
+
+
               </div>
             </div>
           </div>
