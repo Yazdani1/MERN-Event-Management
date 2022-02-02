@@ -31,6 +31,10 @@ exports.getallEventorganizers = (req, res) => {
 exports.userspublicProfile = (req, res) => {
   User.findOne({ _id: req.params.id })
     .select("-password")
+    .populate(
+      "joinedevents",
+      "name des location eventtypes startdate enddate date maxmembers application "
+    )
     .then((userInfo) => {
       Eventpost.find({ postedBy: req.params.id })
         .populate("postedBy", "_id name email photo")
@@ -40,10 +44,10 @@ exports.userspublicProfile = (req, res) => {
             return res.status(400).json({ error: err });
           }
           res.json({ userInfo, postsData });
-        })
-        .catch((err) => {
-          return res.status(404).json({ error: err });
         });
+    })
+    .catch((err) => {
+      return res.status(404).json({ error: err });
     });
 };
 
