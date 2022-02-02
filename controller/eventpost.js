@@ -143,7 +143,7 @@ exports.eventDetails = (req, res) => {
   var detailsquery = { _id: req.params.id };
 
   Eventpost.findOne(detailsquery)
-    .populate("postedBy", "_id name photo")
+    .populate("postedBy", "_id name email photo")
     .populate("application.postedBy", "_id name email photo")
     .then((singleevents) => {
       Eventpost.find({ _id: { $ne: detailsquery } })

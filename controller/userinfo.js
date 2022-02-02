@@ -38,7 +38,7 @@ exports.userspublicProfile = (req, res) => {
     .then((userInfo) => {
       Eventpost.find({ postedBy: req.params.id })
         .populate("postedBy", "_id name email photo")
-        .populate("application.postedBy", "_id name")
+        .populate("application.postedBy", "_id name email photo")
         .exec((err, postsData) => {
           if (err) {
             return res.status(400).json({ error: err });
