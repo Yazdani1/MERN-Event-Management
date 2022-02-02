@@ -25,7 +25,7 @@ import AlleventXLview from "../AlleventXLview";
 import Alleventmobileview from "../Alleventmobileview";
 import { sendMessage } from "./APIuserpublicprofile";
 import { FcComboChart, FcFilledFilter } from "react-icons/fc";
-
+import { GiArchiveResearch } from "react-icons/gi";
 import { addeventtoWishlist } from "../../Joinedevents/Event Wishlist/APIwishlist";
 import {
   getallEvents,
@@ -33,6 +33,8 @@ import {
   addliketoEvent,
   unliketoEvent,
 } from "../APIAllevents";
+import { FcBiomass } from "react-icons/fc";
+
 
 const UserPublicProfile = () => {
   const [myevents, setMyevents] = useState([]);
@@ -405,7 +407,7 @@ const UserPublicProfile = () => {
           </h5> */}
 
       <div className="container all-events-container">
-        <h5>
+        {/* <h5>
           {myevents?.postsData?.length === 0 ? (
             <h5 className="card noposts-design">
               <FcComboChart size={200} />
@@ -414,7 +416,7 @@ const UserPublicProfile = () => {
           ) : (
             "All Events"
           )}
-        </h5>
+        </h5> */}
         <div className="row">
           {myevents?.postsData?.length ? (
             myevents?.postsData?.map((event, index) => (
@@ -456,8 +458,8 @@ const UserPublicProfile = () => {
               </>
             ))
           ) : (
-            <h5 className="card noposts-design">
-              <FcComboChart size={200} />
+            <h5 className="container card noposts-design">
+              <FcBiomass size={200} />
               This user did not publish any events yet!
             </h5>
           )}
