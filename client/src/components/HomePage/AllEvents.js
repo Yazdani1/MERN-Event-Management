@@ -23,6 +23,7 @@ import { UserContext } from "../UserContext";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
 import { addeventtoWishlist } from "../Joinedevents/Event Wishlist/APIwishlist";
+import { GiArchiveResearch } from "react-icons/gi";
 
 const AllEvents = () => {
   const [allevents, setAllevents] = useState([]);
@@ -31,8 +32,6 @@ const AllEvents = () => {
   const [search, setSearch] = useState("");
   const [state, setState] = useContext(UserContext);
   const history = useHistory();
-
-  
 
   //pagination
 
@@ -161,7 +160,6 @@ const AllEvents = () => {
         console.log(err);
       });
   };
-
 
   // unlike events
   const unLikeevent = (postId) => {
@@ -371,7 +369,13 @@ const AllEvents = () => {
               </>
             ))
           ) : (
-            <h5 className="card">No search result found with your query</h5>
+            <div className="container">
+              <h5 className="card noposts-design">
+                <GiArchiveResearch size={200} />
+                No search result found with your query! Please try a different
+                search query
+              </h5>
+            </div>
           )}
         </div>
         <div className="card pagination-allevents">

@@ -9,6 +9,7 @@ import { BsCalendar2DateFill } from "react-icons/bs";
 import Totalpostcount from "./TotalPostCount";
 import { SyncOutlined } from "@ant-design/icons";
 import { ToastContainer, toast } from "react-toastify";
+import { GiArchiveResearch } from "react-icons/gi";
 
 import ReactStars from "react-rating-stars-component";
 import { render } from "react-dom";
@@ -124,7 +125,6 @@ const Eventorganizersprofile = () => {
               </div>
             </div>
             <div className="col-lg-4 col-md-4 col-sm-4 col-xl-4">
-             
               <div className="eventorganizer-search">
                 <p onClick={searchUser}>Search</p>
               </div>
@@ -167,7 +167,13 @@ const Eventorganizersprofile = () => {
               </div>
             ))
           ) : (
-            <h5 className="card">No search result found with your query</h5>
+            <div className="container">
+              <h5 className="card noposts-design">
+                <GiArchiveResearch size={200} />
+                No search result found with your query! Please try a different
+                search query
+              </h5>
+            </div>
           )}
         </div>
 
