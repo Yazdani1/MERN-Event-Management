@@ -31,17 +31,13 @@ exports.getallEventorganizers = (req, res) => {
 exports.userspublicProfile = (req, res) => {
   User.findOne({ _id: req.params.id })
     .select("-password")
-    .populate(
-      "joinedevents",
-      "name des location eventtypes startdate enddate date maxmembers application "
-    )
     .then((userInfo) => {
       Eventpost.find({ postedBy: req.params.id })
         .populate("postedBy", "_id name email photo")
         .populate("application.postedBy", "_id name email photo")
         .exec((err, postsData) => {
           if (err) {
-            return res.status(400).json({ error: err });
+            return res.status(422).json({ error: err });
           }
           res.json({ userInfo, postsData });
         });

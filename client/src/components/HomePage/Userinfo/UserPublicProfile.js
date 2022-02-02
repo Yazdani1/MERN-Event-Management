@@ -422,31 +422,31 @@ const UserPublicProfile = () => {
                 <Alleventmobileview
                   name={event.name}
                   des={event.des}
-                  id={event.postedBy?._id}
+                  id={event?.postedBy?._id}
                   photo={event?.postedBy?.photo}
-                  username={event.postedBy?.name}
+                  username={event?.postedBy?.name}
                   postid={event._id}
                   date={event.date}
                   startdate={event.startdate}
                   enddate={event.enddate}
                   location={event.location}
                   maxmembers={event.maxmembers}
-                  joinedeventnumbers={event.application.length}
+                  joinedeventnumbers={event.application?.length}
                 />
 
                 <AlleventXLview
                   name={event.name}
                   des={event.des}
-                  id={event.postedBy?._id}
+                  id={event?.postedBy?._id}
                   photo={event?.postedBy?.photo}
-                  username={event.postedBy?.name}
+                  username={event?.postedBy?.name}
                   postid={event._id}
                   date={event.date}
                   startdate={event.startdate}
                   enddate={event.enddate}
                   location={event.location}
                   maxmembers={event.maxmembers}
-                  joinedeventnumbers={event.application.length}
+                  joinedeventnumbers={event.application?.length}
                   totallikes={event.likes?.length}
                   alreadylikedpost={event.likes}
                   saveWishlist={saveEventWishlist}
