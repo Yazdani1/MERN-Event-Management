@@ -158,7 +158,7 @@ const UserPublicProfile = () => {
 
   useEffect(() => {
     getMypost();
-  }, []);
+  }, [myevents]);
 
   if (loading) {
     return (
@@ -265,16 +265,13 @@ const UserPublicProfile = () => {
                   <AiFillMessage size={35} />
                 </p>
 
-               
-                  <button
-                    className="btn btn-success"
-                    data-toggle="modal"
-                    data-target="#exampleModalCenter"
-                  >
-                  
-                    Send Message <RiSendPlaneFill size={25} />
-                  </button>
-              
+                <button
+                  className="btn btn-success"
+                  data-toggle="modal"
+                  data-target="#exampleModalCenter"
+                >
+                  Send Message <RiSendPlaneFill size={25} />
+                </button>
 
                 <div
                   className="modal fade"
@@ -419,44 +416,51 @@ const UserPublicProfile = () => {
           )}
         </h5>
         <div className="row">
-          {myevents?.postsData?.map((event, index) => (
-            <>
-              <Alleventmobileview
-                name={event.name}
-                des={event.des}
-                id={event.postedBy?._id}
-                photo={event?.postedBy?.photo}
-                username={event.postedBy?.name}
-                postid={event._id}
-                date={event.date}
-                startdate={event.startdate}
-                enddate={event.enddate}
-                location={event.location}
-                maxmembers={event.maxmembers}
-                joinedeventnumbers={event.application.length}
-              />
+          {myevents?.postsData?.length ? (
+            myevents?.postsData?.map((event, index) => (
+              <>
+                <Alleventmobileview
+                  name={event.name}
+                  des={event.des}
+                  id={event.postedBy?._id}
+                  photo={event?.postedBy?.photo}
+                  username={event.postedBy?.name}
+                  postid={event._id}
+                  date={event.date}
+                  startdate={event.startdate}
+                  enddate={event.enddate}
+                  location={event.location}
+                  maxmembers={event.maxmembers}
+                  joinedeventnumbers={event.application.length}
+                />
 
-              <AlleventXLview
-                name={event.name}
-                des={event.des}
-                id={event.postedBy?._id}
-                photo={event?.postedBy?.photo}
-                username={event.postedBy?.name}
-                postid={event._id}
-                date={event.date}
-                startdate={event.startdate}
-                enddate={event.enddate}
-                location={event.location}
-                maxmembers={event.maxmembers}
-                joinedeventnumbers={event.application.length}
-                totallikes={event.likes?.length}
-                alreadylikedpost={event.likes}
-                saveWishlist={saveEventWishlist}
-                // addlike={addliketoEvents}
-                // unlike={unLikeevent}
-              />
-            </>
-          ))}
+                <AlleventXLview
+                  name={event.name}
+                  des={event.des}
+                  id={event.postedBy?._id}
+                  photo={event?.postedBy?.photo}
+                  username={event.postedBy?.name}
+                  postid={event._id}
+                  date={event.date}
+                  startdate={event.startdate}
+                  enddate={event.enddate}
+                  location={event.location}
+                  maxmembers={event.maxmembers}
+                  joinedeventnumbers={event.application.length}
+                  totallikes={event.likes?.length}
+                  alreadylikedpost={event.likes}
+                  saveWishlist={saveEventWishlist}
+                  // addlike={addliketoEvents}
+                  // unlike={unLikeevent}
+                />
+              </>
+            ))
+          ) : (
+            <h5 className="card noposts-design">
+              <FcComboChart size={200} />
+              This user did not publish any events yet!
+            </h5>
+          )}
         </div>
       </div>
       <ToastContainer autoClose={8000} />

@@ -31,10 +31,6 @@ exports.getallEventorganizers = (req, res) => {
 exports.userspublicProfile = (req, res) => {
   User.findOne({ _id: req.params.id })
     .select("-password")
-    .populate(
-      "joinedevents",
-      "name des location eventtypes startdate enddate date maxmembers application "
-    )
     .then((userInfo) => {
       Eventpost.find({ postedBy: req.params.id })
         .populate("postedBy", "_id name email photo")
