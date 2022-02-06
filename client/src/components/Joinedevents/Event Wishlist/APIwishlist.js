@@ -34,6 +34,8 @@ export const removeeventfromWishlist = (postID) => {
     });
 };
 
+//to get wishlist post
+
 export const getwishlistPost = () => {
   return fetch("/api/get-wishlist", {
     method: "GET",

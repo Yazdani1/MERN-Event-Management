@@ -19,6 +19,7 @@ const Wishlist = () => {
   //load wishlist post
 
   const [getwishlist, setGetwishlist] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,11 +28,11 @@ const Wishlist = () => {
   //Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = userinfo?.wishlist?.slice(
+  const currentPosts = getwishlist?.wishlist?.slice(
     indexOfFirstPost,
     indexOfLastPost
   );
-  const howManyPages = Math.ceil(userinfo?.wishlist?.length / postsPerPage);
+  const howManyPages = Math.ceil(getwishlist?.wishlist?.length / postsPerPage);
 
   const removeEventwishlist = (postID) => {
     removeeventfromWishlist(postID)
@@ -55,6 +56,7 @@ const Wishlist = () => {
         if (resultwishlist) {
           setGetwishlist(resultwishlist);
           console.log("All wishlist"+resultwishlist)
+          setLoading(false);
         }
       })
       .catch((err) => {
@@ -66,11 +68,21 @@ const Wishlist = () => {
     loadwishlistPost();
   }, [userinfo, setUserinfo]);
 
+  if (loading) {
+    return (
+      <div class="text-center my-25">
+        <h1>
+          <SyncOutlined spin />
+        </h1>
+      </div>
+    );
+  }
+
   return (
     <React.Fragment>
       <div className="container large-screen-allevent-views">
         <p className="total-application">
-          Wishlist Events: {userinfo.wishlist?.length}
+          Wishlist Events: {getwishlist.wishlist?.length}
         </p>
         {currentPosts?.map((eventwish) => (
           <>
@@ -131,61 +143,13 @@ const Wishlist = () => {
         ))}
 
         <div className="card pagination-dashboard">
-          {userinfo?.wishlist?.length > 1 ? (
+          {getwishlist?.wishlist?.length > 1 ? (
             <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
           ) : null}
         </div>
       </div>
 
-      {/* <div className="container">
-        <p className="total-application">
-          Wishlist Events: {userinfo.wishlist?.length}
-        </p>
-
-        <div
-          className="event-application"
-        >
-          <div className="row">
-            <div
-              className="col-lg-12 col-md-12 col-sm-12 col-xl-12"
-              style={{ maxHeight: "850px", overflow: "scroll" }}
-            >
-              {userinfo.wishlist?.map((wishevent) => (
-                <Link
-                  to={"/event-details-page/" + wishevent._id}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  <div className="event-application-views">
-                    <div className="card all-events">
-                      <h5>{wishevent && wishevent.name}</h5>
-                      <p>{ReactHtmlParser(wishevent && wishevent.des)}</p>
-                      <p>
-                        Published on:
-                        {moment(wishevent && wishevent.date).format(
-                          "MMMM Do YYYY"
-                        )}
-                      </p>
-                      <p>
-                        Event Start date:{" "}
-                        {moment(wishevent && wishevent.startdate).format(
-                          "MMMM Do YYYY"
-                        )}
-                      </p>
-                      <p>
-                        Going <FcOk /> {wishevent.application?.length}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-       
-        </div>
-      </div> */}
-
       <ToastContainer autoClose={8000} />
-      <h1>New way to show wishlist: {getwishlist.wishlist?.length}</h1>
     </React.Fragment>
   );
 };
