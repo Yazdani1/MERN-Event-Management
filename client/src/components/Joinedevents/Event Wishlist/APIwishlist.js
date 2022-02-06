@@ -6,7 +6,7 @@ export const addeventtoWishlist = (postID) => {
       Accept: "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    body: JSON.stringify({postID}),
+    body: JSON.stringify({ postID }),
   })
     .then((res) => {
       return res.json();
@@ -24,7 +24,24 @@ export const removeeventfromWishlist = (postID) => {
       Accept: "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    body: JSON.stringify({postID}),
+    body: JSON.stringify({ postID }),
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const getwishlistPost = () => {
+  return fetch("/api/get-wishlist", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   })
     .then((res) => {
       return res.json();

@@ -6,12 +6,19 @@ import { UserInfoContext } from "../../UserInfoContext";
 import ReactHtmlParser from "react-html-parser";
 import { FcOk } from "react-icons/fc";
 import { MdLocationPin, MdDelete } from "react-icons/md";
-import { removeeventfromWishlist } from "../Event Wishlist/APIwishlist";
+import {
+  removeeventfromWishlist,
+  getwishlistPost,
+} from "../Event Wishlist/APIwishlist";
 import { ToastContainer, toast } from "react-toastify";
 import Pagination from "../../Dashboard/Event/Pagination";
 
 const Wishlist = () => {
   const [userinfo, setUserinfo] = useContext(UserInfoContext);
+
+  //load wishlist post
+
+  const [getwishlist, setGetwishlist] = useState([]);
 
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,7 +47,24 @@ const Wishlist = () => {
       });
   };
 
-  useEffect(() => {}, [userinfo, setUserinfo]);
+  //get all wish list
+
+  const loadwishlistPost = () => {
+    getwishlistPost()
+      .then((resultwishlist) => {
+        if (resultwishlist) {
+          setGetwishlist(resultwishlist);
+          console.log("All wishlist"+resultwishlist)
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    loadwishlistPost();
+  }, [userinfo, setUserinfo]);
 
   return (
     <React.Fragment>
@@ -161,6 +185,7 @@ const Wishlist = () => {
       </div> */}
 
       <ToastContainer autoClose={8000} />
+      <h1>New way to show wishlist: {getwishlist.wishlist?.length}</h1>
     </React.Fragment>
   );
 };
