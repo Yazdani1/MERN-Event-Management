@@ -18,7 +18,9 @@ const {
   sendMessage,
   addtoWishlist,
   removeeventWishlist,
+  getwishlistPost,
 } = require("../controller/userinfo");
+const { route } = require("express/lib/application");
 
 //Userauth
 
@@ -47,5 +49,8 @@ router.post("/send-message", requireLogin, sendMessage);
 
 router.put("/event-wishlist", requireLogin, addtoWishlist);
 router.put("/remove-event-wishlist", requireLogin, removeeventWishlist);
+
+//to get event wishlist
+router.get("/get-wishlist", requireLogin, getwishlistPost);
 
 module.exports = router;

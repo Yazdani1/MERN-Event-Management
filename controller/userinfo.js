@@ -164,3 +164,20 @@ exports.removeeventWishlist = (req, res) => {
     }
   });
 };
+
+//get wishlist post in user profile
+
+exports.getwishlistPost = (req, res) => {
+  User.findOne({ _id: req.user._id })
+    .select("wishlist")
+    .populate(
+      "wishlist",
+      "name  des location eventtypes startdate enddate likes date maxmembers application "
+    )
+    .then((wishlistpost) => {
+      res.json(wishlistpost);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
